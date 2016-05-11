@@ -25,5 +25,11 @@
 		$routeProvider.when('/view', {
 			templateUrl: '../views/view2.html'
 		})
+		$routeProvider.when('/orders', {
+			templateUrl: '../views/orders.html'
+		})
+		$routeProvider.when('/view_orders', {
+			templateUrl: '../views/view_orders.html'
+		})
 	}
 })()

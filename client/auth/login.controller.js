@@ -16,11 +16,9 @@
 		function login() {
 			$scope.error = false;
 			$scope.disabled = true;
-
 			AuthService.login($scope.user.username, $scope.user.password)
 			//success
 			.then(function(data) {
-				//add scope userinformation
 				$location.path('/menu');
 				$scope.diabled = false;
 				$scope.user = {}

@@ -1,7 +1,7 @@
 .table_body {
    font: 100%/30px 'Helvetica Neue', helvetica, arial, sans-serif;
     text-shadow: 0 1px 0 #fff;
-    width: 1140px;
+    max-width: 1600px;
     height: 3000px;
     margin-left: 30px;
 }
@@ -22,12 +22,20 @@
     box-shadow: inset 0 1px 0 #fff;
     font-size: 12px;
     height: 10%;
-    overflow: scroll;
     vertical-align: top;
     display: inline;
-}   
+}
 
-
+.table_container {
+    max-height: 10%;
+    width: 40%;
+    margin: 10px;
+    overflow: scroll;
+    vertical-align: top;
+}
+.view_menu_table {
+    width: 100%;
+}
 
 .table_body th {
     background: url(http://jackrugile.com/images/misc/noise-diagonal.png), linear-gradient(#777, #444);
@@ -111,7 +119,37 @@
     text-shadow: 0 0 3px #aaa;
 }
 
-.table_body tbody:hover tr:hover td {
+.table_body tbody:hover tr:hovwer td {
     color: #444;
     text-shadow: 0 1px 0 #fff;
 }
+#view_order_table {
+    width: 200%;
+}
+
+
+.order_menu_container {
+    margin-left: 30px;
+    width: 30%;
+    margin-right: 10px;
+    display: inline-block;
+    max-height:  300px;
+    overflow: scroll;
+    vertical-align: top;
+    margin-top: 80px;
+    border-top: groove;
+}
+
+.this_order {
+    margin: 0 auto;
+    width: 30%;
+    max-height: 400px;
+    overflow: scroll;
+}
+
+#view_all_orders_table {
+    width: 40%;
+    margin-left: 30px;
+}
+
+

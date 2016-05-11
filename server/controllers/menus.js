@@ -16,6 +16,18 @@ menus.create = function(req, res) {
 	})
 }
 
+menus.removeCategory = function(req, res) {
+	console.log(req.body.id)
+	MenuCategory.remove({_id: req.body.id}, function(error) {
+		if (error) {
+			console.log('Could not remove Category')
+		} else {
+			console.log('successfully removed category!!')
+			res.end();
+		}
+	})
+}
+
 menus.show = function(req, res) {
 	MenuCategory.find({}, function(error, data) {
 		if(error) {
@@ -28,6 +40,7 @@ menus.show = function(req, res) {
 
 menus.addItem = function(req, res) {
 	MenuCategory.findOne({_id: req.body.id}, function(error, results) {
+		console.log(results)
 		var item = new MenuItem({name: req.body.name, price: req.body.price, description: req.body.description})
 		item._category = results._id
 		results.items.push(item)
@@ -61,7 +74,27 @@ menus.getItems = function(req, res) {
 	})
 }
 
+menus.updateItem = function(req, res) {
+	MenuItem.findByIdAndUpdate(req.body.id, {$set: { name: req.body.name, price: req.body.price}}, function(error, data) {
+		if(error) {
+			console.log('error')
+		} else {
+			res.json(data)
+			res.end();
+		}
+	})
+}
 
+menus.removeItem = function(req, res) {
+	MenuItem.remove({_id: req.body.id}, function(error) {
+		if(error) {
+			console.log('Could not remove Item')
+		} else {
+			console.log('successfull removed item!!!')
+			res.end();
+		}
+	})
+}
 
 
 module.exports = menus

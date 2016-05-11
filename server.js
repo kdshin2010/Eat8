@@ -20,8 +20,6 @@ var routes = require('./server/config/routes.js')
 //invoke express, require mongoose.js, require routes
 var app = express();
 
-
-
 //defining middleware
 app.use(express.static(path.join(__dirname, './client')));
 app.use(logger('dev'));

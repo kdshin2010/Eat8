@@ -14,14 +14,17 @@
 
 	function MenuFactoryFunction($http, $q) {
 		var factory = {},
-		categories;
-
+		categories
 
 		return {
 			addCategory: addCategory,
 			getCategories: getCategories,
 			addItem: addItem,
-			getMenuItems: getMenuItems
+			getMenuItems: getMenuItems,
+			removeCategory: removeCategory,
+			obtainCategories: obtainCategories,
+			updateItem: updateItem,
+			removeItem: removeItem
 		}
 
 		function addCategory(info) {
@@ -50,16 +53,18 @@
 			return deferred.promise
 		}
 
-		function addItem(info) {
-			var deferred = $q.defer();
-			$http.post('/additem', {id: info.id, name: info.name, price: info.price, description: info.description })
-			.success(function(data) {
-				deferred.resolve(data)
+		function obtainCategories(callback) {
+			$http.get('/getCategories').success(function(data) {
+				categories = data;
+				callback(categories)
 			})
-			.error(function(error) {
-				deferred.reject()
+		}
+
+
+		function removeCategory(id, callback) {
+			$http.post('/removeCategory', {id: id}).success(function(data){
+				callback(data);
 			})
-			return deferred.promise
 		}
 
 		function getMenuItems() {
@@ -73,6 +78,48 @@
 			})
 			return deferred.promise
 		}
+
+		function addItem(info) {
+			console.log(info.id + 'here is the id')
+			var deferred = $q.defer();
+			$http.post('/addItem', {id: info.id, name: info.name, price: info.price, description: info.description})
+			.success(function(data) {
+				deferred.resolve(data)
+			})
+			.error(function(error) {
+				deferred.reject();
+			})
+			return deferred.promise
+		}
+		//update Item
+
+		function updateItem(info) {
+			var deferred = $q.defer();
+			$http.post('/updateItem', {id: info.id, name: info.name, price: info.price, description: info.description})
+			.success(function(data) {
+				deferred.resolve(data)
+			})
+			.error(function() {
+				deferred.reject();
+			})
+			return deferred.promise
+		}
+
+		function removeItem(id) {
+			var deferred = $q.defer();
+			$http.post('/removeItem', {id: id})
+			.success(function(data) {
+				console.log(data + ' this is the data at the service factory we will see if this is necessary')
+				deferred.resolve(data)
+			})
+			.error(function() {
+				deferred.reject();
+			})
+			return deferred.promise;
+		}
+
+
+
 	}
 
 

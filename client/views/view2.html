@@ -6,17 +6,25 @@
 
 </style>
 
-<div class='table_body'  style='margin-left: 50px' ng-controller='MenuCtrl'>
-	<div ng-repeat='menu in items' style='display: inline-block; margin: 10px' >
+<div class='table_body' style='margin-left: 50px;' ng-controller='MenuCtrl'>
+	<div class='update_container' style='margin: 0 auto;' ng-show='show_update' ng-init='show_update = false'>
+	{{updateItem}}
+		<form class='form-group'> 
+			New  Name<input type='text' ng-model='newItem.name'>
+			New Price<input type='text' ng-model='newItem.price'>
+			<input type='submit' ng-click='updateItem()'>
+		</form>
+	</div>
+	<div class='table_container' ng-repeat='menu in items' style='display: inline-block; margin: 10px' >
 		<h3 style>{{menu.name}}</h3>
-		<table>
+		<table style='width: 100%'>
 			 <thead>
 			   <tr>
 			     <th>Number</th>
 			     <th>Item Name</th>
 			     <th>Price</th>
 			     <th>Actions
-			     	<button class='btn btn-default' style='height: 25px; width: 30px; font-size: 10px; float: right; background-color: grey; margin: 0 auto; padding: 0'>X</button>
+			     	<button class='btn btn-default' style='height: 25px; width: 30px; font-size: 10px; float: right; background-color: grey; margin: 0 auto; padding: 0' ng-click='removeCategory(menu._id)'>X</button>
 			     </th>
 			   </tr>
 			 </thead>
@@ -25,11 +33,15 @@
 			    <td>-</td>
 			   	<td ng-bind='x.name'>Item 2</td>
 			   	<td ng-bind='x.price'>Item 3</td>
-			   	<td><button class ='btn btn-primary' style="width:55px; font-size: 8px">Update</button>
-			   	<button class ='btn btn-danger' style="width:55px; font-size: 8px; text-align: center">Remove</button>
+			   	<td><button class ='btn btn-primary' style="width:55px; font-size: 8px" ng-click="showUpdate(x._id)">Update</button>
+			   	<button class ='btn btn-danger' style="width:55px; font-size: 8px; text-align: center" ng-click='removeItem(x._id)'>Remove</button>
 		    	</td>
 		    </tr>
 		   </tbody>
 		</table>
 	</div>
 </div>
+
+
+
+

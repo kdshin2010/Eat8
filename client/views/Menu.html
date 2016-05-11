@@ -6,6 +6,7 @@
         <button class ='get_started_btn'>View Menu</button>
     </div>
     <div class ='menu_form_category'>
+    {{task}}
         <div class = 'add_select_category'>
             <form>
                 <div id="add_category">
@@ -15,13 +16,13 @@
                 </div>
                 <div id="select_category">
                     <h2>| Select Category</h2>
-                    {{selectedCategory}}
                         <select class="form_control" ng-model='selectedCategory'>
                             <option ng-repeat = 'category in categories' ng-bind='category.name' value='{{category._id}}'></option>
                         </select>
                 </div>
             </form>
         </div>
+        {{newItem}}
             <div class="menu_items">
                 <form>
                     <fieldset class="form-group">
