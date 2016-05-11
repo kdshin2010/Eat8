@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">	<title>Menu Application</title>
+    <link rel="stylesheet" type="text/css" href="app/css/itemtable.css">
+ <!--    <link href="app/content/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="app/css/bootstrap.css" rel="stylesheet">
+    <link href="app/css/home_page.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="app/css/table.css">
+    <link href="app/css/login.css" rel="stylesheet">
+    <link href="app/css/app_content.css" rel="stylesheet">
+</head>
+<body ng-app='menuApp'>
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">SP<i class="fa fa-circle"></i>T</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#/login">LOGIN</a></li>
+            <li><a data-toggle="modal" data-target="#myModal" href="#myModal"><i class="fa fa-envelope-o"></i></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div ng-view=""></div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+        <script src="https://code.angularjs.org/1.4.4/angular-route.js"></script>
+        <script src="app/content/bootstrap.min.js"></script>
+
+        	<!-- App Files -->
+        <script src"app/js/css_jquery"></script>
+		<script src="app/app.js"></script>
+		<script src="menu_content/menu.controller.js"></script>
+
+            <!-- Auth Files -->
+        <script src="auth/auth.service.js"></script>
+        <script src="auth/login.controller.js"></script>
+        <script src="auth/register.controller.js"></script>
+
+            <!-- Menu Content Files -->
+        <script src="menu_content/menu.controller.js"></script>
+        <script src="menu_content/menu.service.js"></script>
+
+            <!-- Order Content Files -->
+        <script src="order_content/order.controller.js"></script>
+        <script src="order_content/order.service.js"></script>
+
+</body>
+</html>

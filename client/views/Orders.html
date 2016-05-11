@@ -1,0 +1,73 @@
+<style>
+
+</style>
+
+
+<div class='row' ng-controller='OrdersCtrl'>
+	<div class='order_container'>
+		<form class='text-center'>
+			<span style='margin-right: 10px; font-size: 20px'>Select Table</span><select ng-model='table_number'>
+				<option value = '1'>1</option>
+				<option value = '2'>2</option>
+				<option value = '3'>3</option>
+				<option value = '4'>4</option>
+				<option value = '5'>5</option>
+				<option value = '6'>6</option>
+				<option value = '7'>7</option>
+				<option value = '8'>8</option>
+				<option value = '9'>9</option>
+				<option value = '10'>10</option>
+			</select>
+			<button class = 'btn btn-default' ng-click='selectTable()'>Select Table</button>
+	</div>
+	<div class='order_view_container' ng-show='show_order_tables' ng-init = 'show_order_tables = false'>
+		<div class='this_order'>
+			<h3>This Order</h3>
+					
+			<table class='table' id='view_order_table'>
+				<thead>
+					<tr>
+						<th> - </th>
+						<th>Item Name</th>
+						<th>Price</th>
+						<th>Actions</th>
+					</tr>
+					<tr ng-repeat='a in orderItems.items'>
+						<td> - </td>
+						<td ng-bind='a.name'></td>
+						<td ng-bind='a.price'></td>
+						<td><button class='btn btn-danger' ng-click='removeOrderItem(a._id)'>Remove</td>
+
+					</tr>
+				</thead>
+			</table>
+			<button class='btn btn-primary' id='add_order_button' ng-click = 'submitOrder(orderItems._id)' >Submit Order</button>
+
+
+		</div>
+		<div class='order_menu_container' ng-repeat='item in items'>
+			<h3>{{item.name}}</h3>
+			{{updateItem}}
+			<form>
+				<table class='table'>
+					<thead>
+						<tr>
+							<th>Category</th>
+							<th>Item Name</th>
+							<th>Item Price</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat = 'x in item.items track by $index'>
+							<td>-</td>
+							<td ng-bind='x.name' ng-model='updateItem.name'></td>
+							<td ng-bind='x.price' ng-model='updateItem.price'></td>
+							<td><button class='btn btn-primary' ng-click='addOrderItem(x, item)'>Add</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</div>
+</div>

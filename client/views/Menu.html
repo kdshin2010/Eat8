@@ -1,0 +1,45 @@
+<div class='menu_wrapper'> 
+    <div class='menu_header'>
+        <h1 style='text-align: center;'>Build Your Menu</h1>
+        <!-- Button to ng-show menu categories -->
+        <button class ='get_started_btn'>Get Started</button>
+        <button class ='get_started_btn'>View Menu</button>
+    </div>
+    <div class ='menu_form_category'>
+    {{task}}
+        <div class = 'add_select_category'>
+            <form>
+                <div id="add_category">
+                    <h2>Add Category |</h2>
+                        <input type='text' ng-model='newCategory.name'>
+                        <input type= 'submit'  ng-click = 'addCategory()' >
+                </div>
+                <div id="select_category">
+                    <h2>| Select Category</h2>
+                        <select class="form_control" ng-model='selectedCategory'>
+                            <option ng-repeat = 'category in categories' ng-bind='category.name' value='{{category._id}}'></option>
+                        </select>
+                </div>
+            </form>
+        </div>
+        {{newItem}}
+            <div class="menu_items">
+                <form>
+                    <fieldset class="form-group">
+                        <label>Item Name</label>
+                        <input type='text' class='form-control' placeholder='Item Name' ng-model='newItem.name'>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label>Item Price</label>
+                        <input type='text' class='form-control' placeholder='Item Name' ng-model='newItem.price'>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="exampleTextarea">Item Description</label>
+                        <textarea class="form-control" ng-model= 'newItem.description' rows="3"></textarea>
+                     </fieldset>
+                     <button ng-click='addItem()'>Add Item</button>
+                     <a href="#/view" style = 'color: blue; margin-top:10px'>View Menu</a>
+                 </form>
+            </div>
+    </div>
+</div>
