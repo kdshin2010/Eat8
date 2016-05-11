@@ -1,0 +1,11 @@
+possible additional npm installs
+
+
+user schema
+	...
+	Username
+		-type String, unique: true, required String
+		-hash : String,
+		-salt: String
+
+	-Add Methods for encryption/ salt /hash
