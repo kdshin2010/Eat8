@@ -1,4 +1,8 @@
-possible additional npm installs
+Refactoring Process
+-Check package.json
+Additional Adds
+	json web token
+	express-jwt
 
 
 user schema
@@ -9,3 +13,6 @@ user schema
 		-salt: String
 
 	-Add Methods for encryption/ salt /hash
+
+
+Fix Server File

@@ -40,6 +40,6 @@ User.methods.generateJwt = function() {
 	}, "MY_SECRET") // FIX THIS ***** DO NOT KEEP SECRET IN CODE
 }
 
-
+mongoose.model('User', User);
 User.plugin(passportLocalMongoose);
 module.exports = mongoose.model('User', User)
