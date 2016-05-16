@@ -8,7 +8,7 @@
   	// MenuCtrl.$inject = ['$location', ];
 
 
-	function MenuCtrlFunction($scope, $location, MenuFactory) {
+	function MenuCtrlFunction($scope, $location, MenuFactory, AuthService) {
 		$scope.addCategory = addCategory
 		$scope.addItem = addItem
 		$scope.removeCategory = removeCategory
@@ -17,11 +17,19 @@
 		$scope.removeItem = removeItem
 		$scope.categories;
 		$scope.items
+		$scope.username = AuthService.currentUser();
+		
+
 
 		var updateItemId;
 
+
 		getCategories();//get MenuCategores
 		getMenuItems();
+
+		function showUserName() {
+
+		}
 
 		function addCategory() {
 			MenuFactory.addCategory($scope.newCategory)

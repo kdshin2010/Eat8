@@ -13,9 +13,10 @@ var express = require('express'),
 var User = require('./server/models/User.js')
 
 require('./server/config/mongoose.js');
+require('./server/Config/passport.js');
+
 
 var routes = require('./server/config/routes.js')
-
 
 //invoke express, require mongoose.js, require routes
 var app = express();
@@ -31,14 +32,13 @@ app.use(require('express-session')({
     resave: false,
     saveUninitialized: false
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //configure passport
-passport.use(new localStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+
 //error handlers
 app.use(routes)
 
