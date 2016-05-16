@@ -8,7 +8,11 @@
   	// MenuCtrl.$inject = ['$location', ];
 
 
+<<<<<<< HEAD
 	function MenuCtrlFunction($scope, $location, MenuFactory, AuthService) {
+=======
+	function MenuCtrlFunction($scope, $location, MenuFactory) {
+>>>>>>> f259d9bcffa1ac48891a0fe4349193209093602d
 		$scope.addCategory = addCategory
 		$scope.addItem = addItem
 		$scope.removeCategory = removeCategory
@@ -17,6 +21,7 @@
 		$scope.removeItem = removeItem
 		$scope.categories;
 		$scope.items
+<<<<<<< HEAD
 		$scope.username = AuthService.currentUser();
 		
 
@@ -31,6 +36,14 @@
 
 		}
 
+=======
+
+		var updateItemId;
+
+		getCategories();//get MenuCategores
+		getMenuItems();
+
+>>>>>>> f259d9bcffa1ac48891a0fe4349193209093602d
 		function addCategory() {
 			MenuFactory.addCategory($scope.newCategory)
 			$scope.newCategory = {}

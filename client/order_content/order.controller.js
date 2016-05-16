@@ -4,6 +4,22 @@
 	.module('menuApp')
 	.controller('OrdersCtrl', OrdersCtrlFunction)
 
+<<<<<<< HEAD
+=======
+	/* To Fix
+
+		-Select Table
+			-find Select table if already stored in DB (vs saving again to db)
+
+		-View Table orders
+
+
+
+
+	*/
+
+
+>>>>>>> f259d9bcffa1ac48891a0fe4349193209093602d
 	function OrdersCtrlFunction($scope, $location, MenuFactory, OrdersFactory) {
 		/*
 		add select table number variable to record table number
