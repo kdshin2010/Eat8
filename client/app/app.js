@@ -6,15 +6,11 @@
 		//other modules
 		])
 	.config(ConfigFunction)
-<<<<<<< HEAD
 	.run(runFunction)
-=======
->>>>>>> f259d9bcffa1ac48891a0fe4349193209093602d
 
 //configFunction injection
 	function ConfigFunction($routeProvider) {
 		$routeProvider.when('/', {
-<<<<<<< HEAD
 			templateUrl: '../views/home.html',
 			access: {restricted: false}
 		})
@@ -57,8 +53,7 @@
 	      $route.reload();
 	    }
 	  });
-
-;}
+	}
 
 
 })();
@@ -66,28 +61,3 @@
 
 
 
-=======
-			templateUrl: '../views/home.html'
-		})
-		$routeProvider.when('/menu', {
-			templateUrl: '../views/Menu.html',
-			controller: 'MenuCtrl'
-		})
-		$routeProvider.when('/login', {
-			templateUrl: '../views/login.html'
-		})
-		$routeProvider.when('/register', {
-			templateUrl: '../views/register.html'
-		})
-		$routeProvider.when('/view', {
-			templateUrl: '../views/view2.html'
-		})
-		$routeProvider.when('/orders', {
-			templateUrl: '../views/orders.html'
-		})
-		$routeProvider.when('/view_orders', {
-			templateUrl: '../views/view_orders.html'
-		})
-	}
-})()
->>>>>>> f259d9bcffa1ac48891a0fe4349193209093602d

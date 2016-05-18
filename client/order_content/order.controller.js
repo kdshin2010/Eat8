@@ -4,8 +4,7 @@
 	.module('menuApp')
 	.controller('OrdersCtrl', OrdersCtrlFunction)
 
-<<<<<<< HEAD
-=======
+
 	/* To Fix
 
 		-Select Table
@@ -19,7 +18,6 @@
 	*/
 
 
->>>>>>> f259d9bcffa1ac48891a0fe4349193209093602d
 	function OrdersCtrlFunction($scope, $location, MenuFactory, OrdersFactory) {
 		/*
 		add select table number variable to record table number

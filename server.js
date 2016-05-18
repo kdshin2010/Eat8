@@ -44,9 +44,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //configure passport
 
-passport.use(new localStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
 //error handlers
 app.use(routes)
 

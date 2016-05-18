@@ -1,7 +1,6 @@
 //user model set up
 var mongoose = require('mongoose'),
 	crypto = require('crypto'),
-<<<<<<< HEAD
 	jwt = require('jsonwebtoken'),
 	Schema = mongoose.Schema,
 	passportLocalMongoose = require('passport-local-mongoose');
@@ -23,7 +22,6 @@ User.methods.setPassword = function(password){
   this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
 };
 
-=======
 	Schema = mongoose.Schema,
 	passportLocalMongoose = require('passport-local-mongoose');
 
@@ -46,13 +44,11 @@ User.methods.setPassword = function(password){
 
 
 //check if valid password
->>>>>>> f259d9bcffa1ac48891a0fe4349193209093602d
 User.methods.validPassword = function(password) {
   var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
   return this.hash === hash;
 };
 
-<<<<<<< HEAD
 User.methods.generateJwt = function() {
   var expiry = new Date();
   expiry.setDate(expiry.getDate() + 7);
@@ -67,7 +63,6 @@ User.methods.generateJwt = function() {
 module.exports = mongoose.model('User', User);
 
 
-=======
 //generate Json Web Token
 User.methods.generateJwt = function() {
 	var expiry = new Date();
@@ -83,4 +78,3 @@ User.methods.generateJwt = function() {
 mongoose.model('User', User);
 User.plugin(passportLocalMongoose);
 module.exports = mongoose.model('User', User)
->>>>>>> f259d9bcffa1ac48891a0fe4349193209093602d

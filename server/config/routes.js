@@ -8,6 +8,12 @@ var express = require('express'),
   }),
   users = require('../Controllers/users.js')
   authentications = require('../Controllers/authentications.js')
+  menus = require('../controllers/menus.js'),
+  orders = require('../controllers/orders.js')
+  routes = express.Router(),
+  User = require('../models/User.js'),
+
+
   // comments = require('../controllers/comments.js'),
 
 
@@ -21,42 +27,9 @@ routes.post('/login', function(req, res) {
 });
 
 
-	routes = express.Router(),
-	passport = require('passport'),
-	User = require('../models/User.js'),
-	menus = require('../controllers/menus.js'),
-	orders = require('../controllers/orders.js')
 
 //register user
-routes.post('/user/register', function(req, res){
-	User.register(new User({ username: req.body.username,}), req.body.password, function(err, account) {
-		if (err) {
-			return res.status(500).json({err: err});
-		}
-		passport.authenticate('local')(req, res, function() {
-			return res.status(200).json({status: "Registration successful!"});
-		});
-	});
-});
 
-routes.post('/user/login', function(req, res, next) {
-	passport.authenticate('local', function(err, user, info) {
-		if (err) {
-			return res.status(500).json({err: err});
-		}
-		if(!user) {
-			return res.status(401).json({err: info});
-		}
-		req.logIn(user, function(err) {
-			if(err) {
-				return res.status(500).json({err: 'Could not log user in'});
-			}
-			res.status(200).json({status: 'Login Succesful!', user: user});
-			console.log(req.user)
-		});
-	})(req, res, next);
-});
->>>>>>> f259d9bcffa1ac48891a0fe4349193209093602d
 
 routes.post('/removeCategory', function(req, res) {
 	menus.removeCategory(req, res)
