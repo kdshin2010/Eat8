@@ -1,5 +1,4 @@
 var express = require('express'),
-<<<<<<< HEAD
   routes = express.Router(),
   passport = require('passport'),
   jwt = require('express-jwt'),
@@ -22,7 +21,6 @@ routes.post('/login', function(req, res) {
 });
 
 
-=======
 	routes = express.Router(),
 	passport = require('passport'),
 	User = require('../models/User.js'),

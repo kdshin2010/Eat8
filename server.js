@@ -13,18 +13,15 @@ var express = require('express'),
 var User = require('./server/models/User.js')
 
 require('./server/config/mongoose.js');
-<<<<<<< HEAD
 require('./server/Config/passport.js');
 
 
 var routes = require('./server/config/routes.js')
 
-=======
 
 var routes = require('./server/config/routes.js')
 
 
->>>>>>> f259d9bcffa1ac48891a0fe4349193209093602d
 //invoke express, require mongoose.js, require routes
 var app = express();
 
@@ -39,22 +36,17 @@ app.use(require('express-session')({
     resave: false,
     saveUninitialized: false
 }));
-<<<<<<< HEAD
 
-=======
->>>>>>> f259d9bcffa1ac48891a0fe4349193209093602d
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //configure passport
-<<<<<<< HEAD
 
-=======
 passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
->>>>>>> f259d9bcffa1ac48891a0fe4349193209093602d
 //error handlers
 app.use(routes)
 
