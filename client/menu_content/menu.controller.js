@@ -20,10 +20,7 @@
 		$scope.username = AuthService.currentUser();
 		
 
-
 		var updateItemId;
-
-
 		getCategories();//get MenuCategores
 		getMenuItems();
 
