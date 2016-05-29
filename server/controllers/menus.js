@@ -52,6 +52,7 @@ menus.addItem = function(req, res) {
 					if(error) {
 						console.log('results saving item to items array')
 					} else {
+						res.json(data);
 						console.log(data)
 						console.log('success saving meu items to Category')
 					}

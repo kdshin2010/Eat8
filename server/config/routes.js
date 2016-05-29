@@ -11,7 +11,7 @@ var express = require('express'),
   menus = require('../controllers/menus.js'),
   orders = require('../controllers/orders.js')
   routes = express.Router(),
-  User = require('../models/User.js'),
+  User = require('../models/User.js')
 
 
   // comments = require('../controllers/comments.js'),
@@ -21,6 +21,8 @@ var express = require('express'),
 routes.post('/register', function(req, res) {
 	authentications.register(req,res)
 })
+
+
 
 routes.post('/login', function(req, res) {
 	authentications.login(req,res)
@@ -76,7 +78,7 @@ routes.post('/removeOrderItem', function(req, res) {
 
 routes.post('/submitOrder', function(req, res) {
 	orders.submitOrder(req, res)
-})
+});
 
 //Testing delete after
 routes.get('/getOrderTables', function(req, res) {

@@ -3,9 +3,9 @@
     text-shadow: 0 1px 0 #fff;
     width: 100%;
     height: 100%;
-    margin-left: 15%;
+    margin-left: 5%;
     margin-right: 10%;
-    text-align: left;
+    text-align: center;
     -ms-text-justify: distribute-all-lines;
     text-justify: distribute-all-lines;
     table-layout: fixed;
@@ -59,10 +59,21 @@
     box-shadow: inset 0 1px 0 #fff;
     font-size: 12px;
     height: 10%;
-    color: blue;
     vertical-align: top;
     display: inline;
     white-space: nowrap;
+}
+
+/* MENU.HTML */
+#show_category {
+    position: relative;
+    height: 960px;
+}
+
+#show_category h2 {
+    position:absolute;
+    top: 30%;
+    left: 30%;
 }
 
 
