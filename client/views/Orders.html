@@ -37,7 +37,6 @@
 						<td ng-bind='a.name'></td>
 						<td ng-bind='a.price'></td>
 						<td><button class='btn btn-danger' ng-click='removeOrderItem(a._id)'>Remove</td>
-
 					</tr>
 				</thead>
 			</table>
@@ -47,7 +46,6 @@
 		</div>
 		<div class='order_menu_container' ng-repeat='item in items'>
 			<h3>{{item.name}}</h3>
-			{{updateItem}}
 			<form>
 				<table class='table'>
 					<thead>
