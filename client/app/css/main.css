@@ -22,6 +22,15 @@ ItemTable
     table-layout: fixed;
 }
 
+.table_body .update_item {
+    display: inline;
+    width: 5%;
+    background-color: #99ccff;
+    color: white;
+    border-radius: 5px;
+    margin-left: 4px;
+}
+
 .stretch {
     width: 100%;
     display: inline-block;
@@ -769,6 +778,23 @@ Build Menu Page
 	position: relative;
 	top: 15%;
 }
+#show_category form {
+    margin: 0 auto;
+    margin-left: 30px;
+    margin-top: 20px;
+    padding: 0;
+    font-weight: bold;
+
+}
+
+#show_category .update_item {
+    display: inline;
+    width: 10%;
+    background-color: #99ccff;
+    color: white;
+    border-radius: 5px;
+    margin-left: 4px;
+}
 
 
 /*
@@ -779,9 +805,6 @@ App Content
 
 .menu_header {
     text-align: center;
-}
-.menu_wrapper {
-
 }
 
 .get_started_btn {

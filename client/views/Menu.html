@@ -22,7 +22,6 @@
                             </div>
                         </form>
                     </div>
-                    {{selectedCategory}}
                         <div class="menu_items">
                             <form>
                                 <fieldset class="form-group">
@@ -38,12 +37,21 @@
                                     <textarea class="form-control" ng-model= 'newItem.description' rows="3"></textarea>
                                  </fieldset>
                                  <button ng-click='addItem(selectedCatory)'>Add Item</button>
-                                 <a href="#/view" style = 'color: blue; margin-top:10px'>View Menu</a>
+                                 <button ng-click='addItem(selectedCatory)'>Add Item</button>
+                                <!--  <a href="#/view" style = 'color: blue; margin-top:10px'>View Menu</a> -->
                              </form>
                         </div>
                     </div>
               </div>
      <div class="col-md-6" id='show_category'>
+        <form ng-show ='show_update' ng-init='show_update = false;' ng-submit='updateItem()'>
+          <p>
+            New Name<input type="text" ng-model='updateThisItem.name'>
+            New Price<input type="text" ng-model='updateThisItem.price'>
+            <input class= 'update_item' type="submit" value="Update"  />
+          </p>
+        </form>
+
         <h2 ng-show='selectACategory' ng-init='selectACategory = true'>Select A Category</h2>
         <div class = 'showCategory' ng-hide= 'selectACategory'>
                 <h3 style='text-align:center'>{{previewedCategory.name}}</h3>
@@ -58,7 +66,7 @@
                     <td>-</td>
                     <td ng-bind='item.name'></td>
                     <td ng-bind='item.price'></td>
-                    <td><button class = 'btn btn-danger' ng-click='removeItem(item._id)' style='margin-right: 2px'>Remove</button><button class='btn btn-info'>Update</button></td>
+                    <td><button class = 'btn btn-danger' ng-click='removeItem(item._id)' style='margin-right: 2px'>Remove</button><button class='btn btn-info' ng-click='showUpdate(item._id)'>Update</button></td>
                 </tr>
             </table>
         <div>  

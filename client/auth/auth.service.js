@@ -90,23 +90,6 @@
 			}
 
 
-	    // function getUserStatus() {
-	    // 	var deferred = $q.defer() 
-	    // 		$http.get('/user/status')
-	    // 		.success(function(data){e
-	    // 			if(data.status) {
-	    // 				user=true;
-	    // 			} else {
-	    // 				user = false;
-	    // 			}
-	    // 		})
-	    // 		.error(function(data){
-	    // 			user = false
-	    // 		});
-	    // 		return deferred.promise;
-	    // 	}
-	    // }
-
 
 		function getUserStatus() {
 		  return $http.get('/status')

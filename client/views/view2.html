@@ -1,12 +1,12 @@
 
 </style>
 
-<div class='table_body'  ng-controller='MenuCtrl'>
+<div class='table_body' ng-controller='MenuCtrl'>
 	<div class='update_container' style='margin: 0 auto;' ng-show='show_update' ng-init='show_update = false'>
 		<form class='form-group'> 
-			New  Name<input type='text' ng-model='newItem.name'>
-			New Price<input type='text' ng-model='newItem.price'>
-			<input type='submit' ng-click='updateItem(menu._id)'>
+			New  Name <input type='text' ng-model='updateThisItem.name'>
+			New Price <input type='text' ng-model='updateThisItem.price'>
+			<input type='submit' class='update_item' ng-click='updateItem(menu._id)' style='background-color: #99ccff'>
 		</form>
 	</div>
 	<div class='table_container' ng-repeat='menu in items' >

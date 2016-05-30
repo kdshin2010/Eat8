@@ -22,9 +22,11 @@
 		$scope.previewedCategory;
 		$scope.selectedCategory;
 		$scope.selectACategory
+		var updateItemId;
 		
 		getCategories();
 		getMenuItems();
+
 
 
 		function previewCategory(category) {
@@ -92,13 +94,15 @@
 
 		function showUpdate(id) {
 			$scope.show_update = true;
-			updateItemId = id
-			console.log(updateItemId)
+			updateItemId = id;
+				// other page has id
+			
 		}
 
 		function updateItem() {
-			console.log(updateItemId)
-			MenuFactory.updateItem({id: updateItemId, name: $scope.newItem.name, price: $scope.newItem.price})
+			//this is the updateItemId
+			console.log(updateItemId);
+			MenuFactory.updateItem({id: updateItemId, name: $scope.updateThisItem.name, price: $scope.updateThisItem.price})
 			.then(function(data) {
 				console.log(data)
 				$scope.items = data;
@@ -106,8 +110,12 @@
 			.catch(function() {
 				console.log('error updating Item')
 			})
-			$scope.newItem = {}
-			getMenuItems();
+			$scope.updateThisItem = null
+			if ($scope.selectedCategory) {
+				previewCategory($scope.selectedCategory);
+			} else {
+				getMenuItems();
+			}
 		}
 
 		function removeItem(id) {
@@ -121,7 +129,6 @@
 				} else {
 					getMenuItems();
 				}
-
 
 			})
 			.catch(function(){
