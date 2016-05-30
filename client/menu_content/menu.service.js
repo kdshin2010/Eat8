@@ -24,7 +24,21 @@
 			removeCategory: removeCategory,
 			obtainCategories: obtainCategories,
 			updateItem: updateItem,
-			removeItem: removeItem
+			removeItem: removeItem,
+			previewCategory: previewCategory
+		}
+
+		function previewCategory (category) {
+			var deferred = $q.defer()
+			$http.post('/previewCategory', {id: category})
+			.success(function(data) {
+				console.log('success and resolving the data')
+				deferred.resolve(data);
+			})
+			.error(function(){
+				console.log('in the service and could not get the previewd categories');
+			})
+			return deferred.promise;
 		}
 
 		function addCategory(info) {

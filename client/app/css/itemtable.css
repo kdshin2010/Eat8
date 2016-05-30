@@ -76,10 +76,6 @@
     left: 30%;
 }
 
-
-
-
-
 .table_body th {
     background: url(http://jackrugile.com/images/misc/noise-diagonal.png), linear-gradient(#777, #444);
     border-left: 1px solid #555;
@@ -195,3 +191,19 @@
     width: 40%;
     margin-left: 30px;
 }
+
+.view_table {
+    display: inline-block;
+    width: 2000px;
+    height: 2000px;
+
+}
+
+.menu_content {
+    width: 500px;
+    display: inline-block;
+}
+#showCategory  {
+    background-color:red;
+}
+

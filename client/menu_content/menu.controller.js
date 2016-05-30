@@ -10,7 +10,7 @@
 
 	function MenuCtrlFunction($scope, $location, MenuFactory, AuthService) {
 		$scope.addCategory = addCategory
-		$scope.addItem = addItem
+	$scope.addItem = addItem
 		$scope.removeCategory = removeCategory
 		$scope.showUpdate = showUpdate
 		$scope.updateItem = updateItem
@@ -18,21 +18,28 @@
 		$scope.categories;
 		$scope.items
 		$scope.username = AuthService.currentUser();
+		$scope.previewCategory = previewCategory;
+		$scope.previewedCategory;
+		$scope.selectedCategory;
+		$scope.selectACategory
 		
-
-		var updateItemId;
-		getCategories();//get MenuCategores
+		getCategories();
 		getMenuItems();
 
-		function showUserName() {
+
+		function previewCategory(category) {
+			$scope.selectACategory = false;
+			MenuFactory.previewCategory(category)
+			.then(function(data){
+				console.log('here!')
+				console.log(data)
+				$scope.previewedCategory = data;
+			})
+			.catch(function() {
+				console.log('error!')
+			})
 
 		}
-
-
-		var updateItemId;
-
-		getCategories();//get MenuCategores
-		getMenuItems();
 
 		function addCategory() {
 			MenuFactory.addCategory($scope.newCategory)
@@ -45,7 +52,6 @@
 				$scope.categories = data;
 			})
 			getMenuItems();
-
 		}
 
 		function getCategories() {
@@ -64,12 +70,13 @@
 			MenuFactory.addItem({id: $scope.selectedCategory, name: $scope.newItem.name, price: $scope.newItem.price, description: $scope.newItem.description })
 			.then(function(data) {
 				console.log('this is my data!!')
-				console.log(data)
+				console.log(data);
+				previewCategory($scope.selectedCategory);
 			})
 			.catch(function(){
 				console.log('error!')
 			})
-			$scope.newItem = {}
+			$scope.newItem = {};
 		}
 
 		function getMenuItems() {
@@ -104,14 +111,22 @@
 		}
 
 		function removeItem(id) {
+			console.log(id)
 			MenuFactory.removeItem(id)
 			.then(function(data) {
-				console.log(data + 'this is the remove Item data')
+				console.log(data + 'this is the remove Item data');
+				//same function this checks if we are on '/menu' or '/view'
+				if ($scope.selectedCategory) {
+					previewCategory($scope.selectedCategory);
+				} else {
+					getMenuItems();
+				}
+
+
 			})
 			.catch(function(){
 				console.log('error!')
 			})
-			getMenuItems();
 		}
 
 	}

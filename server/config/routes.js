@@ -28,10 +28,11 @@ routes.post('/login', function(req, res) {
 	authentications.login(req,res)
 });
 
-
-
 //register user
 
+routes.post('/previewCategory', function(req, res){
+	menus.previewCategory(req, res)
+})
 
 routes.post('/removeCategory', function(req, res) {
 	menus.removeCategory(req, res)

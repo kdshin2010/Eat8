@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
 	MenuItem = mongoose.model('MenuItem')
 	menus = {};
 
+
 menus.create = function(req, res) {
 	var category = new MenuCategory({name: req.body.name})
 	category.save(function(error, data) {
@@ -12,6 +13,19 @@ menus.create = function(req, res) {
 		} else {
 			console.log('Saved the data!')
 			console.log(data)
+		}
+	})
+}
+
+menus.previewCategory = function(req, res) {
+	console.log(req.body.id)
+	MenuCategory.findOne({_id: req.body.id})
+	.populate('items')
+	.exec(function(err, results) {
+		if(err) {
+			console.log('error!')
+		} else {
+			res.json(results)
 		}
 	})
 }
