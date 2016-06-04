@@ -17,23 +17,9 @@
 			submitOrder: submitOrder,
 			getSubmittedOrders: getSubmittedOrders,
 			removeSubmittedOrder: removeSubmittedOrder,
-			taxJarTest: taxJarTest
+			getSalesTax: getSalesTax
 		}
 
-		function taxJarTest() {
-			var deferred = $q.defer();
-			$http.get('/taxjartest')
-			.success(function(data){
-				deferred.resolve(data);
-			})
-			.error(function(){
-				deferred.reject();
-			})
-			return deferred.promise;
-		}
-
-
-	
 
 		//Testing Delete after
 		function getOrderTables(callback) {
@@ -43,6 +29,17 @@
 			})
 		}
 
+		function getSalesTax(info){
+			var deferred = $q.defer()
+			$http.post('/getSalesTax', {zipcode: info.zipcode})
+			.success(function(data) {
+				deferred.resolve(data)
+			})
+			.error(function() {
+				deferred.reject();
+			})
+			return deferred.promise;
+		}
 
 
 		//Retrieve submitted orders

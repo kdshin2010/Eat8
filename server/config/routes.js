@@ -15,7 +15,7 @@ var express = require('express'),
 
 
   // comments = require('../controllers/comments.js'),
-routes.post('/getRates', function(req, res) {
+routes.post('/getSalesTax', function(req, res) {
 	console.log('at the rotues')
 	orders.getRates(req,res)
 })
@@ -29,7 +29,6 @@ routes.get('/taxjartest', function(req, res) {
 routes.post('/register', function(req, res) {
 	authentications.register(req,res)
 })
-
 
 routes.post('/login', function(req, res) {
 	authentications.login(req,res)

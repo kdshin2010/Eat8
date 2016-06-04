@@ -180,6 +180,9 @@ ItemTable
     width: 200%;
 }
 
+.show_container input {
+    width: 30%;
+}
 
 .order_menu_container {
     margin-left: 30px;
@@ -204,12 +207,20 @@ ItemTable
     width: 40%;
     margin-left: 30px;
 }
+.input-append {
+    position: relative;
+    text-align: center;
+    top: 200px;
+}
+
+.input-append form {
+    width: 30%;
+}
 
 .view_table {
     display: inline-block;
     width: 2000px;
     height: 2000px;
-
 }
 
 .menu_content {
@@ -219,6 +230,7 @@ ItemTable
 #showCategory  {
     background-color:red;
 }
+
 
 /*
 ============================================================
@@ -710,7 +722,10 @@ body {
 }
 
 #logout {
+    position: relative;
 	text-align:center;
+    bottom: 10px;
+    margin-left: 40px;
 }
 .btn-login {
 	background-color: #59B2E0;
@@ -841,8 +856,14 @@ App Content
     margin-left: 33%;
 }
 
-
-
+/*
+============================================================
+View All Orders Container
+============================================================
+*/
+.view_all_orders_container li {
+    list-style-type: none;
+}
 
 
 

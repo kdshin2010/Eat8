@@ -6,15 +6,11 @@ var mongoose = require('mongoose'),
 	orders = {};
 
 
-orders.testTaxjar = function(req,res) {
-	taxjar.categories()
-	.then(function(data) {
-		res.json(data.categories)
-	})
-}
+
 
 orders.getRates = function(req, res){
-	taxjar.ratesForLocation(req.body.zip).then(function(data) {
+	console.log(req.body)
+	taxjar.ratesForLocation(req.body.zipcode).then(function(data) {
 		console.log(data.rate);
 		res.json(data.rate);
 	})

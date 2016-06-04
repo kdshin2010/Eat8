@@ -28,41 +28,47 @@
 		$scope.show_total = false;
 		$scope.removeSubmittedOrder = removeSubmittedOrder
 		$scope.show_price;
-		$scope.taxJarTest = taxJarTest
+		$scope.show_all_orders;
+		$scope.getSalesTax = getSalesTax
+		// $scope.getSalesTax = getSalesTax;
+		var totalPrice;
 
 
-		
 		//Get Menu Items
 		getMenuItems();
 		getSubmittedOrders();
-		setTimeout(function() { console.log($scope.submitted_orders)}, 3100); 
-				//show index
-
-
-
-		$scope.showIndex = function(index) {
-			$scope.loading[index] = true;
-			
-		}
-
+		setTimeout(function() { console.log($scope.salestax)}, 20000); 
 
 		OrdersFactory.getOrderTables(function(data) {
 			$scope.order_tables = data;
 		});
 
-		function taxJarTest() {
-			console.log('testing tax jar')
-			OrdersFactory.taxJarTest()
-			.then(function(data){
-				console.log(data)
-			})
-			.catch(function(){
-				console.log('error')
-			})
+		//for now we will just set the sales tax at 0.0875 because we dont want to make too many api requests
+
+
+		function getSalesTax() {
+			$scope.show_all_orders = true;
+			$scope.sales_tax = .0875
+			// OrdersFactory.getSalesTax({zipcode: $scope.zipcode})
+			// .then(function(data) {
+			// 	$scope.salestax = data.combined_rate;
+			// 	console.log(data);
+			// })
+			// .catch(function() {
+			// 	console.log('error!')
+			// })
+			$scope.zipcode = null
 		}
 
 
-
+		function calculateTotal(x) {
+			$scope.activeItem = x;
+			var totalPrice = 0;
+			for (var i=0; i<x.items.length; i++) {
+				totalPrice += x.items[i].price
+			}
+			$scope.totalPrice = totalPrice
+		}
 
 
 		//Submit Order Function  ----- Do not delete yet
@@ -94,7 +100,6 @@
 		}
 
 
-
 		function getMenuItems() {
 			MenuFactory.getMenuItems()
 			.then(function(data) {
@@ -117,12 +122,11 @@
 				getOrderItems();
 			})
 			.catch(function() {
-				console.log("could not save table")
+				console.log("could not save table");
 			})
 		}
 
 		
-
 		function addOrderItem(x, menu) {
 			console.log(menu.name)
 			OrdersFactory.addOrderItem({table: selected_table, category: menu.name, name: x.name, price: x.price})
@@ -171,7 +175,6 @@
 				console.log('could not remove order item!!')
 			})
 			getSubmittedOrders();
-
 		}
 
 		function removeSubmittedOrder(id) {
@@ -185,18 +188,6 @@
 			})
 			getSubmittedOrders();
 		}
-
-
-		function calculateTotal(x, index) {
-			console.log(x, index)
-			$scope.show_price = true;
-			var totalPrice = 0;
-			for (var i=0; i<x.length; i++) {
-				totalPrice += x[i].price
-			}
-			$scope.totalPrice = totalPrice;
-		}
-
 	}
 
 })()

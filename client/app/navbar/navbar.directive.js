@@ -13,7 +13,7 @@
 				controllerAs: 'vm'
 			};
 		}
-
+		
 		function NavBarControllerFunction($location, AuthService, $scope) {
 			var vm = this;
 			$scope.logout = logout;
