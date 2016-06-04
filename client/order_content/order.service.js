@@ -16,9 +16,24 @@
 			getOrderTables: getOrderTables,
 			submitOrder: submitOrder,
 			getSubmittedOrders: getSubmittedOrders,
-			removeSubmittedOrder: removeSubmittedOrder
+			removeSubmittedOrder: removeSubmittedOrder,
+			taxJarTest: taxJarTest
 		}
 
+		function taxJarTest() {
+			var deferred = $q.defer();
+			$http.get('/taxjartest')
+			.success(function(data){
+				deferred.resolve(data);
+			})
+			.error(function(){
+				deferred.reject();
+			})
+			return deferred.promise;
+		}
+
+
+	
 
 		//Testing Delete after
 		function getOrderTables(callback) {
@@ -27,6 +42,7 @@
 				callback(data)
 			})
 		}
+
 
 
 		//Retrieve submitted orders
@@ -134,34 +150,3 @@
 	}
 })()
 
-
-
-/*
-
-function updateUser(user,cb){
-    UserModel.find({name : user.name}, function (err, docs) {
-        if (docs.length){
-            cb('Name exists already',null);
-        }else{
-            user.save(function(err){
-                cb(err,user);
-            });
-        }
-    });
-}
-
-UserModel.findById(req.param('sid'),function(err,existingUser){
-   if (!err && existingUser){
-       existingUser.name = 'Kevin';
-       updateUser(existingUser,function(err2,user){
-           if (err2 || !user){
-               console.log('error updated user: ',err2);
-           }else{
-               console.log('user updated: ',user);
-           }
-
-       });
-   } 
-});
-
-*/

@@ -4,25 +4,14 @@
 	.module('menuApp')
 	.controller('OrdersCtrl', OrdersCtrlFunction)
 
-
-	/* To Fix
-
-		-Select Table
-			-find Select table if already stored in DB (vs saving again to db)
-
-		-View Table orders
-
-
-
-
-	*/
-
-
 	function OrdersCtrlFunction($scope, $location, MenuFactory, OrdersFactory) {
+		var vm = this;
+
 		/*
 		add select table number variable to record table number
 		get menu items to display on orders page
 		*/
+
 		var selected_table;
 		$scope.items;
 		$scope.addOrderItem = addOrderItem,
@@ -38,30 +27,53 @@
 		$scope.totalPrice;
 		$scope.show_total = false;
 		$scope.removeSubmittedOrder = removeSubmittedOrder
+		$scope.show_price;
+		$scope.taxJarTest = taxJarTest
 
-		//Get Menu Items();
+
+		
+		//Get Menu Items
 		getMenuItems();
 		getSubmittedOrders();
-		setTimeout(function() { console.log($scope.submitted_orders)}, 3100)
+		setTimeout(function() { console.log($scope.submitted_orders)}, 3100); 
+				//show index
 
-		// ************ //
 
-		//Testing delete after
+
+		$scope.showIndex = function(index) {
+			$scope.loading[index] = true;
+			
+		}
+
 
 		OrdersFactory.getOrderTables(function(data) {
 			$scope.order_tables = data;
-		})
+		});
+
+		function taxJarTest() {
+			console.log('testing tax jar')
+			OrdersFactory.taxJarTest()
+			.then(function(data){
+				console.log(data)
+			})
+			.catch(function(){
+				console.log('error')
+			})
+		}
+
+
 
 
 
 		//Submit Order Function  ----- Do not delete yet
-
 		function getSubmittedOrders() {
 			OrdersFactory.getSubmittedOrders()
 			.then(function(data) {
 				console.log('these are the submitted orders ')
 				console.log(data)
 				$scope.submitted_orders = data;
+				console.log($scope.submitted_orders)
+				console.log($scope.submitted_orders.length);
 			})
 			.catch(function() {
 				console.log('error!')
@@ -74,7 +86,7 @@
 				console.log('successfully submitted order')
 				$scope.order_tables = data;
 				$location.path('/view_orders');
-				$scope.show_order_tables = false
+				$scope.show_order_tables = false;
 			})
 			.catch(function() {
 				console.log('error getting submitted orders!')
@@ -103,7 +115,6 @@
 			OrdersFactory.addOrderTable($scope.table_number)
 			.then(function(data) {
 				getOrderItems();
-		
 			})
 			.catch(function() {
 				console.log("could not save table")
@@ -176,15 +187,14 @@
 		}
 
 
-		function calculateTotal(x) {
+		function calculateTotal(x, index) {
+			console.log(x, index)
 			$scope.show_price = true;
 			var totalPrice = 0;
 			for (var i=0; i<x.length; i++) {
 				totalPrice += x[i].price
 			}
 			$scope.totalPrice = totalPrice;
-			console.log(totalPrice)
-
 		}
 
 	}

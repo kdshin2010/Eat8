@@ -132,8 +132,6 @@
 			return deferred.promise;
 		}
 
-
-
 	}
 
 

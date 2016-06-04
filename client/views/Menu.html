@@ -1,4 +1,5 @@
 <div class="row">
+<!-- Ned a way to ensure that the menu is validated when submitted so no empty menu -->
      <div class="col-md-6">
             <div class='menu_header'>
                     <h1 style='text-align: center;'>Build Your Menu</h1>
@@ -26,18 +27,18 @@
                             <form>
                                 <fieldset class="form-group">
                                     <label>Item Name</label>
-                                    <input type='text' class='form-control' placeholder='Item Name' ng-model='newItem.name'>
+                                    <input type='text' class='form-control' placeholder='Item Name' ng-model='newItem.name' required/>
                                 </fieldset>
                                 <fieldset class="form-group">
                                     <label>Item Price</label>
-                                    <input type='text' class='form-control' placeholder='Item Name' ng-model='newItem.price'>
+                                    <input type='text' class='form-control' placeholder='Item Name' ng-model='newItem.price' required>
                                 </fieldset>
                                 <fieldset class="form-group">
                                     <label for="exampleTextarea">Item Description</label>
                                     <textarea class="form-control" ng-model= 'newItem.description' rows="3"></textarea>
                                  </fieldset>
                                  <button ng-click='addItem(selectedCatory)'>Add Item</button>
-                                 <button ng-click='addItem(selectedCatory)'>Add Item</button>
+                                 <button ng-click='addItem(selectedCatory)'>Remove Item</button>
                                 <!--  <a href="#/view" style = 'color: blue; margin-top:10px'>View Menu</a> -->
                              </form>
                         </div>
@@ -51,7 +52,6 @@
             <input class= 'update_item' type="submit" value="Update"  />
           </p>
         </form>
-
         <h2 ng-show='selectACategory' ng-init='selectACategory = true'>Select A Category</h2>
         <div class = 'showCategory' ng-hide= 'selectACategory'>
                 <h3 style='text-align:center'>{{previewedCategory.name}}</h3>

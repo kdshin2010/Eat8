@@ -1,8 +1,24 @@
 var mongoose = require('mongoose'),
 	routes = require('../config/routes.js')
 	OrderTable = mongoose.model('OrderTable'),
+	taxjar = require("taxjar")("bd500e410729da592779e6eee4cd951e")
 	OrderItem = mongoose.model('OrderItem'),
 	orders = {};
+
+
+orders.testTaxjar = function(req,res) {
+	taxjar.categories()
+	.then(function(data) {
+		res.json(data.categories)
+	})
+}
+
+orders.getRates = function(req, res){
+	taxjar.ratesForLocation(req.body.zip).then(function(data) {
+		console.log(data.rate);
+		res.json(data.rate);
+	})
+}
 
 orders.selectTable = function(req, res) {
 	OrderTable.find({table: req.body.table}, function(err, results) {

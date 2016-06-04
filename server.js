@@ -10,16 +10,14 @@ var express = require('express'),
 	passport = require('passport'),
 	localStrategy = require('passport-local' ).Strategy;
 
-var User = require('./server/models/User.js')
-
+var User = require('./server/models/User.js');
 require('./server/config/mongoose.js');
-require('./server/Config/passport.js');
+require('./server/config/passport.js');
 
 
 var routes = require('./server/config/routes.js')
 
 
-var routes = require('./server/config/routes.js')
 
 
 //invoke express, require mongoose.js, require routes
@@ -46,8 +44,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //error handlers
 app.use(routes)
-
-
 app.use(function(req, res, next){
 	var err = new Error('Not Found');
 	err.status = 404;

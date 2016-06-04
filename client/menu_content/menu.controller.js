@@ -10,7 +10,7 @@
 
 	function MenuCtrlFunction($scope, $location, MenuFactory, AuthService) {
 		$scope.addCategory = addCategory
-	$scope.addItem = addItem
+		$scope.addItem = addItem
 		$scope.removeCategory = removeCategory
 		$scope.showUpdate = showUpdate
 		$scope.updateItem = updateItem
@@ -26,7 +26,6 @@
 		
 		getCategories();
 		getMenuItems();
-
 
 
 		function previewCategory(category) {

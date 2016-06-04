@@ -89,8 +89,6 @@ ItemTable
 
 
 
-
-
 .table_body th {
     background: url(http://jackrugile.com/images/misc/noise-diagonal.png), linear-gradient(#777, #444);
     border-left: 1px solid #555;
@@ -839,6 +837,11 @@ App Content
 	margin: 0 auto;
 	padding-top: 30px;
 }
+#add_order_button {
+    margin-left: 33%;
+}
+
+
 
 
 

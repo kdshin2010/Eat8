@@ -15,13 +15,20 @@ var express = require('express'),
 
 
   // comments = require('../controllers/comments.js'),
+routes.post('/getRates', function(req, res) {
+	console.log('at the rotues')
+	orders.getRates(req,res)
+})
 
+routes.get('/taxjartest', function(req, res) {
+	console.log('at the routes')
+	orders.testTaxjar(req, res)
+})
 
 //register user
 routes.post('/register', function(req, res) {
 	authentications.register(req,res)
 })
-
 
 
 routes.post('/login', function(req, res) {

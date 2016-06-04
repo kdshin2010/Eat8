@@ -1,7 +1,8 @@
 <div class="view_all_orders_container" ng-controller ='OrdersCtrl'>
+	<div class='show_container'>
+	</div>
 	<div class='order_wrapper' style='margin: 0 auto'>	 
-
-		<div class='order_table_container' style='position: relative; left:30%' ng-repeat="x in submitted_orders | orderBy: 'table'">
+		<div class='order_table_container' style='position: relative; left:30%' ng-repeat="x in submitted_orders track by $index | orderBy: 'tx.able'">
 			<h3 style='margin-left: 20px'>Table: #{{x.table}}</h3>
 			<table class="table table-bordered" id='view_all_orders_table'>
 				<thead>
@@ -22,13 +23,14 @@
 					</tr>
 				</tbody>
 			</table>
+			<button ng-click='taxJarTest()'>GET SALES TAX</button>
 			<div class='order_table_buttons' style='position: relative; left: 15%'>
 				<button class='btn btn-default' >Complete Order</button>
 				<button class='btn btn-info' ng-click='calculateTotal(x.items)'>Calculate Total</button>
-				<div ng-show='show_price' ng-init='show_price = true' >
-					<p >Total: {{totalPrice}} </p>
+				<div ng-show='showThis[$index]' >
+					<p >Hey we doing this</p>
 				</div>
+				<button ng-click='showIndex(x._id)'>SHOW THIS </button>
 			</div>
-
 		</div>
 </div>
