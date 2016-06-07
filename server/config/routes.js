@@ -20,6 +20,11 @@ routes.post('/getSalesTax', function(req, res) {
 	orders.getRates(req,res)
 })
 
+routes.post('/testMailJet', function(req, res) {
+	console.log('at routes teting mailjet')
+	authentications.testMailJet(req, res)
+})
+
 routes.get('/taxjartest', function(req, res) {
 	console.log('at the routes')
 	orders.testTaxjar(req, res)

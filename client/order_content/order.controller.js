@@ -29,7 +29,8 @@
 		$scope.removeSubmittedOrder = removeSubmittedOrder
 		$scope.show_price;
 		$scope.show_all_orders;
-		$scope.getSalesTax = getSalesTax
+		$scope.getSalesTax = getSalesTax;
+		$scope.salestax
 		// $scope.getSalesTax = getSalesTax;
 		var totalPrice;
 
@@ -48,15 +49,14 @@
 
 		function getSalesTax() {
 			$scope.show_all_orders = true;
-			$scope.sales_tax = .0875
-			// OrdersFactory.getSalesTax({zipcode: $scope.zipcode})
-			// .then(function(data) {
-			// 	$scope.salestax = data.combined_rate;
-			// 	console.log(data);
-			// })
-			// .catch(function() {
-			// 	console.log('error!')
-			// })
+			OrdersFactory.getSalesTax({zipcode: $scope.zipcode})
+			.then(function(data) {
+				$scope.salestax = data.combined_rate;
+				console.log(data);
+			})
+			.catch(function() {
+				console.log('error!')
+			})
 			$scope.zipcode = null
 		}
 
