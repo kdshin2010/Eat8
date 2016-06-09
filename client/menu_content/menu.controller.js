@@ -22,24 +22,11 @@
 		$scope.previewedCategory;
 		$scope.selectedCategory;
 		$scope.selectACategory
-		$scope.testJquery = testJquery
+		// $scope.testJquery = testJquery
 		var updateItemId;
 		
 		getCategories();
 		getMenuItems();
-
-
-
-		function testJquery() {
-			$(function() {
-				$('#testingJquery').click(function() {
-					alert('hello');
-				})
-			});
-
-		}
-
-
 
 		$scope.sayHello = function() {
 			alert('hello')
