@@ -64,10 +64,7 @@ end of jquery test
     overflow: scroll;
     table-layout: fixed;
 }
-.table_container h3 {
-    color: red;
-    background-color: red;
-}
+
 
 #remove_menu_category {
     height: 25px; 
@@ -205,9 +202,9 @@ end of jquery test
 
 .order_menu_container {
     margin-left: 30px;
-    width: 30%;
-    margin-right: 10px;
-    display: inline-block;
+    width: 45%;
+/*    margin-right: 10px;
+*/    display: inline-block;
     max-height:  300px;
     overflow: scroll;
     vertical-align: top;
