@@ -45,7 +45,8 @@
 		})
 		$routeProvider.when('/view_restaur', {
 			templateUrl: '../views/view_restaur.html',
-			access: {restricted: true}
+			access: {restricted: true},
+			controller: 'RestaurCtrl'
 		})
 	}
 
