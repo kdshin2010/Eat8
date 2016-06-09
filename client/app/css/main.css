@@ -9,6 +9,21 @@
 ItemTable
 ============================================================
 */
+/*jquery_test 
+
+*/
+
+.jqueryDiv {
+    width: 300px;
+    height: 300px;
+}
+
+
+
+/*
+end of jquery test
+*/
+
 .table_body {
     font: 100%/30px 'Helvetica Neue', helvetica, arial, sans-serif;
     text-shadow: 0 1px 0 #fff;
@@ -48,6 +63,10 @@ ItemTable
     display: inline-block;
     overflow: scroll;
     table-layout: fixed;
+}
+.table_container h3 {
+    color: red;
+    background-color: red;
 }
 
 #remove_menu_category {

@@ -17,9 +17,6 @@ require('./server/config/passport.js');
 
 var routes = require('./server/config/routes.js')
 
-
-
-
 //invoke express, require mongoose.js, require routes
 var app = express();
 

@@ -1,5 +1,8 @@
+<!--
+	View Orders
 
-</style>
+
+-->
 
 <div class='table_body' ng-controller='MenuCtrl'>
 	<div class='update_container' style='margin: 0 auto;' ng-show='show_update' ng-init='show_update = false'>
@@ -10,7 +13,7 @@
 		</form>
 	</div>
 	<div class='table_container' ng-repeat='menu in items track by $index' >
-		<h3 style>{{menu.name}}</h3>
+		<h3>{{menu.name}}</h3>
 		<table id='menu'>
 			 <thead>
 			   <tr>
