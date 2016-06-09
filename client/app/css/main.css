@@ -202,7 +202,7 @@ end of jquery test
 
 .order_menu_container {
     margin-left: 30px;
-    width: 45%;
+    width: 40%;
 /*    margin-right: 10px;
 */    display: inline-block;
     max-height:  300px;
@@ -886,5 +886,16 @@ View All Orders Container
     list-style-type: none;
 }
 
+
+/*
+============================================================
+Restaur Container
+============================================================
+*/
+.restaur_container {
+    width: 960px;
+    height: 500px;
+    border: solid;
+}
 
 

@@ -43,6 +43,10 @@
 			access: {restricted: true}
 
 		})
+		$routeProvider.when('/view_restaur', {
+			templateUrl: '../views/view_restaur.html',
+			access: {restricted: true}
+		})
 	}
 
 	function runFunction($rootScope, $location, $route, AuthService) {
