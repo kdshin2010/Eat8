@@ -20,6 +20,18 @@
 			password: ""
 		}
 
+		function sendWelcomeEmail () {
+
+			AuthService.sendWelcomeEmail({name: $scope.user.username})
+			.then(function(data){
+				console.log(data);
+				console.log('successfully sent email')
+			})
+			.catch(function() {
+				console.log('erro senidng emial in the controller')
+			})
+		}
+
 
 // <! --- YO HERE's the LOGIN INFO --->
 		function register() {
@@ -31,7 +43,6 @@
 				$location.path('/menu');
 				console.log(data)
 				$scope.diabled = false;
-				$scope.user = {}
 			})
 			.catch(function() {
 				$scope.error = true;
