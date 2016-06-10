@@ -17,7 +17,7 @@ authentications.testMailJet = function(req, res) {
 	    'FromName': 'Kyle',
 	    'Subject': 'Hey thanks for signing up for Eat 8 ',
 	    'Text-part': 'Hey thanks for signing up for ea8',
-	    'Recipients': [{'Email': 'Kkdshin2010@gmail.com'}]
+	    'Recipients': [{'Email': 'shamoh702@gmail.com'}]
 	}
 	Mailjet.post('send')
 		.request(emailData).then(function(data) {
