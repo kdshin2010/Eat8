@@ -55,8 +55,8 @@ end of jquery test
 .table_container {
     vertical-align:top;
     height: 10%;
-    width: 30%;
-    margin: 10px;
+/*    width: 30%;
+*/    margin: 10px;
     font-size: 12px;
     margin-left: 2%;
     margin-right: 2%;
@@ -942,6 +942,8 @@ Restaur Container
     height: 5%;
     content: url('http://icons.iconarchive.com/icons/icons-land/points-of-interest/256/Restaurant-Blue-icon.png');
 }
+
+.
 
 
 
