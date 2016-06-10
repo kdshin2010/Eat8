@@ -19,22 +19,21 @@
 			register: register,
 			login: login,
 			logout: logout,
-			isLoggedIn: isLoggedIn,
-			sendWelcomeEmail: sendWelcomeEmail
+			isLoggedIn: isLoggedIn
 		}
-		function sendWelcomeEmail(info) {
-			var deferred = $q.defer()
-			$http.post('/sendWelcomeEmail', info)
-			.success(function(data) {
-				console.log('resolving data to ctrl');
-				deferred.resolve(data)
-			})
-			.error(function(){
-				console.log('error!')
-			})
-			return deferred.promise;
+		// function sendWelcomeEmail(info) {
+		// 	var deferred = $q.defer()
+		// 	$http.post('/sendWelcomeEmail', info)
+		// 	.success(function(data) {
+		// 		console.log('resolving data to ctrl');
+		// 		deferred.resolve(data)
+		// 	})
+		// 	.error(function(){
+		// 		console.log('error!')
+		// 	})
+		// 	return deferred.promise;
 
-		}
+		// }
 
 
 		function saveToken(token) {

@@ -13,12 +13,15 @@
 				controllerAs: 'vm'
 			};
 		}
-		
+
 		function NavBarControllerFunction($location, AuthService, $scope) {
 			var vm = this;
 			$scope.logout = logout;
 			vm.isLoggedIn = AuthService.isLoggedIn;
-			vm.username = AuthService.currentUser()
+			vm.user = AuthService.currentUser()
+			setTimeout(function(){
+				console.log(AuthService.currentUser())
+			}, 10000)
 
 			function logout() {
 				AuthService.logout()

@@ -20,17 +20,17 @@
 			password: ""
 		}
 
-		function sendWelcomeEmail () {
+		// function sendWelcomeEmail () {
 
-			AuthService.sendWelcomeEmail({name: $scope.user.username})
-			.then(function(data){
-				console.log(data);
-				console.log('successfully sent email')
-			})
-			.catch(function() {
-				console.log('erro senidng emial in the controller')
-			})
-		}
+		// 	AuthService.sendWelcomeEmail({name: $scope.user.username})
+		// 	.then(function(data){
+		// 		console.log(data);
+		// 		console.log('successfully sent email')
+		// 	})
+		// 	.catch(function() {
+		// 		console.log('erro senidng emial in the controller')
+		// 	})
+		// }
 
 
 // <! --- YO HERE's the LOGIN INFO --->
@@ -40,6 +40,7 @@
 			AuthService.register($scope.user)
 			//success
 			.then(function(data) {
+				console.log(AuthService.currentUser())
 				$location.path('/menu');
 				console.log(data)
 				$scope.diabled = false;

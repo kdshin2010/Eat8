@@ -20,7 +20,7 @@
             <li><a href="#/orders">Orders</a></li>
             <li><a href="#/view_orders">View Orders</a></li>
             <li><a href="#/view">View Menu</a></li>
-            <li ng-show='vm.isLoggedIn()' id='user_login' style='color:white'> Hello {{vm.username.username}}</li>
+            <li ng-show='vm.isLoggedIn()' id='user_login' style='color:white'> Hello {{vm.user.username}}</li>
             <li ng-hide = 'vm.isLoggedIn()'><a href="#/login" style='margin-left:'>LOGIN</a></li>
             <li ng-show='vm.isLoggedIn()'><a><button class='btn btn-danger' id='logout' ng-click = 'logout()'>Logout</button></a></li>
             <li><a data-toggle="modal" data-target="#myModal" href="#myModal"><i class="fa fa-envelope-o"></i></a></li>
