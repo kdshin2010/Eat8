@@ -53,6 +53,7 @@ menus.show = function(req, res) {
 }
 
 menus.addItem = function(req, res) {
+	console.log(req.body)
 	MenuCategory.findOne({_id: req.body.id}, function(error, results) {
 		console.log(results)
 		var item = new MenuItem({name: req.body.name, price: req.body.price, description: req.body.description})

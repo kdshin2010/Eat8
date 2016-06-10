@@ -22,6 +22,7 @@
 		$scope.previewedCategory;
 		$scope.selectedCategory;
 		$scope.selectACategory
+		$scope.view_menu = view_menu
 		// $scope.testJquery = testJquery
 		var updateItemId;
 		
@@ -30,6 +31,10 @@
 
 		$scope.sayHello = function() {
 			alert('hello')
+		}
+
+		function view_menu() {
+			$location.path('view')
 		}
 
 
