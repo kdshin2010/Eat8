@@ -18,7 +18,8 @@
 			var vm = this;
 			$scope.logout = logout;
 			vm.isLoggedIn = AuthService.isLoggedIn;
-			vm.user = AuthService.currentUser()
+			vm.user = AuthService.currentUser;
+			// vm.user = AuthService.getUsername();
 			setTimeout(function(){
 				console.log(AuthService.currentUser())
 			}, 10000)

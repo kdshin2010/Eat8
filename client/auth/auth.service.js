@@ -19,7 +19,8 @@
 			register: register,
 			login: login,
 			logout: logout,
-			isLoggedIn: isLoggedIn
+			isLoggedIn: isLoggedIn,
+			getUsername: getUsername
 		}
 		// function sendWelcomeEmail(info) {
 		// 	var deferred = $q.defer()
@@ -72,9 +73,41 @@
 			$window.localStorage['mean-token'] = token;
 		}
 
+
+
 		function logout() {
 			$window.localStorage.removeItem('mean-token')
 		}
+
+		    function getUsername() {
+		      if(isLoggedIn()){
+		        var token = getToken();
+		        var payload = token.split('.')[1];
+		        payload = $window.atob(payload);
+		        payload = JSON.parse(payload);
+		        console.log(payload.username)
+
+		        return {
+		          username : payload.username
+		        };
+		      }
+		    };
+
+		function getUserName() {
+			if(isLoggedIn()){
+				var token = getToken();
+				var payload = token.split('.')[1];
+				payload = $window.atob(payload);
+				payload = JSON.parse(payload);
+				console.log(payload.username)
+				return {
+					username: payload.username
+				}
+			}
+		}
+
+
+
 
 		function currentUser() {
 		    if(isLoggedIn()){
