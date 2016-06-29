@@ -10,13 +10,24 @@
 			var factory = {}
 
 			return {
-				testService: testService
+				addIconId: addIconId
 
 				//return values ot be passed to controllers here
 			}
-			function testService() {
-				alert('Restaur Service hooked up')
+
+			function addIconId(tabId) {
+				var deferred = $q.defer();
+				$http.post('/addTable', {tabId: tabId})
+				.success(function(data) {
+					deferred.resolve();
+				})
+				.error(function(error) {
+					console.log(error)
+				})
+				return deferred.promise;
+
 			}
+			
 
 			//function values go here
 

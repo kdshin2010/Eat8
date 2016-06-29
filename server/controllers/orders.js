@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
-	routes = require('../config/routes.js')
+	routes = require('../config/routes.js'),
 	OrderTable = mongoose.model('OrderTable'),
-	taxjar = require("taxjar")("bd500e410729da592779e6eee4cd951e")
+	taxjar = ''  //get API key and use it here ... see personal notes for reference
 	OrderItem = mongoose.model('OrderItem'),
 	orders = {};
 

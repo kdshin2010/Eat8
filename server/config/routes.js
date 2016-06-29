@@ -9,7 +9,8 @@ var express = require('express'),
   users = require('../Controllers/users.js')
   authentications = require('../Controllers/authentications.js')
   menus = require('../controllers/menus.js'),
-  orders = require('../controllers/orders.js')
+  orders = require('../controllers/orders.js'),
+  tables = require('../controllers/tables.js'),
   routes = express.Router(),
   User = require('../models/User.js')
 
@@ -20,10 +21,23 @@ routes.post('/getSalesTax', function(req, res) {
 	orders.getRates(req,res)
 })
 
+//add and retrieve tables
+
+routes.post('/addTable', function(req, res) {
+	tables.create(req, res);
+})
+
+routes.get('/getTables', function(req, res) {
+	tables.show(req, res);
+})
+
+//welcome email
+
 routes.post('/sendWelcomeEmail', function(req, res) {
 	console.log('at routes teting mailjet')
 	authentications.sendWelcomeEmail(req, res)
 })
+
 
 routes.get('/taxjartest', function(req, res) {
 	console.log('at the routes')

@@ -1,14 +1,14 @@
 var passport = require('passport');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-var Mailjet = require('node-mailjet').connect('**', '**');
+var Mailjet = '' // require('node-mailjet').connect('**', '**'); connect to api key
 
 var authentications = {}
 var sendJSONresponse = function(res, status, content) {
   res.status(status);
   res.json(content);
 };
-var sendEmail = Mailjet.post('send');
+// var sendEmail = Mailjet.post('send');
 
 authentications.sendWelcomeEmail = function(req, res) {
 	console.log(req.body.username)
@@ -19,13 +19,13 @@ authentications.sendWelcomeEmail = function(req, res) {
 	    'Text-part': 'Hey thanks for signing up for ea8',
 	    'Recipients': [{'Email': req.body.username}]
 	}
-	Mailjet.post('send')
-		.request(emailData).then(function(data) {
-			res.json({"message": 'email successfully sent!'});
-		})
-		.catch(function(){
-			console.log('error!')
-		})
+// 	Mailjet.post('send')
+// 		.request(emailData).then(function(data) {
+// 			res.json({"message": 'email successfully sent!'});
+// 		})
+// 		.catch(function(){
+// 			console.log('error!')
+// 		})
 }
 
 

@@ -911,10 +911,12 @@ Restaur Container
 }
 
 .restaur_container {
+    position: fixed;
+    margin-left: -30%;
+    left: 15%;
     width: 1020px;
     height: 600px;
-    margin: 0 auto;
-    margin-top: 50px;
+    margin: auto;
     border: double;
 }
 .restaur_buttons {
@@ -950,8 +952,36 @@ Restaur Container
     content: url('http://icons.iconarchive.com/icons/icons-land/points-of-interest/256/Restaurant-Blue-icon.png');
 }
 
-.
+.loadedDiv {
+    width: 300px;
+    height: 300px;
+    background-color: green;
 
+}
+#addicon {
+    margin-left: 30px;
+}
+
+.Omarks {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    font-size: 2em;
+}
+.Omarks.one {
+    background-color: red;
+}
+
+.res {
+    content: url("https://cdn1.iconfinder.com/data/icons/kitchen-4/500/Dine_dining_eat_eating_fork_knife_meal_meals_place-512.png");
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    margin: 0;
+}
+#ab2 {
+    background-color: red;
+}
 
 
 
