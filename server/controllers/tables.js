@@ -19,7 +19,7 @@ tables.show = function(req, res) {
 
 tables.create = function(req, res) {
 	console.log(req.body)
-	var table = new Table({tabId: req.body.tabId})
+	var table = new Table({tabId: req.body.tabId, left:0, top: 0})
 	table.save(function(err, data) {
 		if(err) {
 			console.log(' err saving table')
@@ -29,6 +29,42 @@ tables.create = function(req, res) {
 		}
 	})
 } 
+
+tables.updateCoord = function(req, res) {
+	console.log(req.body)
+	Table.update({tabId: req.body.id}, { $set: { left: req.body.left, top: req.body.top}}, function(err, data) {
+		if(err) {
+			console.log(err)
+		} else {
+			console.log(data)
+			res.json(data)
+		}
+	});
+}
+
+
+
+//alternate way to update
+
+/*
+
+tables.updateCoord = function(req, res) {
+	console.log(req.body)
+	Table.findOne({tabId: req.body.id}, function(err, table) {
+		if(err) {
+			console.log('couldnt find table')
+		} else {
+			console.log('found');
+			console.log(table)
+			
+		}
+	})
+}
+
+*/
+
+
+
 
 
 

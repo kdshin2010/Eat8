@@ -31,6 +31,12 @@ routes.get('/getTables', function(req, res) {
 	tables.show(req, res);
 })
 
+
+//update coordinates on tables
+routes.post('/updateCoord', function(req, res) {
+	tables.updateCoord(req, res)
+})
+
 //welcome email
 
 routes.post('/sendWelcomeEmail', function(req, res) {

@@ -12,6 +12,8 @@
 		get menu items to display on orders page
 		*/
 
+		setTimeout(function() { console.log(tables)}, 12000)
+
 		var selected_table;
 		$scope.items;
 		$scope.addOrderItem = addOrderItem,
