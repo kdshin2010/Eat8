@@ -18,6 +18,13 @@ ItemTable
     height: 300px;
 }
 
+.icon_img {
+    content: url("https://cdn1.iconfinder.com/data/icons/kitchen-4/500/Dine_dining_eat_eating_fork_knife_meal_meals_place-512.png");
+    margin: 0;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+}
 
 
 #tab0 {
@@ -351,32 +358,32 @@ a:after {
 
 
 .navbar {
-	font-weight: 800;
-	font-size: 14px;
-	padding-top: 15px;
-	padding-bottom: 15px;
+    font-weight: 800;
+    font-size: 14px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .navbar-inverse {
-	background: #2d2d2d;
-	border-color: #2d2d2d;
+    background: #2d2d2d;
+    border-color: #2d2d2d;
 }
 
 .navbar-inverse .navbar-nav > .active > a {
-	background: #ff7878
+    background: #ff7878
 }
 
 .navbar-inverse .navbar-brand {
-	color: #999999;
-	font-weight: bolder;
-	font-size: 22px;
-	letter-spacing: 1px;
+    color: #999999;
+    font-weight: bolder;
+    font-size: 22px;
+    letter-spacing: 1px;
 }
 
 .navbar-inverse .navbar-brand i {
-	color: #ff7878;
-	font-size: 22px;
-	letter-spacing: 1px;
+    color: #ff7878;
+    font-size: 22px;
+    letter-spacing: 1px;
 }
 #user_login {
     margin-left: 100px
@@ -406,15 +413,15 @@ Menu Page
    ========================================================================== */
 
 #headerwrap {
-	background: url(../images/backgroundimage1.jpg) no-repeat center top;
-	margin-top: -10px;
-	padding-top:20px;
-	text-align:center;
-	background-attachment: relative;
-	background-position: center center;
-	min-height: 500px;
-	width: 100%;
-	
+    background: url(../images/backgroundimage1.jpg) no-repeat center top;
+    margin-top: -10px;
+    padding-top:20px;
+    text-align:center;
+    background-attachment: relative;
+    background-position: center center;
+    min-height: 500px;
+    width: 100%;
+    
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
     -o-background-size: 100%;
@@ -427,154 +434,154 @@ Menu Page
 }
 
 #headerwrap h1 {
-	margin-top: 100px;
-	color: white;
-	font-size: 70px;
-	font-weight: 300;
-	letter-spacing: 3px;
+    margin-top: 100px;
+    color: white;
+    font-size: 70px;
+    font-weight: 300;
+    letter-spacing: 3px;
 }
 
 #headerwrap h2 {
-	color: white;
-	font-size: 40px;
-	font-weight: 700;
-	letter-spacing: 2px;
-	text-transform: uppercase;
+    color: white;
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 /* Dark Grey Wrap */
 #dg {
-	background: #e0e0e0;
-	padding-top: 70px;
-	padding-bottom: 70px;
-	text-align: center;
+    background: #e0e0e0;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    text-align: center;
 }
 
 #dg h4 {
-	font-weight: 700;
+    font-weight: 700;
 }
 
 /* Light Grey */
 #lg {
-	background: #ebebeb;
-	padding-top: 70px;
-	padding-bottom: 70px;
-	text-align: center;
+    background: #ebebeb;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    text-align: center;
 }
 
 #lg h4 {
-	font-weight: 700;
+    font-weight: 700;
 }
 
 
 /* Red Wrap */
 #r {
-	background: #ff7878;
-	padding-top: 35px;
-	padding-bottom: 35px;
+    background: #ff7878;
+    padding-top: 35px;
+    padding-bottom: 35px;
 }
 
 #r h4 {
-	color: white;
-	font-weight: 700;
+    color: white;
+    font-weight: 700;
 }
 
 #r p {
-	color: white;
+    color: white;
 }
 
 /* Blue Wrap */
 
 #blue {
-	background: #3498db;
-	padding-top: 35px;
-	padding-bottom: 35px;
+    background: #3498db;
+    padding-top: 35px;
+    padding-bottom: 35px;
 }
 
 #blue h4 {
-	color: white;
-	font-weight: 700;
+    color: white;
+    font-weight: 700;
 }
 
 #blue p {
-	color: white;
+    color: white;
 }
 
 
 
 /* Footer Wrap */
 #f {
-	background: #2d2d2d;
-	padding-top: 30px;
-	padding-bottom: 30px;
+    background: #2d2d2d;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 #f i {
-	color: #bdbdbd;
-	font-size: 30px;
-	padding: 20px;
+    color: #bdbdbd;
+    font-size: 30px;
+    padding: 20px;
 }
 
 #f i:hover {
-	color: #ff7878;
+    color: #ff7878;
 }
 
 /****** SECTIONS *****/
 
 .w {
-	padding-top: 35px;
+    padding-top: 35px;
 }
 
 .w h4 {
-	font-weight: 700;
+    font-weight: 700;
 }
 
 .w i {
-	color: #ff7878;
-	font-size: 30px;
+    color: #ff7878;
+    font-size: 30px;
 }
 
 
 .wb {
-	padding-top: 35px;
-	margin-bottom: 0px;
+    padding-top: 35px;
+    margin-bottom: 0px;
 }
 
 .wb h4 {
-	font-weight: 700;
+    font-weight: 700;
 }
 
 .desc {
-	padding-top: 35px;
+    padding-top: 35px;
 }
 
 .desc h4 {
-	font-weight: 700;
+    font-weight: 700;
 }
 
 .desc i {
-	color: #ff7878;
-	font-size: 12px;
-	padding: 5px;
+    color: #ff7878;
+    font-size: 12px;
+    padding: 5px;
 }
 
 /***** MODAL CONTACT *****/
 .modal-content {
-	border-radius: 0px;
+    border-radius: 0px;
 
 }
 
 .modal-header {
-	background: #bdbdbd;
-	color: white;
+    background: #bdbdbd;
+    color: white;
 }
 
 .modal-header h4 {
-	font-weight: 700;
+    font-weight: 700;
 }
 
 .modal-body {
-	background: #f2f2f2;
+    background: #f2f2f2;
     font-family: "Lato";
     font-weight: 300;
     font-size: 16px;
@@ -582,8 +589,8 @@ Menu Page
 }
 
 .modal-footer {
-	background: #f2f2f2;
-	margin-top: 0px; 
+    background: #f2f2f2;
+    margin-top: 0px; 
 }
 
 /* ==========================================================================
@@ -699,57 +706,57 @@ body {
     padding-top: 90px;
 }
 .panel-login {
-	border-color: #ccc;
-	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    border-color: #ccc;
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
 }
 .panel-login>.panel-heading { 
-	color: #00415d;
-	background-color: #fff;
-	border-color: #fff;
-	text-align:center;
+    color: #00415d;
+    background-color: #fff;
+    border-color: #fff;
+    text-align:center;
 }
 .panel-login>.panel-heading a{
-	text-decoration: none;
-	color: #666;
-	font-weight: bold;
-	font-size: 15px;
-	-webkit-transition: all 0.1s linear;
-	-moz-transition: all 0.1s linear;
-	transition: all 0.1s linear;
+    text-decoration: none;
+    color: #666;
+    font-weight: bold;
+    font-size: 15px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
 }
 .panel-login>.panel-heading a.active{
-	color: #029f5b;
-	font-size: 18px;
+    color: #029f5b;
+    font-size: 18px;
 }
 
 .panel-login>.panel-heading hr{
-	margin-top: 10px;
-	margin-bottom: 0px;
-	clear: both;
-	border: 0;
-	height: 1px;
-	background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
-	background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
-	background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
-	background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    margin-top: 10px;
+    margin-bottom: 0px;
+    clear: both;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
 }
 .panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
-	height: 45px;
-	border: 1px solid #ddd;
-	font-size: 16px;
-	-webkit-transition: all 0.1s linear;
-	-moz-transition: all 0.1s linear;
-	transition: all 0.1s linear;
+    height: 45px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
 }
 .panel-login input:hover,
 .panel-login input:focus {
-	outline:none;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none;
-	border-color: #ccc;
+    outline:none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-color: #ccc;
 }
 #user_login {
     margin-top: 15px;
@@ -757,20 +764,20 @@ body {
 
 #logout {
     position: relative;
-	text-align:center;
+    text-align:center;
     bottom: 10px;
     float: right;
 }
 .btn-login #cancel_login {
-	background-color: #59B2E0;
-	outline: none;
-	color: #fff;
-	font-size: 14px;
-	height: auto;
-	font-weight: normal;
-	padding: 14px 0;
-	text-transform: uppercase;
-	border-color: #59B2E6;
+    background-color: #59B2E0;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #59B2E6;
 }
 #cancel_login {
     color: white;
@@ -781,35 +788,35 @@ body {
 
 .btn-login:hover,
 .btn-login:focus {
-	color: #fff;
-	background-color: #53A3CD;
-	border-color: #53A3CD;
+    color: #fff;
+    background-color: #53A3CD;
+    border-color: #53A3CD;
 }
 .forgot-password {
-	text-decoration: underline;
-	color: #888;
+    text-decoration: underline;
+    color: #888;
 }
 .forgot-password:hover,
 .forgot-password:focus {
-	text-decoration: underline;
-	color: #666;
+    text-decoration: underline;
+    color: #666;
 }
 .btn-register {
-	background-color: #1CB94E;
-	outline: none;
-	color: #fff;
-	font-size: 14px;
-	height: auto;
-	font-weight: normal;
-	padding: 14px 0;
-	text-transform: uppercase;
-	border-color: #1CB94A;
+    background-color: #1CB94E;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #1CB94A;
 }
 .btn-register:hover,
 .btn-register:focus {
-	color: #fff;
-	background-color: #1CA347;
-	border-color: #1CA347;
+    color: #fff;
+    background-color: #1CA347;
+    border-color: #1CA347;
 }
 
 /*
@@ -829,8 +836,8 @@ Build Menu Page
 }
 
 #show_category .showCategory{
-	position: relative;
-	top: 15%;
+    position: relative;
+    top: 15%;
 }
 #show_category form {
     margin: 0 auto;
@@ -862,7 +869,7 @@ App Content
 }
 
 .get_started_btn {
-	margin: 25px;
+    margin: 25px;
     left: 0;
     right: 0;
     width: 100px;    
@@ -871,27 +878,27 @@ App Content
 }
 
 .menu_form_category {
-	margin-top: 30px;
-	width: 100%;
-	text-align: center; 
+    margin-top: 30px;
+    width: 100%;
+    text-align: center; 
 }
 .add_select_category div {
-	display: inline-block;
-	margin: 0 auto;
+    display: inline-block;
+    margin: 0 auto;
 
 }
 #add_category {
-	width: 300px; 
-	vertical-align: top;
+    width: 300px; 
+    vertical-align: top;
 }
 #select_category {
-	width: 300px;
-	vertical-align: top;
+    width: 300px;
+    vertical-align: top;
 }
 .menu_items {
-	width: 400px;
-	margin: 0 auto;
-	padding-top: 30px;
+    width: 400px;
+    margin: 0 auto;
+    padding-top: 30px;
 }
 #add_order_button {
     margin-left: 33%;
@@ -980,9 +987,17 @@ Restaur Container
     background-color: red;
 }
 
+.icon_heading {
+    position: relative;
+    top: 14px;
+    left: 2px;
+    margin-bottom: 3px;
+    padding: 0;
+}
+
 .res {
-    content: url("https://cdn1.iconfinder.com/data/icons/kitchen-4/500/Dine_dining_eat_eating_fork_knife_meal_meals_place-512.png");
-    width: 50px;
+/*    content: url("https://cdn1.iconfinder.com/data/icons/kitchen-4/500/Dine_dining_eat_eating_fork_knife_meal_meals_place-512.png");
+*/    width: 60px;
     height: 50px;
     padding: 0;
     margin: 0;

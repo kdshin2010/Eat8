@@ -102,11 +102,14 @@
 			
 			$("#addicon").click(function(e){
 				var tempId = 'tab'+tables.length
+				var iconId = "Table " + (tables.length+1)
 				var Icon = new tableIcon(tempId);
 				tables.push(Icon);
-				e = "<div class=res></div>";
+				e = "<div class=res id=" + tempId + "><ul class='icon_heading'><span>" + iconId+"</span></ul><img class='icon_img'></img></div>"
+				console.log(e);
 				$(e).appendTo('.restaur_container');
-				$(".res").addClass(tempId);
+				// $("#" + tempId).before("<p class='icon_heading'>Table</p>")
+				$("#"+tempId).addClass(tempId);
 				RestaurFactory.addIconId(tempId)
 				.then(function(data){
 					console.log(data)
@@ -114,7 +117,8 @@
 				.catch(function() {
 					console.log('error')
 				})
-				$("."+tempId).draggable(dragRel);
+				$("."+tempId).draggable(dragRel)
+			;
 			});
 
 			$(".testButton").click(function(e) {
@@ -122,7 +126,7 @@
 					var addedid = tables[value]["tabId"],
 					top = tables[value]["top"],
 					left = tables[value]["left"];
-					e = "<div id = " + addedid + "></div>"
+					e = "<div id = " + addedid + "><img class='icon_img'></img></div>"
 					console.log(e);
 					$(e).appendTo('.restaur_container');
 					$("#"+addedid).addClass('res ' + addedid);
