@@ -106,7 +106,7 @@
 				console.log(iconId)
 				var Icon = new tableIcon(tempId);
 				tables.push(Icon);
-				e = "<div class=res id=" + tempId + "<span>><p class='icon_heading'>" + iconId + "</p></span><img class='icon_img src='https://cdn1.iconfinder.com/data/icons/kitchen-4/500/Dine_dining_eat_eating_fork_knife_meal_meals_place-512.png'></img></div>"
+				e = "<div class=res id=" + tempId + "><ul class='icon_heading'><span>" + iconId+"</span></ul><img class='icon_img'></img></div>"
 				console.log(e);
 				$(e).appendTo('.restaur_container')
 				$("#"+tempId).addClass(tempId);
