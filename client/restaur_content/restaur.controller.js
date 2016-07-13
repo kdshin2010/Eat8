@@ -103,12 +103,12 @@
 			$("#addicon").click(function(e){
 				var tempId = 'tab'+tables.length
 				var iconId = "Table " + (tables.length+1)
+				console.log(iconId)
 				var Icon = new tableIcon(tempId);
 				tables.push(Icon);
-				e = "<div class=res id=" + tempId + "><ul class='icon_heading'><span>" + iconId+"</span></ul><img class='icon_img'></img></div>"
+				e = "<div class=res id=" + tempId + " style='margin-top:100px'><p class='icon_heading'>" + iconId + "</p><img class='icon_img src='https://cdn1.iconfinder.com/data/icons/kitchen-4/500/Dine_dining_eat_eating_fork_knife_meal_meals_place-512.png'></img></div>"
 				console.log(e);
-				$(e).appendTo('.restaur_container');
-				// $("#" + tempId).before("<p class='icon_heading'>Table</p>")
+				$(e).appendTo('.restaur_container')
 				$("#"+tempId).addClass(tempId);
 				RestaurFactory.addIconId(tempId)
 				.then(function(data){
