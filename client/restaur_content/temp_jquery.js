@@ -68,6 +68,29 @@ function restaur_icon(width, height, pos_top, pos_left) {
 			$(".food_icon").draggable(dragDoc)
 		})
 
+		$(function() {
+			var position = $('.')
+		})
+
+		$(function() {
+			var restaur = $('.restaur_container').position();
+			$('.restaur_container').append( ": left=" + position.left + ", top=" + position.top)
+		})
+
+
+
+
+		<script>
+		$(function(){
+		    var position = $('.target').position();
+		    $('.target').append( ": left=" + position.left + ", top=" + position.top );
+		 
+		    var position_absolute = $('.target-absolute').position();
+		    $('.target-absolute').append( ": left=" + position_absolute.left + ", top=" + position_absolute.top );
+		});​
+		</script>
+
+
 
 //Jquery Notes
 

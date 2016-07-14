@@ -101,12 +101,18 @@
 			//need to store these icons with obj properties in tables array
 			
 			$("#addicon").click(function(e){
-				var tempId = 'tab'+tables.length
-				var iconId = "Table " + (tables.length+1)
-				console.log(iconId)
+				var tableNumber = tables.length+1
+				var tempId = 'tab'+(tables.length+1);
+				var iconId = tempId
+				if(tempId.length === 4) {
+					console.log(tempId.substring(3,4));
+				} else {
+					console.log('The Table Length is 5')
+				}
+				console.log(tempId.length)
 				var Icon = new tableIcon(tempId);
 				tables.push(Icon);
-				e = "<div class=res id=" + tempId + "><ul class='icon_heading'><span>" + iconId+"</span></ul><img class='icon_img'></img></div>"
+				e = "<div class=res id=" + tempId + "><ul class='icon_heading'><span>" + iconId+ "</span></ul><img class='icon_img'></img></div>"
 				console.log(e);
 				$(e).appendTo('.restaur_container')
 				$("#"+tempId).addClass(tempId);
@@ -117,9 +123,11 @@
 				.catch(function() {
 					console.log('error')
 				})
-				$("."+tempId).draggable(dragRel)
-			;
+				$("."+tempId).draggable(dragRel);
 			});
+
+
+
 
 			$(".testButton").click(function(e) {
 				$.each(tables, function(value){
@@ -134,6 +142,8 @@
 					$('.'+addedid).css({top:top, left: left, position: "absolute"});
 				})
 			})
+
+
 
 
 

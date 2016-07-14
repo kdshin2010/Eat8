@@ -6,6 +6,7 @@ var Schema = mongoose.Schema,
 
 var TableSchema = new mongoose.Schema({
 	tabId: String,
+	iconId: String,
 	left: Number,
 	top: Number
 })
