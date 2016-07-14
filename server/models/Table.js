@@ -5,8 +5,8 @@ var Schema = mongoose.Schema,
 
 
 var TableSchema = new mongoose.Schema({
+	table_number: Number,
 	tabId: String,
-	iconId: String,
 	left: Number,
 	top: Number
 })

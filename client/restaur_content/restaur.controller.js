@@ -3,7 +3,7 @@
 
 	angular
 		.module('menuApp')
-		.controller('RestaurCtrl', RestaurCtrlFunction)
+		.controller('RestaurCtrl', RestaurCtrlFunction);
 
 
 	function RestaurCtrlFunction($scope, $location, RestaurFactory) {
@@ -13,17 +13,33 @@
 
 		$scope.tables = tables
 		$scope.getTables = getTables
+		$scope.layOutTables = layOutTables
 
 		setTimeout(function() { console.log(tables)}, 12000);
 
 
 
+		function layOutTables() {
+			$.each(tables, function(value){
+				var table_number = tables[value]["table_number"],
+				tempId = tables[value]["tabId"],
+				top = tables[value]["top"],
+				left = tables[value]["left"],
+				e = "<div class=res id=" + tempId + "><ul class='icon_heading'<span>Table "+ table_number + "</span></ul><img class='icon_img'></img</div>";
+				$(e).appendTo('.restaur_container');
+				$("#"+tempId).addClass(tempId);
+				$('.'+tempId).draggable(dragRel);
+				$('.'+tempId).css({top: top, left: left, position: 'absolute'});
+			})
+		}
+
+
 		function getTables() {
 			RestaurFactory.getTables() 
 			.then(function(data) {
+				console.log(data)
 				tables = data;
-				$scope.tables = data;
-				console.log(tables)
+				layOutTables();
 			})
 			.catch(function() {
 				console.log('error getting tables')
@@ -42,7 +58,6 @@
 		}
 
 	
-//store the drag position into the object
 
 		var dragRel = {
 			drag: function() {
@@ -101,47 +116,29 @@
 			//need to store these icons with obj properties in tables array
 			
 			$("#addicon").click(function(e){
-				var tableNumber = tables.length+1
-				var tempId = 'tab'+(tables.length+1);
-				var iconId = tempId
-				if(tempId.length === 4) {
-					console.log(tempId.substring(3,4));
-				} else {
-					console.log('The Table Length is 5')
-				}
-				console.log(tempId.length)
+				var table_number = (tables.length+1)
+				var tempId = 'tab'+ table_number;
 				var Icon = new tableIcon(tempId);
-				tables.push(Icon);
-				e = "<div class=res id=" + tempId + "><ul class='icon_heading'><span>" + iconId+ "</span></ul><img class='icon_img'></img></div>"
-				console.log(e);
-				$(e).appendTo('.restaur_container')
+				e = "<div class=res id=" + tempId + "><ul class='icon_heading'><span>Table " + table_number + "</span></ul><img class='icon_img'></img></div>"
+				$(e).appendTo('.restaur_container');
+
+				//this is so the class will be saved as a DOM Element
 				$("#"+tempId).addClass(tempId);
-				RestaurFactory.addIconId(tempId)
+
+				//saving both tabId and Table Number for the Element
+				RestaurFactory.addTableInfo(tempId, table_number)
 				.then(function(data){
-					console.log(data)
+					console.log('before adding data')
+					console.log(data);
+					tables.push(data)
+					console.log(tables);
+
 				})
 				.catch(function() {
 					console.log('error')
 				})
 				$("."+tempId).draggable(dragRel);
 			});
-
-
-
-
-			$(".testButton").click(function(e) {
-				$.each(tables, function(value){
-					var addedid = tables[value]["tabId"],
-					top = tables[value]["top"],
-					left = tables[value]["left"];
-					e = "<div id = " + addedid + "><img class='icon_img'></img></div>"
-					console.log(e);
-					$(e).appendTo('.restaur_container');
-					$("#"+addedid).addClass('res ' + addedid);
-					$('.'+addedid).draggable(dragRel);
-					$('.'+addedid).css({top:top, left: left, position: "absolute"});
-				})
-			})
 
 
 

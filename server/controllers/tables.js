@@ -19,7 +19,7 @@ tables.show = function(req, res) {
 
 tables.create = function(req, res) {
 	console.log(req.body)
-	var table = new Table({tabId: req.body.tabId, left:0, top: 0})
+	var table = new Table({tabId: req.body.tabId, table_number: req.body.table_number, left:0, top: 0})
 	table.save(function(err, data) {
 		if(err) {
 			console.log(' err saving table')

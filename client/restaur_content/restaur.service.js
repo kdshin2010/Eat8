@@ -11,15 +11,15 @@
 
 
 			return {
-				addIconId: addIconId,
+				addTableInfo: addTableInfo,
 				getTables: getTables,
 				updateCoord: updateCoord
 				//return values ot be passed to controllers here
 			}
 
-			function addIconId(tabId) {
+			function addTableInfo(tabId, table_number) {
 				var deferred = $q.defer();
-				$http.post('/addTable', {tabId: tabId})
+				$http.post('/addTable', {tabId: tabId, table_number: table_number})
 				.success(function(data) {
 					deferred.resolve(data);
 				})
