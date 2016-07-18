@@ -42,6 +42,17 @@ tables.updateCoord = function(req, res) {
 	});
 }
 
+tables.delete = function(req, res) {
+	console.log(req.body)
+	Table.remove({tabId: req.body.tabId}, function(err, data){
+		if(err) {
+			console.log('err')
+		} else {
+			res.json(data)
+		}
+	})
+}
+
 
 
 //alternate way to update

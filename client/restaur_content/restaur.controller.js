@@ -10,10 +10,9 @@
 		var tables;
 		var tab;
 		getTables();
-
+	
 		$scope.tables = tables
 		$scope.getTables = getTables
-		$scope.layOutTables = layOutTables
 
 		setTimeout(function() { console.log(tables)}, 12000);
 
@@ -28,23 +27,103 @@
 				e = "<div class=res id=" + tempId + "><ul class='icon_heading'<span>Table "+ table_number + "</span></ul><img class='icon_img'></img</div>";
 				$(e).appendTo('.restaur_container');
 				$("#"+tempId).addClass(tempId);
+				$("#"+tempId).bind("contextmenu", function(event) {
+					event.preventDefault();
+					$(".custom-menu").finish().toggle(100).
+					css({
+						top: event.pageY + "px",
+						left: event.pageX + "px"
+					});
+					$(".custom-menu li").data('yo', this);
+				})
 				$('.'+tempId).draggable(dragRel);
 				$('.'+tempId).css({top: top, left: left, position: 'absolute'});
 			})
+
 		}
 
+		function deleteTable(tabId) {
+			console.log(tables)
+			for (var key in tables) {
+				console.log(tables[key]["tabId"])
+			}
+			RestaurFactory.deleteTable(tabId)
+			.then(function() {
+				console.log('deleted')
+			})
+			.catch(function() {
+				console.log('error deleting table!')
+			})
+		}
+
+		$(".custom-menu li").click(function(){
+			var tabid = ($(".custom-menu li").data('yo')).id
+			console.log(tabid)
+
+		    // This is the triggered action name
+		    switch($(this).attr("data-action")) {
+		        
+		        // A case for each action. Your actions here
+		        case "complete_order": 
+		        	alert("completing order for " + tabid); 
+		        	break;
+		        case "edit": 
+		        	alert("editing for"); 
+		        	break;
+		        case "delete": 
+		        	console.log(tables);
+					$("."+tabid).remove();
+		        	deleteTable(tabid);
+		        	updateTables();
+		        	console.log(tables)
+		        	break;
+		    }
+		  
+		    // Hide it AFTER the action was triggered
+		    $(".custom-menu").hide(100);
+		  });
+
+
+
+			$(document).bind("mousedown", function (e) {
+			    
+			    // If the clicked element is not the menu
+			    if (!$(e.target).parents(".custom-menu").length > 0) {
+			        
+			        // Hide it
+			        $(".custom-menu").hide(100);
+			    }
+			});
+			
+
+
+
+			
 
 		function getTables() {
 			RestaurFactory.getTables() 
 			.then(function(data) {
 				console.log(data)
 				tables = data;
+				console.log(tables[tables.length-1])
 				layOutTables();
 			})
 			.catch(function() {
 				console.log('error getting tables')
 			})
 		}
+
+		function updateTables() {
+			RestaurFactory.getTables()
+			.then(function(data) {
+				tables = data;
+			})
+			.catch(function() {
+				console.log('error updatign tables!')
+			})
+		}
+
+
 
 		//API call to get the selecetedId
 		function updateCoord(id, left, top) {
@@ -56,6 +135,9 @@
 				console.log('error getting id')
 			})
 		}
+
+
+
 
 	
 
@@ -103,6 +185,8 @@
 			 }
 		}
 
+		 
+
 
 
 		function tableIcon(id, left, top) {
@@ -114,45 +198,42 @@
 
 			//Add Icon button adds table icons
 			//need to store these icons with obj properties in tables array
+			alert('clicked addIcon')
 			
 			$("#addicon").click(function(e){
-				var table_number = (tables.length+1)
+				var table_number = (tables[tables.length-1]["table_number"]+1)
 				var tempId = 'tab'+ table_number;
 				var Icon = new tableIcon(tempId);
 				e = "<div class=res id=" + tempId + "><ul class='icon_heading'><span>Table " + table_number + "</span></ul><img class='icon_img'></img></div>"
 				$(e).appendTo('.restaur_container');
-
 				//this is so the class will be saved as a DOM Element
 				$("#"+tempId).addClass(tempId);
-
 				//saving both tabId and Table Number for the Element
 				RestaurFactory.addTableInfo(tempId, table_number)
 				.then(function(data){
 					console.log('before adding data')
 					console.log(data);
 					tables.push(data)
-					console.log(tables);
-
+					//bind context menu
+					$("#"+tempId).bind("contextmenu", function(event) {
+						event.preventDefault();
+						$(".custom-menu").finish().toggle(100).
+						css({
+							top: event.pageY + "px",
+							left: event.pageX + "px"
+						});
+						$(".custom-menu li").data('yo', this);
+					})
 				})
 				.catch(function() {
 					console.log('error')
 				})
 				$("."+tempId).draggable(dragRel);
 			});
+		}
 
 
 
-
-
-
-	
-
-	
-
-
-
-
-	}
 
 })();
 

@@ -1,0 +1,32 @@
+/*
+ Theme Name:  ByPeople Alpha 0.1
+ Theme URI: http://bypeople.com
+ Author: ByPeople Authors
+ Author URI: http"//bypeople.com
+ Description: User generated and curated high quality content network
+ Version: 0.1
+ Licence: Private
+ Tags: white
+
+*/
+span.recently-update-title{
+  font-weight: normal;
+  color: #424242 !important;
+  font-family: 'Bitter', sans-serif;
+  font-size: 15px;
+}
+
+span.recently-update-title:hover{
+  color: #555 !important;
+}
+
+.recently-update-subdate{
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+hr.recently-update-div{  
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 6px;
+}

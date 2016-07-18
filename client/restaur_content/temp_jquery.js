@@ -7,7 +7,64 @@ function restaur_icon(width, height, pos_top, pos_left) {
 }
 
 
+$('.outfeedPosition').bind("contextmenu", function (e) {
+    $('#contextMenu').css({
+        top: e.pageY + 'px',
+        left: e.pageX + 'px'
+    }).show();
+
+    //Store the item that was clicked 
+    $("#contextMenu").data('originalElement', this);
+
+    return false;
+});
+
+
+$('#ctxDelete').click(function () {
+    var originalElement = $("#contextMenu").data('originalElement');
+    alert('delete was clicked by ' + originalElement.id );
+});
+
+
 //jquery reference
+
+// JAVASCRIPT (jQuery)
+
+// Trigger action when the contexmenu is about to be shown
+$(".rightClick").bind("contextmenu", function (event) {
+    
+    // Avoid the real one
+    event.preventDefault();
+    
+    // Show contextmenu
+    $(".custom-menu").finish().toggle(100).
+    
+    // In the right position (the mouse)
+    css({
+        top: event.pageY + "px",
+        left: event.pageX + "px"
+    });
+});
+
+
+// If the document is clicked somewhere
+	$(document).bind("mousedown", function (e) {
+	    
+	    // If the clicked element is not the menu
+	    if (!$(e.target).parents(".custom-menu").length > 0) {
+	        
+	        // Hide it
+	        $(".custom-menu").hide(100);
+	    }
+	});
+
+
+
+
+    $("#contextMenu").data('originalElement', this);
+
+// If the menu element is clicked
+
 
 
 		var array = [

@@ -13,7 +13,8 @@
 			return {
 				addTableInfo: addTableInfo,
 				getTables: getTables,
-				updateCoord: updateCoord
+				updateCoord: updateCoord,
+				deleteTable: deleteTable
 				//return values ot be passed to controllers here
 			}
 
@@ -25,6 +26,18 @@
 				})
 				.error(function() {
 					deferred.reject();
+				})
+				return deferred.promise;
+			}
+
+			function deleteTable(tabId) {
+				var deferred = $q.defer();
+				$http.post('/deleteTable', {tabId: tabId})
+				.success(function(data){
+					deferred.resolve(data)
+				})
+				.error(function() {
+					deferred.reject()
 				})
 				return deferred.promise;
 			}

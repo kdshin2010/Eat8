@@ -21,6 +21,9 @@ routes.post('/getSalesTax', function(req, res) {
 	orders.getRates(req,res)
 })
 
+routes.post('/deleteTable', function(req, res) {
+	tables.delete(req, res)
+})
 //add and retrieve tables
 
 routes.post('/addTable', function(req, res) {

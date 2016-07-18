@@ -4,6 +4,7 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,300,700,900);
 
+
 /*
 ============================================================
 ItemTable
@@ -12,6 +13,58 @@ ItemTable
 /*jquery_test 
 
 */
+/*
+
+======
+JQUERY FOR TABLE ICOSN
+=====
+*/
+
+.button_groupings {
+    margin-bottom: 40px;
+}
+
+.add_table {
+    margin-right: 30px;
+}
+.reset_layout {
+    margin-left: 30px;
+}
+
+.custom-menu {
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid #CCC;
+    white-space: nowrap;
+    font-family: sans-serif;
+    background: #FFF;
+    color: #333;
+    border-radius: 5px;
+    padding: 0;
+}
+
+/* Each of the items in the list */
+.custom-menu li {
+    padding: 8px 12px;
+    cursor: pointer;
+    list-style-type: none;
+    transition: all .3s ease;
+}
+
+.custom-menu li:hover {
+    background-color: #DEF;
+}
+
+.rightClick {
+    border: solid;
+}
+
+
+.Layout_Heading {
+    font-family: 'Lobster', cursive;  
+}
 
 .jqueryDiv {
     width: 300px;
@@ -36,7 +89,7 @@ ItemTable
 }
 
 /*
-end of jquery test
+end of jquery css
 */
 
 .table_body {
@@ -926,13 +979,14 @@ Restaur Container
 }
 
 .restaur_container {
-    position: fixed;
-    margin-left: -30%;
-    left: 15%;
+    position: relative;
+    top: 1%;
+    left: 4%;
     width: 1020px;
-    height: 600px;
+    height: 500px;
     margin: auto;
     border: double;
+    border-radius: 5px;
 }
 .restaur_buttons {
     width: 200px;
