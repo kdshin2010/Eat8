@@ -17,6 +17,16 @@ tables.show = function(req, res) {
 	})
 }
 
+tables.deleteAll = function(req, res) {
+	Table.remove({}, function(err) {
+		if(err) {
+			console.log(err)
+		} else {
+			console.log('successfully removed all tables')
+		}
+	})
+}
+
 tables.create = function(req, res) {
 	console.log(req.body)
 	var table = new Table({tabId: req.body.tabId, table_number: req.body.table_number, left:0, top: 0})

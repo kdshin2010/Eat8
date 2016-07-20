@@ -116,6 +116,7 @@
 
 
 		function selectTable() {
+			console.log('selecting table')
 			selected_table = $scope.table_number;
 			getOrderItems($scope.table_number)
 			$scope.show_order_tables = true;
@@ -190,6 +191,8 @@
 			})
 			getSubmittedOrders();
 		}
+
+		
 	}
 
 })()

@@ -1,3 +1,39 @@
+			$("#addicon").click(function(e){
+				if (tables.length === 0) {
+					var table_number = 1;
+				} else {
+					var table_number = (tables[tables.length-1]["table_number"]+1)
+				}
+				var tempId = 'tab'+ table_number;
+				var Icon = new tableIcon(tempId);
+				e = "<div class=res id=" + tempId + "><ul class='icon_heading'><span>Table " + table_number + "</span></ul><img class='icon_img'></img></div>"
+				$(e).appendTo('.restaur_container');
+				//this is so the class will be saved as a DOM Element
+				$("#"+tempId).addClass(tempId);
+				//saving both tabId and Table Number for the Element
+				RestaurFactory.addTableInfo(tempId, table_number)
+				.then(function(data){
+					console.log('before adding data')
+					console.log(data);
+					tables.push(data)
+					//bind context menu
+					$("#"+tempId).bind("contextmenu", function(event) {
+						event.preventDefault();
+						$(".custom-menu").finish().toggle(100).
+						css({
+							top: event.pageY + "px",
+							left: event.pageX + "px"
+						});
+						$(".custom-menu li").data('yo', this);
+					})
+				})
+				.catch(function() {
+					console.log('error')
+				})
+				$("."+tempId).draggable(dragRel);
+			});
+		}
+
 
 function restaur_icon(width, height, pos_top, pos_left) {
 	this.width = 200 + 'px';

@@ -17,6 +17,7 @@ menus.create = function(req, res) {
 	})
 }
 
+
 menus.previewCategory = function(req, res) {
 	console.log(req.body.id)
 	MenuCategory.findOne({_id: req.body.id})

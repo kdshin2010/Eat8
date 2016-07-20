@@ -3,12 +3,14 @@
 
 	angular
 	.module('menuApp')
+	.run(['$anchorScroll', function($anchorScroll){
+		$anchorScroll.yOffset = 50; // scroll by extra 50px
+	}])
 	.controller('MenuCtrl', MenuCtrlFunction);
 
   	// MenuCtrl.$inject = ['$location', ];
 
-
-	function MenuCtrlFunction($scope, $location, MenuFactory, AuthService) {
+	function MenuCtrlFunction($scope, $location, MenuFactory, AuthService, $anchorScroll) {
 		$scope.addCategory = addCategory
 		$scope.addItem = addItem
 		$scope.removeCategory = removeCategory
@@ -21,10 +23,14 @@
 		$scope.previewCategory = previewCategory;
 		$scope.previewedCategory;
 		$scope.selectedCategory;
-		$scope.selectACategory
-		$scope.view_menu = view_menu
+		$scope.selectACategory;
+		$scope.testAnchor = testAnchor;
+		$scope.view_menu = view_menu;
 		// $scope.testJquery = testJquery
 		var updateItemId;
+		var category_nav;
+		var map = Array.prototype.map;
+		console.log(map)
 		
 		getCategories();
 		getMenuItems();
@@ -36,6 +42,16 @@
 		function view_menu() {
 			$location.path('view')
 		}
+
+		function testAnchor(x) {
+			var old = $location.hash();
+			$location.hash('anchor'+x);
+			$anchorScroll();
+			$location.hash(old);
+
+		}
+
+		
 
 
 		function previewCategory(category) {
@@ -69,7 +85,13 @@
 			MenuFactory.getCategories()
 			.then(function(data) {
 				$scope.categories = data;
-				console.log(data)
+				console.log('getting the names')
+				category_nav = data.map(function(x) {
+					return x.name
+				})
+				$scope.category_nav = category_nav
+
+
 			})
 			.catch(function() {
 				console.log('error!!')
@@ -94,7 +116,8 @@
 			MenuFactory.getMenuItems()
 			.then(function(data) {
 				$scope.items = data;
-				console.log(data)
+				console.log(data);
+				console.log('after items')
 			})
 			.catch(function(){
 				console.log('error')

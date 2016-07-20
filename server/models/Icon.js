@@ -4,14 +4,14 @@ var Schema = mongoose.Schema,
 
 
 
-var TableSchema = new mongoose.Schema({
-	table_number: Number,
-	tabId: String,
+var IconSchema = new mongoose.Schema({
+	icon_number: Number,
+	icoId: String,
 	left: Number,
 	top: Number
 });
 
 
 
-mongoose.model('Table', TableSchema)
+mongoose.model('Icon', IconSchema)
 

@@ -12,23 +12,25 @@
 			<input type='submit' class='update_item' ng-click='updateItem(menu._id)' style='background-color: #99ccff'>
 		</form>
 	</div>
-	<div class='table_container' ng-repeat='menu in items track by $index' >
+<div class='row table_container' style='height: 300px'>
+	<div ng-repeat='menu in items track by $index' class='nested_container'>
+		<div class ='col-xs-6 col-md-4' >
 		<h3>{{menu.name}}</h3>
-		<table id='menu'>
+		<table class='menu_l' >
 			 <thead>
 			   <tr>
 			     <th>Number</th>
-			     <th id='second_head' style='overflow:hidden'>Item Name</th>
+			     <th id='second_head'>Item Name</th>
 			     <th>Price</th>
 			     <th>Actions
 			     	<button class='btn btn-default' id='remove_menu_category' ng-click='removeCategory(menu._id)'>X</button>
 			     </th>
 			   </tr
 			 </thead>
-		  <tbody>
-		    <tr ng-repeat='x in menu.items track by $index'>
+		  <tbody class='menu_body_items'>
+		    <tr ng-repeat="x in menu.items track by $index" >
 			    <td>-</td>
-			   	<td ng-bind='x.name' style='width:43%; overflow:scroll'></td>
+			   	<td ng-bind='x.name' style='width:43%;'></td>
 			   	<td ng-bind='x.price'></td>
 			   	<td style='width: 35%;'><button class ='btn btn-primary' style="width:55px; font-size: 8px" ng-click="showUpdate(x._id)" '>Update</button>
 			   	<button class ='btn btn-danger' style="width:55px; font-size: 8px; text-align: center" ng-click='removeItem(x._id)'>Remove</button>
@@ -36,11 +38,57 @@
 		    </tr>
 		   </tbody>
 		</table>
+		</div>
 	</div>
+</div>
 	<span class='stretch'></span>
 
  </div>
 
+<!-- 
+ <div class="row">
+  <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+      <img src="..." alt="...">
+    </a>
+  </div>
+   <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+      <img src="..." alt="...">
+    </a>
+  </div>
+    <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+      <img src="..." alt="...">
+    </a>
+  </div>
+    <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+      <img src="..." alt="...">
+    </a>
+  </div>
+    <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+      <img src="..." alt="...">
+    </a>
+  </div>
+   <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+      <img src="..." alt="...">
+    </a>
+  </div>
+    <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+      <img src="..." alt="...">
+    </a>
+  </div>
+    <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+      <img src="..." alt="...">
+    </a>
+  </div>
+  </div>
+ -->
 
 
 

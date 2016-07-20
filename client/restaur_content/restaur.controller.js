@@ -8,14 +8,71 @@
 
 	function RestaurCtrlFunction($scope, $location, RestaurFactory) {
 		var tables;
+		var icons;
 		var tab;
 		getTables();
 	
-		$scope.tables = tables
-		$scope.getTables = getTables
+		$scope.tables = tables;
+		$scope.getTables = getTables;
+		$scope.clearLayout = clearLayout;
+		$scope.addSection = addSection
 
 		setTimeout(function() { console.log(tables)}, 12000);
 
+		var icons;
+
+
+
+		var bathroom_image = '../app/images/bathroom.jpg>'
+		var bathroom_icon = "<div class='bathroom'><h4>Bathroom</h4><img class='bathroom_icon' src='../app/images/bathroom.jpg'></div>"
+		var kitchen_icon = "<div class='kitchen'><h4>Kitchen</h4><img class = 'kitchen_icon' src='../app/images/kitchen.png'></div>"
+
+
+	
+		function addSection() {
+			var bathroom_image = '../app/images/bathroom.jpg>'
+			var bathroom_icon = "<div class='bathroom'><h4>Bathroom</h4><img class='bathroom_icon' src='../app/images/bathroom.jpg'></div>"
+			var kitchen_icon = "<div class='kitchen'><h4>Kitchen</h4><img class = 'kitchen_icon' src='../app/images/kitchen.png'></div>";
+			
+			if ($scope.section_icon === 'Bathroom') {
+
+				$('.bathroom').draggable(dragRel);
+				var icoId = 'ico' + 1; // change 1 to include icon number;
+				var bathroom_icon = "<div class='bathroom' id=" + icoId + "><h4>Bathroom</h4><img class='bathroom_icon' src='../app/images/bathroom.jpg'></div>"
+				$(bathroom_icon).appendTo('.restaur_container');
+				//so we can make them all draggable
+				$("#"+icoId).addClass(icoId);
+				$("."+icoId).draggable(dragRel);
+				//add to database
+				//bind context menu
+				//yo clean up this codeasap
+			} else if ($scope.section_icon === 'Kitchen') {
+				$(kitchen_icon).appendTo('.restaur_container');
+				$('.kitchen').draggable(dragRel)
+			}
+		}
+
+
+
+		function deleteTables() {
+			RestaurFactory.deleteTables()
+			.then(function() {
+				console.log('successfully removed tables!')
+			})
+			.catch(function() {
+				console.log(' error removing tables')
+			})
+		}
+
+
+		function clearLayout() {
+			$.each(tables, function(value) {
+				var tabId = tables[value]["tabId"];
+				$("."+ tabId).remove();
+			})
+			deleteTables();
+			tables = [];
+		}
 
 
 		function layOutTables() {
@@ -41,6 +98,8 @@
 			})
 
 		}
+
+
 
 		function deleteTable(tabId) {
 			console.log(tables)
@@ -124,7 +183,6 @@
 		}
 
 
-
 		//API call to get the selecetedId
 		function updateCoord(id, left, top) {
 			RestaurFactory.updateCoord(id, left, top)
@@ -135,11 +193,6 @@
 				console.log('error getting id')
 			})
 		}
-
-
-
-
-	
 
 		var dragRel = {
 			drag: function() {
@@ -198,10 +251,13 @@
 
 			//Add Icon button adds table icons
 			//need to store these icons with obj properties in tables array
-			alert('clicked addIcon')
 			
 			$("#addicon").click(function(e){
-				var table_number = (tables[tables.length-1]["table_number"]+1)
+				if (tables.length === 0) {
+					var table_number = 1;
+				} else {
+					var table_number = (tables[tables.length-1]["table_number"]+1)
+				}
 				var tempId = 'tab'+ table_number;
 				var Icon = new tableIcon(tempId);
 				e = "<div class=res id=" + tempId + "><ul class='icon_heading'><span>Table " + table_number + "</span></ul><img class='icon_img'></img></div>"

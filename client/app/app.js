@@ -30,7 +30,7 @@
 
 		})
 		$routeProvider.when('/view', {
-			templateUrl: '../views/view2.html',
+			templateUrl: '../views/view3.html',
 			access: {restricted: true}
 		})
 		$routeProvider.when('/orders', {

@@ -6,7 +6,7 @@
 <div class='row' ng-controller='OrdersCtrl'>
 	<div class='order_container'>
 		<form class='text-center'>
-			<span style='margin-right: 10px; font-size: 20px'>Select Table</span><select ng-model='table_number'>
+			<span style='margin-right: 10px; font-size: 20px'>Select Table</span><select ng-model='table_number' ng-change='selectTable()'>
 				<option value = '1'>1</option>
 				<option value = '2'>2</option>
 				<option value = '3'>3</option>
@@ -18,7 +18,7 @@
 				<option value = '9'>9</option>
 				<option value = '10'>10</option>
 			</select>
-			<button class = 'btn btn-default' ng-click='selectTable()'>Select Table</button>
+	
 	</div>
 	<div class='order_view_container' ng-show='show_order_tables' ng-init = 'show_order_tables = false'>
 		<div class='this_order'>

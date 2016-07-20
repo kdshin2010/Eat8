@@ -21,6 +21,10 @@ routes.post('/getSalesTax', function(req, res) {
 	orders.getRates(req,res)
 })
 
+routes.post('/deleteTables', function(req, res) {
+	tables.deleteAll(req, res)
+})
+
 routes.post('/deleteTable', function(req, res) {
 	tables.delete(req, res)
 })
@@ -33,6 +37,7 @@ routes.post('/addTable', function(req, res) {
 routes.get('/getTables', function(req, res) {
 	tables.show(req, res);
 })
+
 
 
 //update coordinates on tables
@@ -71,6 +76,8 @@ routes.post('/previewCategory', function(req, res){
 routes.post('/removeCategory', function(req, res) {
 	menus.removeCategory(req, res)
 })
+
+routes.get('/getCategories')
 
 routes.post('/addCategory', function(req, res) {
 	menus.create(req, res);
