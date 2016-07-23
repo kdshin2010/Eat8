@@ -32,7 +32,7 @@ tables.create = function(req, res) {
 	var table = new Table({tabId: req.body.tabId, table_number: req.body.table_number, left:0, top: 0})
 	table.save(function(err, data) {
 		if(err) {
-			console.log(' err saving table')
+			console.log('err saving table')
 		} else {
 			console.log(data);
 			res.json(data);

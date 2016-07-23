@@ -1,17 +1,17 @@
 
 
 <div class='table_body' ng-controller='MenuCtrl'>
-	<div class='update_container' style='margin: 0 auto;' ng-show='show_update' ng-init='show_update = false'>
-		<form class='form-group'> 
-			New  Name <input type='text' ng-model='updateThisItem.name'>
-			New Price <input type='text' ng-model='updateThisItem.price'>
-			<input type='submit' class='update_item' ng-click='updateItem(menu._id)' style='background-color: #99ccff'>
-		</form>
+<div class = 'category_titles'>
+		<a class='menu_titles' ng-click="testAnchor(a.name)" ng-repeat="a in items"><span class='span_category_titles'><u>{{a.name}}</u></span> </a>
 	</div>
-	{{category_nav}}
-	<div class = 'category_titles'>
-		<a class='menu_titles' ng-click="testAnchor(a.name)" ng-repeat="a in items">{{a.name}}</a>
-	</div>
+<div class='update_container' style='margin: 0 auto;' ng-show='show_update' ng-init='show_update = false'>
+	<form class='form-group'> 
+		New  Name <input type='text' ng-model='updateThisItem.name'>
+		New Price <input type='text' ng-model='updateThisItem.price'>
+		<input type='submit' class='update_item' ng-click='updateItem(menu._id)' style='background-color: #99ccff'>
+	</form>
+</div>
+	
 	<div id = "anchor{{menu.name}}" class='anchor table_container' ng-repeat='menu in items track by $index' >
 		<h3>{{menu.name}}</h3>
 		<table id='menu'>

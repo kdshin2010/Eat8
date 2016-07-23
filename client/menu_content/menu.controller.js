@@ -128,7 +128,6 @@
 			$scope.show_update = true;
 			updateItemId = id;
 				// other page has id
-			
 		}
 
 		function updateItem() {

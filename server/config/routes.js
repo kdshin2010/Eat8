@@ -11,6 +11,7 @@ var express = require('express'),
   menus = require('../controllers/menus.js'),
   orders = require('../controllers/orders.js'),
   tables = require('../controllers/tables.js'),
+  icons = require('../controllers/icons.js'),
   routes = express.Router(),
   User = require('../models/User.js')
 
@@ -39,11 +40,18 @@ routes.get('/getTables', function(req, res) {
 })
 
 
-
 //update coordinates on tables
 routes.post('/updateCoord', function(req, res) {
-	tables.updateCoord(req, res)
+	if (req.body.id.substring(0,3) === 'tab') {
+		tables.updateCoord(req, res)
+	} else {
+		icons.updateCoord(req, res)
+	}
 })
+
+
+// icons
+
 
 //welcome email
 
@@ -77,7 +85,15 @@ routes.post('/removeCategory', function(req, res) {
 	menus.removeCategory(req, res)
 })
 
-routes.get('/getCategories')
+//icons
+routes.post('/addIcon', function(req, res) {
+	icons.create(req, res);
+})
+
+routes.get('/getIcons', function(req, res) {
+	icons.show(req, res)
+})
+
 
 routes.post('/addCategory', function(req, res) {
 	menus.create(req, res);
@@ -126,6 +142,7 @@ routes.post('/submitOrder', function(req, res) {
 routes.get('/getOrderTables', function(req, res) {
 	orders.getOrderTables(req, res)
 })
+
 
 routes.get('/getSubmittedOrders', function(req, res) {
 	orders.getSubmittedOrders(req, res)

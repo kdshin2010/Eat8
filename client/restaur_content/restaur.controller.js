@@ -11,6 +11,7 @@
 		var icons;
 		var tab;
 		getTables();
+		getIcons();
 	
 		$scope.tables = tables;
 		$scope.getTables = getTables;
@@ -19,38 +20,112 @@
 
 		setTimeout(function() { console.log(tables)}, 12000);
 
-		var icons;
+
+		function layoutIcons() {
+			$.each(icons, function(value) {
+				var icon_number = icons[value]["icon_number"],
+				icoId = icons[value]["icoId"],
+				top = icons[value]["top"],
+				left = icons[value]["left"],
+				i
+				switch(icon_number) 
+				{	
+					case 5:
+						i = "<div class='kit' id=" + icoId + "><h4>Kitchen</h4><img class = 'kitchen_icon' src='../app/images/kitchen.png'></div>";
+						break
+					case 1:
+						i = "<div class='bat' id=" + icoId + "><h4>Bathroom</h4><img class='bathroom_icon' src='../app/images/bathroom.jpg'></div>";
+						break;
+				}
+				
+				$(i).appendTo('.restaur_container');
+				$("#"+icoId).addClass(icoId);
+				$("#"+icoId).bind("contextmenu", function(event){
+					event.preventDefault();
+					$('.custom-menu').finish().toggle(100).
+					css({
+						top: event.pageY + "px",
+						left: event.pageX + "px"
+					})
+					$(".custom-menu li").data('yo', this);
+				})
+				$('.'+icoId).draggable(dragRel);
+				$('.'+icoId).css({top: top, left: left, positon: 'absolute'})
+
+			})
+		}
+
+
 
 
 
 		var bathroom_image = '../app/images/bathroom.jpg>'
-		var bathroom_icon = "<div class='bathroom'><h4>Bathroom</h4><img class='bathroom_icon' src='../app/images/bathroom.jpg'></div>"
-		var kitchen_icon = "<div class='kitchen'><h4>Kitchen</h4><img class = 'kitchen_icon' src='../app/images/kitchen.png'></div>"
+
+		//bar 1
+		//bathroom 2
+		//entrance 3
+		//host/hostess 4
+		//kitchen 5
 
 
 	
-		function addSection() {
-			var bathroom_image = '../app/images/bathroom.jpg>'
-			var bathroom_icon = "<div class='bathroom'><h4>Bathroom</h4><img class='bathroom_icon' src='../app/images/bathroom.jpg'></div>"
-			var kitchen_icon = "<div class='kitchen'><h4>Kitchen</h4><img class = 'kitchen_icon' src='../app/images/kitchen.png'></div>";
-			
-			if ($scope.section_icon === 'Bathroom') {
+		
 
-				$('.bathroom').draggable(dragRel);
-				var icoId = 'ico' + 1; // change 1 to include icon number;
-				var bathroom_icon = "<div class='bathroom' id=" + icoId + "><h4>Bathroom</h4><img class='bathroom_icon' src='../app/images/bathroom.jpg'></div>"
-				$(bathroom_icon).appendTo('.restaur_container');
-				//so we can make them all draggable
-				$("#"+icoId).addClass(icoId);
-				$("."+icoId).draggable(dragRel);
-				//add to database
-				//bind context menu
-				//yo clean up this codeasap
-			} else if ($scope.section_icon === 'Kitchen') {
-				$(kitchen_icon).appendTo('.restaur_container');
-				$('.kitchen').draggable(dragRel)
+		function addSection() {
+			function addIconInfo(icoId, icon_number) {
+				RestaurFactory.addIconInfo(icoId, icon_number)
+				.then(function(data) {
+					console.log(data)
+				})
+				.catch(function() {
+					console.log('error adding icon!')
+				})
+			}
+			var bathroom_image = '../app/images/bathroom.jpg>'
+			var icon_number;
+			var icoId;
+			//consoldiate this code!
+			switch($scope.section_icon)
+			{
+				case 'Bathroom':
+					icon_number = 1;
+					icoId = 'ico' + icon_number; // change 1 to include icon number;
+					var bathroom_icon = "<div class='bat' id=" + icoId + "><h4>Bathroom</h4><img class='bathroom_icon' src='../app/images/bathroom.jpg'></div>"
+					$(bathroom_icon).appendTo('.restaur_container');
+					//so we can make them all draggable
+					addContextMenu(icoId)
+					$("#"+icoId).addClass(icoId);
+					$("."+icoId).draggable(dragRel);
+					addIconInfo(icoId, icon_number);
+					break;
+				case 'Kitchen': 
+					icon_number = 5;
+					icoId = 'ico' + icon_number;
+					var kitchen_icon = "<div class='kit' id=" + icoId + "><h4>Kitchen</h4><img class = 'kitchen_icon' src='../app/images/kitchen.png'></div>";
+					$(kitchen_icon).appendTo('.restaur_container');
+					addContextMenu(icoId);
+					//this can be a function
+					$("#"+icoId).addClass(icoId)
+					$('.'+icoId).draggable(dragRel);
+					addIconInfo(icoId, icon_number)
+					break;
+
 			}
 		}
+
+		function getIcons() {
+			RestaurFactory.getIcons()
+			.then(function(data){
+				icons = data;
+				console.log(data)
+				layoutIcons();
+			})
+			.catch(function(){
+				console.log('error getting icons')
+			})
+		}
+
+
 
 
 
@@ -75,6 +150,24 @@
 		}
 
 
+
+
+		function getTables() {
+			RestaurFactory.getTables() 
+			.then(function(data) {
+				console.log(data)
+				tables = data;
+				console.log(tables[tables.length-1])
+				layOutTables();
+			})
+			.catch(function() {
+				console.log('error getting tables')
+			})
+		}
+
+		
+
+
 		function layOutTables() {
 			$.each(tables, function(value){
 				var table_number = tables[value]["table_number"],
@@ -83,16 +176,10 @@
 				left = tables[value]["left"],
 				e = "<div class=res id=" + tempId + "><ul class='icon_heading'<span>Table "+ table_number + "</span></ul><img class='icon_img'></img</div>";
 				$(e).appendTo('.restaur_container');
+
+				//maybe consolidate to a funciton
 				$("#"+tempId).addClass(tempId);
-				$("#"+tempId).bind("contextmenu", function(event) {
-					event.preventDefault();
-					$(".custom-menu").finish().toggle(100).
-					css({
-						top: event.pageY + "px",
-						left: event.pageX + "px"
-					});
-					$(".custom-menu li").data('yo', this);
-				})
+				RestaurFactory.addContextMenu(tempId)
 				$('.'+tempId).draggable(dragRel);
 				$('.'+tempId).css({top: top, left: left, position: 'absolute'});
 			})
@@ -117,7 +204,6 @@
 
 		$(".custom-menu li").click(function(){
 			var tabid = ($(".custom-menu li").data('yo')).id
-			console.log(tabid)
 
 		    // This is the triggered action name
 		    switch($(this).attr("data-action")) {
@@ -144,33 +230,16 @@
 
 
 
-			$(document).bind("mousedown", function (e) {
+		$(document).bind("mousedown", function (e) {
 			    
 			    // If the clicked element is not the menu
-			    if (!$(e.target).parents(".custom-menu").length > 0) {
+			if (!$(e.target).parents(".custom-menu").length > 0) {
 			        
 			        // Hide it
-			        $(".custom-menu").hide(100);
-			    }
-			});
-			
+				$(".custom-menu").hide(100);
+			}
+		});
 
-
-
-			
-
-		function getTables() {
-			RestaurFactory.getTables() 
-			.then(function(data) {
-				console.log(data)
-				tables = data;
-				console.log(tables[tables.length-1])
-				layOutTables();
-			})
-			.catch(function() {
-				console.log('error getting tables')
-			})
-		}
 
 		function updateTables() {
 			RestaurFactory.getTables()
@@ -193,6 +262,10 @@
 				console.log('error getting id')
 			})
 		}
+
+		//again consolidate to one funciton
+
+		
 
 		var dragRel = {
 			drag: function() {
@@ -228,7 +301,6 @@
 				updateCoord(selectedId, x, y);
 
 			},
-
 			start: function() {
 				var $this = $(this);
 				var selectedId = $this.attr('class').substring(4,9);
@@ -239,8 +311,6 @@
 		}
 
 		 
-
-
 
 		function tableIcon(id, left, top) {
 			this.id = id;
@@ -267,8 +337,6 @@
 				//saving both tabId and Table Number for the Element
 				RestaurFactory.addTableInfo(tempId, table_number)
 				.then(function(data){
-					console.log('before adding data')
-					console.log(data);
 					tables.push(data)
 					//bind context menu
 					$("#"+tempId).bind("contextmenu", function(event) {
@@ -286,10 +354,6 @@
 				})
 				$("."+tempId).draggable(dragRel);
 			});
-		}
-
-
-
-
+		};
 })();
 

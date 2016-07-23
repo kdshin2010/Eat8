@@ -17,7 +17,6 @@ function LinkedList() {
 			head = node;
 		} else {
 			current = head;
-
 			//loop until you find last item
 			while(current.next) {
 				current = current.next;
