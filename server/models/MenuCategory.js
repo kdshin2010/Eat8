@@ -5,6 +5,7 @@ var Schema = mongoose.Schema,
 
 var MenuCategorySchema = new mongoose.Schema({
 	name: String,
+	user: {type: String, ref: "User"},
 	items: [
 		{
 			type: ObjectId,

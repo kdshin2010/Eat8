@@ -22,41 +22,22 @@ routes.post('/getSalesTax', function(req, res) {
 	orders.getRates(req,res)
 })
 
-routes.post('/deleteTables', function(req, res) {
-	tables.deleteAll(req, res)
+
+//Standard Tables
+routes.post('/standardTable', function(req, res) {
+	tables.standardTables(req, res)
 })
 
-routes.post('/deleteTable', function(req, res) {
-	tables.delete(req, res)
-})
-//add and retrieve tables
-
-routes.post('/addTable', function(req, res) {
-	tables.create(req, res);
-})
-
-routes.get('/getTables', function(req, res) {
-	tables.show(req, res);
-})
+//Waitlist
 
 
-//update coordinates on tables
-routes.post('/updateCoord', function(req, res) {
-	if (req.body.id.substring(0,3) === 'tab') {
-		tables.updateCoord(req, res)
-	} else {
-		icons.updateCoord(req, res)
-	}
-})
 
 
-// icons
 
 
 //welcome email
 
 routes.post('/sendWelcomeEmail', function(req, res) {
-	console.log('at routes teting mailjet')
 	authentications.sendWelcomeEmail(req, res)
 })
 
@@ -85,9 +66,54 @@ routes.post('/removeCategory', function(req, res) {
 	menus.removeCategory(req, res)
 })
 
-//icons
+//icons and talbes
+
+routes.post('/deleteIcon', function(req, res) {
+	if(req.body.id[0] === 't') {
+		tables.delete(req, res)
+	} else {
+		icons.delete(req, res)
+	}
+})
+
+routes.post('/deleteImage',function (req, res) {
+	icons.remove(req,res)
+})
+
+routes.post('/deleteTables', function(req, res) {
+	tables.deleteAll(req, res)
+})
+
+
+//add and retrieve tables
+
+// routes.post('/addTable', function(req, res) {
+// 	tables.create(req, res);
+// })
+
+routes.get('/getTables', function(req, res) {
+	tables.show(req, res);
+})
+
+
+//update coordinates on tables
+routes.post('/updateCoord', function(req, res) {
+	console.log(req.body)
+	if (req.body.id.substring(0,3) === 'tab') {
+		tables.updateCoord(req, res)
+	} else {
+		icons.updateCoord(req, res)
+	}
+})
+
 routes.post('/addIcon', function(req, res) {
-	icons.create(req, res);
+	console.log(req.body.id[0])
+	// if t add table if i add icon
+	if(req.body.id[0] === 't') {
+		tables.create(req, res)
+	} else {
+		icons.create(req, res)
+	}
 })
 
 routes.get('/getIcons', function(req, res) {
@@ -99,7 +125,7 @@ routes.post('/addCategory', function(req, res) {
 	menus.create(req, res);
 })
 
-routes.get('/getCategories', function(req, res) {
+routes.post('/getCategories', function(req, res) {
 	menus.show(req, res);
 })
 
@@ -107,7 +133,7 @@ routes.post('/addItem', function(req, res){
 	menus.addItem(req, res);
 })
 
-routes.get('/getItems', function(req, res){
+routes.post('/getItems', function(req, res){
 	menus.getItems(req, res);
 })
 

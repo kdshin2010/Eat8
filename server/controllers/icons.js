@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
 
 icons.create = function(req, res) {
 	console.log('here');
-	var icon = new Icon({icoId: req.body.icoId, icon_number: req.body.icon_number, top:0, left:0});
+	console.log(req.body.id)
+	var icon = new Icon({icoId: req.body.id, icon_number: req.body.id_number, top:0, left:0});
 	icon.save(function(err, data){
 		if(err) {
 			console.log(err)
@@ -29,6 +30,7 @@ icons.show = function(req, res) {
 
 icons.updateCoord = function(req, res) {
 	console.log(req.body)
+	console.log(req.body.id)
 	Icon.update({icoId: req.body.id}, { $set: { left: req.body.left, top: req.body.top}}, function(err, data) {
 		if(err) {
 			console.log(err)
@@ -40,6 +42,16 @@ icons.updateCoord = function(req, res) {
 	});
 }
 
+icons.delete = function(req, res) {
+	console.log(req.body.id)
+	Icon.remove({icoId: req.body.id}, function(err) {
+		if(err) {
+			console.log('err!')
+		} else {
+			console.log('successfully removed ICON')
+		}
+	})
+}
 
 
 

@@ -16,10 +16,9 @@
 		$scope.tables = tables;
 		$scope.getTables = getTables;
 		$scope.clearLayout = clearLayout;
-		$scope.addSection = addSection
+		$scope.addSection = addSection;
 
 		setTimeout(function() { console.log(tables)}, 12000);
-
 
 		function layoutIcons() {
 			$.each(icons, function(value) {
@@ -56,9 +55,6 @@
 		}
 
 
-
-
-
 		var bathroom_image = '../app/images/bathroom.jpg>'
 
 		//bar 1
@@ -69,7 +65,6 @@
 
 
 	
-		
 
 		function addSection() {
 			function addIconInfo(icoId, icon_number) {
@@ -207,7 +202,6 @@
 
 		    // This is the triggered action name
 		    switch($(this).attr("data-action")) {
-		        
 		        // A case for each action. Your actions here
 		        case "complete_order": 
 		        	alert("completing order for " + tabid); 
@@ -293,7 +287,7 @@
 				} else {
 					selectedId = classAttr.substring(4,9)
 				}
-
+ 
 				// $this.data("iconId")["id"] = selectedId
 				var thisPos = $this.position();
 				var x = thisPos.left;

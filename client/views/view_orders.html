@@ -1,4 +1,4 @@
-<div class="view_all_orders_container" ng-controller ='OrdersCtrl'>
+<div class="view_all_orders_container" ng-controller ='OrdersCtrl' style='display: inline-block'>
 	<div class="input-append" ng-hide='show_all_orders' ng-init='show_all_orders = false'>
 		<h3 style='margin-right: 40px;'>Enter Zip Code</h3>
 	    <input ng-model='zipcode'>
@@ -38,5 +38,8 @@
 					</ul>
 				</div>
 			</div>
+		</div>
+		<div>
+			<ks-restaur-layout></ks-restaur-layout>
 		</div>
 </div>

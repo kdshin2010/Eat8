@@ -26,23 +26,27 @@
 		$scope.selectACategory;
 		$scope.testAnchor = testAnchor;
 		$scope.view_menu = view_menu;
+		// $scope.myController = myController
 		// $scope.testJquery = testJquery
 		var updateItemId;
 		var category_nav;
 		var map = Array.prototype.map;
-		console.log(map)
-		
+		console.log(map);
+
+
+
+
+
 		getCategories();
 		getMenuItems();
 
-		$scope.sayHello = function() {
-			alert('hello')
-		}
 
+		//CLICK TO VIEW MENU
 		function view_menu() {
 			$location.path('view')
 		}
 
+		//TEST ANCHOR SCROLL
 		function testAnchor(x) {
 			var old = $location.hash();
 			$location.hash('anchor'+x);
@@ -51,9 +55,7 @@
 
 		}
 
-		
-
-
+		//When BUILDING MENU SHOWS CATEGORY ON THE RIGHT
 		function previewCategory(category) {
 			$scope.selectACategory = false;
 			MenuFactory.previewCategory(category)
@@ -68,12 +70,16 @@
 
 		}
 
+		//ADD CATEGORY
 		function addCategory() {
-			MenuFactory.addCategory($scope.newCategory)
+			console.log($scope.newCategory)
+			console.log($scope.username)
+			MenuFactory.addCategory($scope.newCategory, $scope.username.username)
 			$scope.newCategory = {}
 			getCategories();
 		}
 
+		//DELETE CATEGORY
 		function removeCategory(x) {
 			MenuFactory.removeCategory(x, function(data) {
 				$scope.categories = data;
@@ -81,8 +87,9 @@
 			getMenuItems();
 		}
 
+		//GET CATEGORIES ON SELCT
 		function getCategories() {
-			MenuFactory.getCategories()
+			MenuFactory.getCategories($scope.username.username)
 			.then(function(data) {
 				$scope.categories = data;
 				console.log('getting the names')
@@ -98,6 +105,7 @@
 			})
 		}
 
+		//ADD ITEM
 		function addItem() {
 			console.log('here')
 			MenuFactory.addItem({id: $scope.selectedCategory, name: $scope.newItem.name, price: $scope.newItem.price, description: $scope.newItem.description })
@@ -113,11 +121,10 @@
 		}
 
 		function getMenuItems() {
-			MenuFactory.getMenuItems()
+			MenuFactory.getMenuItems($scope.username.username)
 			.then(function(data) {
 				$scope.items = data;
 				console.log(data);
-				console.log('after items')
 			})
 			.catch(function(){
 				console.log('error')

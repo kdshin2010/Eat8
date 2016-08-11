@@ -2,7 +2,9 @@
 	'use strict'
 	angular
 	.module('menuApp', 
-		['ngRoute'
+		['ngRoute',
+		'ngAnimate',
+		'ui.bootstrap'
 		//other modules
 		])
 	.config(ConfigFunction)
@@ -22,7 +24,6 @@
 		$routeProvider.when('/login', {
 			templateUrl: '../views/login.html',
 			access: {restricted: false}
-
 		})
 		$routeProvider.when('/register', {
 			templateUrl: '../views/register.html',
@@ -30,7 +31,8 @@
 
 		})
 		$routeProvider.when('/view', {
-			templateUrl: '../views/view3.html',
+			templateUrl: '../views/view4.html',
+			controller: 'MenuCtrl',
 			access: {restricted: true}
 		})
 		$routeProvider.when('/orders', {
@@ -45,8 +47,16 @@
 		})
 		$routeProvider.when('/view_restaur', {
 			templateUrl: '../views/view_restaur.html',
-			access: {restricted: true},
-			controller: 'RestaurCtrl'
+			access: {restricted: true}
+		})
+		$routeProvider.when('/testModal', {
+			templateUrl: '../views/view2.html',
+			access: {restricted: true}
+		})
+		$routeProvider.when('/waitlist', {
+			templateUrl: '../views/waitlist.html',
+			controller: 'WaitListCtrl',
+			access: {restricted: true}
 		})
 	}
 

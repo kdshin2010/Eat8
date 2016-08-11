@@ -6,13 +6,14 @@ var mongoose = require('mongoose'),
 
 
 menus.create = function(req, res) {
-	var category = new MenuCategory({name: req.body.name})
+	console.log(req.body)
+	var category = new MenuCategory({name: req.body.name, user: req.body.user})
 	category.save(function(error, data) {
 		if(error) {
 			console.log(error)
 		} else {
 			console.log('Saved the data!')
-			console.log(data)
+			res.json(data)
 		}
 	})
 }
@@ -44,10 +45,12 @@ menus.removeCategory = function(req, res) {
 }
 
 menus.show = function(req, res) {
-	MenuCategory.find({}, function(error, data) {
+	console.log('GETTING CATEGORIES')
+	MenuCategory.find({user: req.body.username}, function(error, data) {
 		if(error) {
 			console.log('Could not retrieve data')
 		} else {
+			console.log(data)
 			res.json(data)
 		}
 	})
@@ -79,12 +82,13 @@ menus.addItem = function(req, res) {
 }
 
 menus.getItems = function(req, res) {
-	MenuCategory.find()
+	MenuCategory.find({user: req.body.username})
 	.populate('items')
 	.exec(function(error, results) {
 		if(error) {
 			console.log('error!')
 		} else {
+			console.log('got the')
 			res.json(results)
 			console.log(results)
 		}

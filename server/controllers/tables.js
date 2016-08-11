@@ -29,7 +29,7 @@ tables.deleteAll = function(req, res) {
 
 tables.create = function(req, res) {
 	console.log(req.body)
-	var table = new Table({tabId: req.body.tabId, table_number: req.body.table_number, left:0, top: 0})
+	var table = new Table({tabId: req.body.id, table_number: req.body.id_number, left:0, top: 0})
 	table.save(function(err, data) {
 		if(err) {
 			console.log('err saving table')
@@ -39,6 +39,7 @@ tables.create = function(req, res) {
 		}
 	})
 } 
+
 
 tables.updateCoord = function(req, res) {
 	console.log(req.body)
@@ -54,14 +55,48 @@ tables.updateCoord = function(req, res) {
 
 tables.delete = function(req, res) {
 	console.log(req.body)
-	Table.remove({tabId: req.body.tabId}, function(err, data){
+	Table.remove({tabId: req.body.id}, function(err){
 		if(err) {
 			console.log('err')
 		} else {
-			res.json(data)
+			console.log('successfully deleted Table')
 		}
 	})
 }
+
+//custom value for tables
+
+
+tables.standardTables = function(req, res) {
+	var tables = [];
+	for (var i=0; i<req.body.num; i++) {
+		var table = new Table({tabId: 'tab'+i})
+		tables.push(table)
+	}
+	console.log(tables)
+	Table.insertMany(tables)
+	.then(function(data) {
+		res.json(data)
+	})
+	.catch(function() {
+		console.log('error')
+	})
+}
+
+// tables.standardTables = function(req, res) {
+// 	console.log(req.body.num)
+// 	for (var i=0; i<req.body.num; i++) {
+// 		var table = new Table({tabId: 'tab'+i})
+// 		table.save(function(err) {
+// 			if(err) {
+// 				console.log('error')
+// 			} else {
+// 				res.json(data)
+// 			}
+// 		});
+// 	}
+// }
+
 
 
 

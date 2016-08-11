@@ -1,18 +1,1 @@
-Refactoring Process
--Check package.json
-Additional Adds
-	json web token
-	express-jwt
-
-
-user schema
-	...
-	Username
-		-type String, unique: true, required String
-		-hash : String,
-		-salt: String
-
-	-Add Methods for encryption/ salt /hash
-
-
-Fix Server File
+-Add Injection to all controllers

@@ -11,20 +11,42 @@
 
 
 			return {
-				addTableInfo: addTableInfo,
 				getTables: getTables,
 				updateCoord: updateCoord,
-				deleteTable: deleteTable,
+				deleteIcon: deleteIcon,
 				deleteTables: deleteTables,
 				addIconInfo: addIconInfo,
 				getIcons: getIcons,
-				addContextMenu: addContextMenu
-				//return values ot be passed to controllers here
+				addContextMenu: addContextMenu,
+				sayHello: sayHello,
+				standardTables: standardTables
 			}
+
+			//return values ot be passed to controllers here
+
 
 			//in the future consolidate this function to add tabId or ico id for now use two separate functions :);
 			//change to add Marker
 
+			function standardTables(num) {
+				console.log(num)
+				var deferred = $q.defer();
+				$http.post('/standardTable', {num: num})
+				.success(function(data) {
+					console.log(data);
+					deferred.resolve(data)
+				})
+				.error(function() {
+					console.log('error adding tables')
+				})
+				return deferred.promise;
+			}
+
+			function sayHello() {
+				console.log('hello!')
+			}
+
+	
 			function addContextMenu(id) {
 				$("#"+id).bind("contextmenu", function(event) {
 					event.preventDefault();
@@ -37,10 +59,11 @@
 				})
 			}
 
+		
 
-			function addTableInfo(tabId, table_number) {
+			function addIconInfo(id, id_number) {
 				var deferred = $q.defer();
-				$http.post('/addTable', {tabId: tabId, table_number: table_number})
+				$http.post('/addIcon', {id: id, id_number: id_number})
 				.success(function(data) {
 					deferred.resolve(data);
 				})
@@ -50,18 +73,6 @@
 				return deferred.promise;
 			}
 
-			function addIconInfo(icoId, icon_number) {
-				console.log(icoId, icon_number)
-				var deferred = $q.defer();
-				$http.post('/addIcon', {icoId: icoId, icon_number: icon_number})
-				.success(function(data) {
-					deferred.resolve(data);
-				})
-				.error(function() {
-					deferred.reject();
-				})
-				return deferred.promise;
-			}
 
 			function getIcons() {
 				var deferred = $q.defer();
@@ -75,6 +86,17 @@
 				return deferred.promise
 			}
 
+			function deleteIcon(id) {
+				var deferred = $q.defer();
+				$http.post('/deleteIcon', {id:id})
+				.success(function() {
+					deferred.resolve()
+				})
+				.error(function() {
+					deferred.reject()
+				})
+				return deferred.promise
+			}
 
 			//deleteing all tables
 			function deleteTables() {
@@ -90,17 +112,6 @@
 			}
 
 			//delete one table
-			function deleteTable(tabId) {
-				var deferred = $q.defer();
-				$http.post('/deleteTable', {tabId: tabId})
-				.success(function(data){
-					deferred.resolve(data)
-				})
-				.error(function() {
-					deferred.reject()
-				})
-				return deferred.promise;
-			}
 
 			function getTables() {
 				var deferred = $q.defer();
@@ -128,4 +139,48 @@
 			//function values go here
 
 		}
+
+		//layout tables consolidate into one function possibly
+
+
+
+
+		// function dragRel() {
+		// 	return {
+		// 		drag: function() {
+		// 			var $this = $(this),
+		// 			thisPos = $this.position(),
+		// 			parentPos = $this.parent().position(),
+		// 			x = thisPos.left,
+		// 			y = thisPos.top;
+		// 			$('#posX').text(x);
+		// 			$("#posY").text(y);
+		// 		},
+		// 		stop: function() {
+		// 			var $this = $(this),
+		// 			selectedId,
+		// 			classAttr = $this.attr('class'),
+		// 			//to identify the id of the class attribute
+		// 			lastdigit = $this.attr('class').substring(8,9);
+		// 			console.log(classAttr);
+
+		// 			//check if the last digit is empty
+		// 			if(lastdigit === " ") {
+		// 				selectedId = classAttr.substring(4,8);
+		// 			} else {
+		// 				selectedId = classAttr.substring(4,9)
+		// 			}
+
+		// 			var thisPos = $this.position(),
+		// 			x = thisPos.Left,
+		// 			y = thisPos.top;
+		// 			updateCoord(selectedId, x, y);
+		// 		},
+		// 		start: function() {
+		// 			var $this = $(this),
+		// 			selectedId = $this.attr('class').substring(4,9);
+		// 			var $this = $(this);
+		// 		}
+		// 	}
+		// }
 })()

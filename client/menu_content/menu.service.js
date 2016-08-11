@@ -4,13 +4,6 @@
 	.module('menuApp')
 	.factory('MenuFactory', MenuFactoryFunction)
 
-	// Inject Modules here?
-
-
-	/*
-		-create  
-
-	*/
 
 	function MenuFactoryFunction($http, $q) {
 		var factory = {},
@@ -41,10 +34,10 @@
 			return deferred.promise;
 		}
 
-		function addCategory(info) {
-			console.log(info)
+		function addCategory(newCategory, user) {
+			console.log(user)
 			var deferred = $q.defer()
-			$http.post('/addCategory', {name: info.name})
+			$http.post('/addCategory', {name: newCategory.name, user: user })
 			.success(function(data) {
 				deferred.resolve(data)
 			})
@@ -54,9 +47,10 @@
 			return deferred.promise
 		}
 
-		function getCategories() {
+		function getCategories(username) {
 			var deferred = $q.defer();
-			$http.get('/getCategories')
+			console.log(username)
+			$http.post('/getCategories', {username: username})
 			.success(function(data) {
 				categories = data
 				deferred.resolve(categories)
@@ -81,9 +75,9 @@
 			})
 		}
 
-		function getMenuItems() {
+		function getMenuItems(username) {
 			var deferred = $q.defer();
-			$http.get('/getItems')
+			$http.post('/getItems', {username: username})
 			.success(function(data) {
 				deferred.resolve(data)
 			})

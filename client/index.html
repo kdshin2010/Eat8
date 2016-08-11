@@ -22,8 +22,13 @@ login.css
     <meta name="description" content="">
     <meta name="author" content="">	<title>Menu Application</title>
     <link href="app/content/bootstrap.css" rel="stylesheet">
+    <link href="app/content/pure.css" rel="stylesheet">
+
+<!-- Modal Styling -->
+    <link rel="stylesheet" type="text/css" href="app/css/modal.style.css">
     <link rel="stylesheet" type="text/css" href="app/css/main.css">
     <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="app/css/style2.css">
 
     <link href="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
 </head>
@@ -31,15 +36,20 @@ login.css
     <ks-navbar></ks-navbar>
     <div ng-view=""></div>
 
-<!--         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
- -->         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
 
 
         <script src="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.js" type="text/javascript"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
-        <script src="https://code.angularjs.org/1.4.4/angular-route.js"></script>
+
+        <!-- Angular 1.5.5 -->
+        <script src='app/js/angular.js'></script>
+        <script src='app/js/angular.animate.js'></script>
+        <script src='app/js/angular.route.js'></script>
+        <script src='app/js/ui-bootstrap.js'></script>
+
         <script src="app/content/bootstrap.min.js"></script>
 
         	<!-- App Files -->
@@ -64,6 +74,24 @@ login.css
             <!-- Restaurant Content Files -->
         <script src='restaur_content/restaur.controller.js'></script>
         <script src='restaur_content/restaur.service.js'></script>
+
+        <script src='restaur_content/restaur.directive.js'></script>
+
+        <script src='restaur_content/modal.instance.controller.js'></script>
+
+
+        <!-- Waitlist Files -->
+        <script src='waitlist_content/waitlist.controller.js'></script>
+        <script src='waitlist_content/waitlist.service.js'></script>
+
+        <script src='waitlist_content/waitlist.modal.controller.js'</script>
+
+
+
+
+
+
+
 
             <!-- Order Content Files -->
         <script src="order_content/order.controller.js"></script>
