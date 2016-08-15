@@ -4,7 +4,6 @@ var express = require('express'),
 	cookieParser = require('cookie-parser'),
 	bodyParser = require('body-parser'),
 	expressSession = require('express-session'),
-	//requiring mongoose below
 	hash = require('bcrypt-nodejs'),
 	path = require('path'),
 	passport = require('passport'),
@@ -13,6 +12,9 @@ var express = require('express'),
 var User = require('./server/models/User.js');
 require('./server/config/mongoose.js');
 require('./server/config/passport.js');
+
+
+var twilioNotifications = require('./server/middleware/twilioNotifications.js')
 
 
 var routes = require('./server/config/routes.js')
@@ -32,10 +34,12 @@ app.use(require('express-session')({
     saveUninitialized: false
 }));
 
-
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
+//for some reason twilio notifes error when error
+app.use(twilioNotifications.notifyOnError);
+
 
 //configure passport
 

@@ -12,8 +12,13 @@ var express = require('express'),
   orders = require('../controllers/orders.js'),
   tables = require('../controllers/tables.js'),
   icons = require('../controllers/icons.js'),
+  waitlists = require('../controllers/waitlists.js'),
+
   routes = express.Router(),
-  User = require('../models/User.js')
+  User = require('../models/User.js');
+
+
+
 
 
   // comments = require('../controllers/comments.js'),
@@ -30,6 +35,27 @@ routes.post('/standardTable', function(req, res) {
 
 //Waitlist
 
+routes.post('/addGroup', function(req, res) {
+	waitlists.addGroup(req, res)
+});
+
+routes.post('/removeGroup', function(req, res) {
+	console.log('here')
+	waitlists.removeGroup(req, res)
+})
+
+routes.get('/testTwilio', function(req, res) {
+	waitlists.sendText(req, res)
+})
+
+
+routes.get('/getGroups', function(req, res) {
+	waitlists.show(req, res)
+})
+
+routes.post('/notify', function(req, res) {
+	waitlists.notify(req, res)
+})
 
 
 

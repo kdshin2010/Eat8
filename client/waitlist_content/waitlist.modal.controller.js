@@ -3,11 +3,11 @@
 	
 	angular
 		.module('menuApp')
-		.controller('WaitlListModalCtrl', WaitlistModalCtrlFunction)
+		.controller('WaitListModalCtrl', WaitListModalCtrl)
 
-	function WaitlistModalCtrlFunction($scope, WaitListFactory) {
-		$scope.groups = [];
+	function WaitListModalCtrl($scope, WaitListFactory, $uibModalInstance, $rootScope) {
 		$scope.addGroup = addGroup
+
 		$scope.group = {
 			name: '',
 			number: '',
@@ -16,18 +16,21 @@
 		}
 
 		function addGroup() {
-			WaitListFactory.addGroup({name: $scope.group.name, number: $scope.group.number, size: $scope.group.size, notified: $scope.group.notified})
-			// .then(function(data) {
-			// 	$scope.groups.push(data)
-			// })
-			// .catch(function(){
-			// 	console.log('error adding group')
-			// })
-			// $scope.group = {};
+			console.log('adding group')
+			WaitListFactory.addGroup({name: $scope.group.name, number: $scope.group.number, size: $scope.group.size, notification: $scope.group.notification})
+			.then(function(data) {
+				console.log('successly added group' + data );
+				//enable Waitlist controller to handle data
+				$rootScope.$broadcast('pushGroup', data);
+ 				$uibModalInstance.dismiss();
+			})
+			.catch(function(){
+				console.log('error adding group')
+			})
+			$scope.group = {};
 		}
 
 
 	}
-
 
 })();

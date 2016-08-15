@@ -3,8 +3,7 @@
 	angular
 	.module('menuApp')
 	.factory('MenuFactory', MenuFactoryFunction)
-
-
+	
 	function MenuFactoryFunction($http, $q) {
 		var factory = {},
 		categories

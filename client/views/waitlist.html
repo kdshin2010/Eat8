@@ -1,6 +1,5 @@
 <div class='waitlist_container'>
 	<h1>Waiting List</h1>
-
 	<button type="button" class="btn btn-primary btn-lg active group_waitlist" ng-click='open()'>Add Group</button>
 	<table class='table waiting_list_table'>
 		<thead>
@@ -13,57 +12,13 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>Kyle</td>
-				<td>14</td>
-				<td>+19092602528</td>
+			<tr ng-repeat= 'group in vm.groups track by $index'>
+				<td>{{group.name}}</td>
+				<td ng-bind='group.size'></td>
+				<td ng-bind='group.phone_number'></td>
 				<td>No</td>
-				<td><button class='btn btn-primary'>Notify</button><button class='btn btn-danger'>Remove</button></td>
-			</tr>
-			<tr>
-				<td>Kyle</td>
-				<td>14</td>
-				<td>+19092602528</td>
-
-				<td>No</td>
-				<td><button class='btn btn-primary'>Notify</button><button class='btn btn-danger'>Remove</button></td>
-			</tr>
-			<tr>
-				<td>Kyle</td>
-				<td>14</td>
-				<td>+19092602528</td>
-
-				<td>No</td>
-				<td><button class='btn btn-primary'>Notify</button><button class='btn btn-danger'>Remove</button></td>
-			</tr>
-			<tr>
-				<td>Kyle</td>
-				<td>14</td>
-				<td>+19092602528</td>
-
-				<td>No</td>
-				<td><button class='btn btn-primary'>Notify</button><button class='btn btn-danger'>Remove</button></td>
-			</tr>
-			<tr>
-				<td>Kyle</td>
-				<td>14</td>
-				<td>+19092602528</td>
-
-				<td>No</td>
-				<td><button class='btn btn-primary'>Notify</button><button class='btn btn-danger'>Remove</button></td>
-			</tr>
-			<tr>
-				<td>Kyle</td>
-				<td>14</td>
-				<td>+19092602528</td>
-
-				<td>No</td>
-				<td><button class='btn btn-primary'>Notify</button><button class='btn btn-danger'>Remove</button></td>
+				<td><button class='btn btn-primary' ng-click='notify(group.phone_number, group.size)'>Notify</button><button class='btn btn-danger' ng-click='removeGroup(group._id)'>Remove</button></td>
 			</tr>
 		</tbody>
-		
 	</table>
-
-
-
 </div>

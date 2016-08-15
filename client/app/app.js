@@ -56,6 +56,7 @@
 		$routeProvider.when('/waitlist', {
 			templateUrl: '../views/waitlist.html',
 			controller: 'WaitListCtrl',
+			controllerAs: 'vm',
 			access: {restricted: true}
 		})
 	}
