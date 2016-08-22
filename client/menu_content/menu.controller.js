@@ -82,6 +82,7 @@
 		//DELETE CATEGORY
 		function removeCategory(x) {
 			MenuFactory.removeCategory(x, function(data) {
+				console.log('removed categories')
 				$scope.categories = data;
 			})
 			getMenuItems();
@@ -160,6 +161,7 @@
 			console.log(id)
 			MenuFactory.removeItem(id)
 			.then(function(data) {
+				console.log('removed item')
 				console.log(data + 'this is the remove Item data');
 				//same function this checks if we are on '/menu' or '/view'
 				if ($scope.selectedCategory) {

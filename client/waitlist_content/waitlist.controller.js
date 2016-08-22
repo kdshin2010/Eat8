@@ -11,7 +11,25 @@
 		$scope.animationsEnabled = true;
 		getGroups();
 		$scope.removeGroup = removeGroup;
-		$scope.notify = notify
+
+		$scope.notify = notify;
+		vm.groups;
+
+		$scope.toggle = function toggle(name) {}
+
+		$scope.selection = [];
+
+
+		$scope.toggleSelection = toggleSelection;
+		$scope.show_picture = show_picture
+
+
+		function show_picture() {
+			console.log($scope.profile_picture)
+		}
+
+
+
 
 
 		$scope.open = open;
@@ -22,7 +40,16 @@
 		});
 
 
+		function toggleSelection(groupId) {
+			var indx = $scope.selection.indexOf(groupId);
+			if (indx> -1) {
+				$scope.selection.splice(indx, 1)
+			}
 
+			else {
+				$scope.selection.push(groupId)
+			}
+		}
 
 		function getGroups() {
 			console.log('getting groups')
@@ -59,10 +86,20 @@
 
 		}
 
-		function notify(number, size) {
+		function notify(number, size, group) {
 			var formatted_number = "+1" + number;
-			console.log(size)
-			// include validations
+			console.log(group);
+			//make sure you notify only once
+			for (var i=0; i<$scope.selection.length; i++) {
+				if ($scope.selection[i] === group._id) {
+					var confirmation = confirm('You Already Notified are you sure you want to send a text again?')
+					if (confirmation) {
+						alert('aweesome wroks');
+					}
+				}
+			}
+			$scope.toggleSelection(group._id)
+			group.notifed = true;
 			WaitListFactory.notify(formatted_number, size)
 			.then(function(data) {
 				console.log(data)

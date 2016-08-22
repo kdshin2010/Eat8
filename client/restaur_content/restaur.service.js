@@ -100,15 +100,17 @@
 
 			//deleteing all tables
 			function deleteTables() {
-				var deferred = $q.defer();
+				var deferred = $q.defer()
 				$http.post('/deleteTables')
-				.success(function() {
+				.success(function(data) {
+					console.log(data)
+					console.log('deleted tables')
 					deferred.resolve()
 				})
 				.error(function() {
 					deferred.reject();
 				})
-				return deferred.promise;
+				return deferred.promise
 			}
 
 			//delete one table

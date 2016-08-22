@@ -1,6 +1,9 @@
 <div class='waitlist_container'>
 	<h1>Waiting List</h1>
+	<input type="file" name="" ng-model = 'profile_picture'>
+	<button ng-click = 'show_picture()'></button>
 	<button type="button" class="btn btn-primary btn-lg active group_waitlist" ng-click='open()'>Add Group</button>
+	{{selection}}
 	<table class='table waiting_list_table'>
 		<thead>
 			<tr>
@@ -16,8 +19,10 @@
 				<td>{{group.name}}</td>
 				<td ng-bind='group.size'></td>
 				<td ng-bind='group.phone_number'></td>
-				<td>No</td>
-				<td><button class='btn btn-primary' ng-click='notify(group.phone_number, group.size)'>Notify</button><button class='btn btn-danger' ng-click='removeGroup(group._id)'>Remove</button></td>
+				<td><input type='checkbox' value='{{group.notifed}}' ng-checked="selection.indexOf(group._id) > -1" ng-click="toggleSelection(group._id)"></td>
+				<td><button class='btn btn-primary' ng-click='notify(group.phone_number, group.size, group)'>Notify</button><button class='btn btn-danger' ng-click='removeGroup(group._id)'>Remove</button>
+				</td>
+				
 			</tr>
 		</tbody>
 	</table>

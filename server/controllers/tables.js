@@ -18,11 +18,12 @@ tables.show = function(req, res) {
 }
 
 tables.deleteAll = function(req, res) {
-	Table.remove({}, function(err) {
+	Table.remove({}, function(err, data) {
 		if(err) {
 			console.log(err)
 		} else {
-			console.log('successfully removed all tables')
+			console.log('successfully removed all tables');
+			res.json(data)
 		}
 	})
 }
@@ -59,6 +60,7 @@ tables.delete = function(req, res) {
 		if(err) {
 			console.log('err')
 		} else {
+			res.send('deleted tables')
 			console.log('successfully deleted Table')
 		}
 	})

@@ -1,0 +1,38 @@
+<div class="container">
+	<div class='row' style='padding: 30px'>
+	<form>
+		<div class="radio">
+		  <h4>Kitchen</h4>
+		  <label>
+		    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model='section'  value='Kitchen'>	
+		  </label>
+		   <img src="../app/images/kitchen.png" style='width: 7%; height: 7%' >
+		</div>
+		<div class="radio">
+		  <h4>Bathroom</h4>
+		  <label>
+		    <input type="radio" name="optionsRadios" ng-model=section s1" ng-model='section' value="Bathroom" >	
+		  </label>
+		   <img src="../app/images/bathroom.jpg" style='width: 7%; height: 7%' >
+		</div>
+		<div class="radio">
+		  <h4>Entrance</h4>
+		  <label>
+		    <input type="radio" name="optionsRadios" id="optionsRadios1" s1" ng-model='section.name'  value="Entrance" checked>	
+		  </label>
+		   <img src="../app/images/enterance.png" style='width: 7%; height: 7%' >
+		</div>
+		<div class="radio">
+		  <h4>Bar</h4>
+		  <label>
+		    <input type="radio" name="optionsRadios" id="optionsRadios1" s1" ng-model='section.name'  value="Bar" checked>	
+		  </label>
+		   <img src="../app/images/bar.png" style='width: 7%; height: 7%' >
+		</div>
+		<div style='margin-left: 33%'>
+			<button style='margin-right: 1px'>Cancel</button>
+			<button ng-click='addSection()'>Add Me</button>
+		</div>
+	</form>
+	</div>
+ </div>

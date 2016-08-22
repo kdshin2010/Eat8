@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
 
 	waitlists.notify = function(req, res) {
 		twilioClient.messages.create({
-			body: "Hello! You're Table for " + req.body.size + "is ready. Please come to the host area",
+			body: "Hello! You're Table for " + req.body.size + " is ready. Please come to the host area",
 			to: req.body.number,
 			from: twilioConfig.sendingNumber
 		}, function(err ,data) {
@@ -39,14 +39,13 @@ var mongoose = require('mongoose'),
 	}
 
 	waitlists.addGroup = function(req, res) {
-		var waitlist = new Waitlist({name: req.body.name, phone_number: req.body.number, size: req.body.size, notification: req.body.notification})
+		var waitlist = new Waitlist({name: req.body.name, phone_number: req.body.number, size: req.body.size, notified: false})
 		waitlist.save(function(err, result) {
 			if(err) {
 				console.log('error saving waitlist');
 				res.end();
 			} else {
 				res.json(result)
-				res.end();
 			}
 		})
 

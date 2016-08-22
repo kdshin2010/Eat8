@@ -15,6 +15,10 @@
      z-index: -1;
  }
 
+.radio {
+    margin-top: 5px;
+}
+
 
 .btn.create_layout:hover {
 	background-color: #1C9CC7;
@@ -22,9 +26,9 @@
 
 #create_layout_page {
 	background: url(images/background_image.jpg);
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
-	width: 1920px;
+	width: 100%;
 	height: auto;
 }
 
@@ -32,9 +36,10 @@
     position: relative;
     top: 1%;
     left: 1%;
-    width: 1020px;
-    height: 500px;
-    margin: auto;
+    width: 800px;
+    height: 380px
+    margin: 0 auto;
+    margin-top: 3%;
     border: double 10px;
     border-radius: 5px;
 }

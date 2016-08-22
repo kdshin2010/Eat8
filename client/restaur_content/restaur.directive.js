@@ -16,6 +16,10 @@
 		icons,
 		tab;
 		$scope.addTable = addTable;
+		$scope.openAdd = openAdd;
+		$scope.show_Layout = show_Layout
+		$scope.addSection = addSection;
+		$scope.deleteTables = deleteTables
 
 
 		$scope.items = ['item1', 'item2', 'item3'];
@@ -23,20 +27,136 @@
 		$scope.open = open;
 
 		getTables();
+		getIcons();
+
+		$scope.$on('saySomething', function(origFunction, data) {
+			var selection = data,
+			icon_number,
+			icoId
+			function addIconInfo(icoId, icon_number) {
+				RestaurFactory.addIconInfo(icoId, icon_number)
+				.then(function(data) {
+					console.log(data)
+				})
+				.catch(function(){
+					console.log('error adding info')
+				})				
+			}
+			switch(selection)
+			{
+				case 'Bathroom':
+					icon_number = 2;
+					icoId = 'ico' + icon_number
+					var bathroom_icon = "<div class='bat' id=" + icoId + "><h4>Bathroom</h4><img class='bathroom_icon' src='../app/images/bathroom.jpg'></div>"
+					$(bathroom_icon).appendTo('.restaur_container');
+					RestaurFactory.addContextMenu(icoId);
+					$("#"+icoId).addClass(icoId);
+					$("."+icoId).draggable(dragRel);
+					addIconInfo(icoId, icon_number)
+					break;
+				case 'Kitchen':
+					alert('kitchen');
+					break;
+			}
+
+		})
+		function layoutIcons() {
+			$.each(icons, function(value) {
+				var icon_number = icons[value]["icon_number"],
+				icoId = icons[value]["icoId"],
+				top = icons[value]["top"],
+				left = icons[value]["left"],
+				i
+				console.log(icon_number)
+				switch(icon_number) 
+				{	
+					case 3:
+						i = "<div class='kit' id=" + icoId + "><h4>Kitchen</h4><img class = 'kitchen_icon' src='../app/images/kitchen.png'></div>";
+						break
+					case 2:
+						i = "<div class='bat' id=" + icoId + "><h4>Bathroom</h4><img class='bathroom_icon' src='../app/images/bathroom.jpg'></div>";
+						break;
+				}
+				
+				$(i).appendTo('.restaur_container');
+				$("#"+icoId).addClass(icoId);
+				$("#"+icoId).bind("contextmenu", function(event){
+					event.preventDefault();
+					$('.custom-menu').finish().toggle(100).
+					css({
+						top: event.pageY + "px",
+						left: event.pageX + "px"
+					})
+					$(".custom-menu li").data('yo', this);
+				})
+				$('.'+icoId).draggable(dragRel);
+				$('.'+icoId).css({top: top, left: left, positon: 'absolute'})
+			})
+		}
+
+		function getIcons() {
+			RestaurFactory.getIcons()
+			.then(function(data){
+				icons = data;
+				console.log(data)
+				layoutIcons();
+			})
+			.catch(function(){
+				console.log('error getting icons')
+			})
+		}
+
 
 		function open() {
 			var modalInstance = $uibModal.open({
 				animation: $scope.animationsEnabled,
 				templateUrl: '../views/modal_template.html',
+				size: 'lg',
 				controller: 'ModalInstanceCtrl',
-				resolve: {
-					items: function() {
-						return $scope.items
-					}
-				}
+	
 			})
 		}
 
+		function addSection() {
+			alert('adding section')
+			console.log('adding section')
+			function addIconInfo(icoId, icon_number) {
+				RestaurFactory.addIconInfo(icoId, icon_number)
+				.then(function(data) {
+					console.log(data)
+				})
+				.catch(function(){
+					console.log('error adding info')
+				})				
+			}
+			var bathroom_image = '../app/images/bathroom.jpg'
+			var icon_number;
+			var icoId;
+			//add switch to see which is passed from modal
+			icon_number = 1;
+			icoId = 'ico' + icon_number;
+			var bathroom_icon = "<div class='bat' id=" + icoId + "><h4>Bathroom</h4><img class='bathroom_icon' src='../app/images/bathroom.jpg'></div>"
+			$(bathroom_icon).appendTo('.restaur_container');
+			RestaurFactory.addContextMenu(icoId)
+			$("#"+icoId).addClass(icoId)
+			$("."+icoId).draggable(dragRel);
+			addIconInfo(icoId, icon_number)
+			alert('done')
+		}
+
+	
+
+		function show_Layout() {
+			$scope.restaur_layout = true;
+		}
+
+		function openAdd() {
+			var modalinstace = $uibModal.open({
+				animation: $scope.animationsEnabled,
+				templateUrl: '../views/modal_select_view.html',
+				controller: 'ModalSelectCtrl'
+			})
+		}
 
 		var dragRel = {
 				drag: function() {
@@ -94,6 +214,23 @@
 			.catch(function() {
 				console.log('could not delete table')
 			})
+		}
+
+		function deleteTables() {
+
+			RestaurFactory.deleteTables()
+			.then(function(){
+				//remove each table on teh DOM
+				$.each(tables, function(value) {
+					$("." + tables[value]["tabId"]).remove();
+
+				})
+				tables = [];
+				console.log('deleted tables')
+			})
+			.catch(function() {
+				console.log('error deletign tables')
+			})
 		}		
 
 		function layoutTables() {
@@ -116,7 +253,9 @@
 		function updateTables() {
 			RestaurFactory.getTables()
 			.then(function(data) {
+				console.log(data)
 				tables = data
+				console.log('updated tables')
 			})
 			.catch(function() {
 				console.log('error getting tables')
@@ -150,6 +289,7 @@
 			if(tables.length === 0 ) {
 				table_number = 1;
 			} else {
+				//faulty code
 				table_number = (tables[tables.length - 1]["table_number"] + 1)
 			}
 			tempId = 'tab'+table_number;

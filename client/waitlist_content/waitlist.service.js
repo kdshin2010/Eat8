@@ -46,7 +46,7 @@
 		function addGroup(info) {
 			console.log(info)
 			var deferred = $q.defer();
-			$http.post('/addGroup', {name: info.name, number: info.number, size: info.size, notification: info.notification})
+			$http.post('/addGroup', {name: info.name, number: info.number, size: info.size, notified: info.notified})
 			.success(function(data) {
 				deferred.resolve(data)
 			})
@@ -72,7 +72,8 @@
 			return deferred.promise
 		}
 
-		function notify(number, size) {
+		function notify(number, size, group) {
+			console.log(group)
 			var deferred = $q.defer();
 			$http.post('/notify', {number: number, size: size})
 			.success(function(data) {

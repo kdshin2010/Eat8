@@ -18,7 +18,6 @@
 		$scope.clearLayout = clearLayout;
 		$scope.addSection = addSection;
 
-		setTimeout(function() { console.log(tables)}, 12000);
 
 		function layoutIcons() {
 			$.each(icons, function(value) {
@@ -50,18 +49,11 @@
 				})
 				$('.'+icoId).draggable(dragRel);
 				$('.'+icoId).css({top: top, left: left, positon: 'absolute'})
-
 			})
 		}
 
 
 		var bathroom_image = '../app/images/bathroom.jpg>'
-
-		//bar 1
-		//bathroom 2
-		//entrance 3
-		//host/hostess 4
-		//kitchen 5
 
 
 	
@@ -79,6 +71,8 @@
 			var bathroom_image = '../app/images/bathroom.jpg>'
 			var icon_number;
 			var icoId;
+
+			
 			//consoldiate this code!
 			switch($scope.section_icon)
 			{
@@ -104,7 +98,6 @@
 					$('.'+icoId).draggable(dragRel);
 					addIconInfo(icoId, icon_number)
 					break;
-
 			}
 		}
 

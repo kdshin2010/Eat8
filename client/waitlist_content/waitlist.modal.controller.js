@@ -12,12 +12,12 @@
 			name: '',
 			number: '',
 			size: '',
-			notification: ''
+			notified: ''
 		}
 
 		function addGroup() {
 			console.log('adding group')
-			WaitListFactory.addGroup({name: $scope.group.name, number: $scope.group.number, size: $scope.group.size, notification: $scope.group.notification})
+			WaitListFactory.addGroup({name: $scope.group.name, number: $scope.group.number, size: $scope.group.size, notified: true})
 			.then(function(data) {
 				console.log('successly added group' + data );
 				//enable Waitlist controller to handle data
