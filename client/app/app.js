@@ -31,7 +31,7 @@
 
 		})
 		$routeProvider.when('/view', {
-			templateUrl: '../views/view4.html',
+			templateUrl: '../views/backups/OriginalMenu.html',
 			controller: 'MenuCtrl',
 			access: {restricted: true}
 		})
@@ -43,7 +43,6 @@
 		$routeProvider.when('/view_orders', {
 			templateUrl: '../views/view_orders.html',
 			access: {restricted: true}
-
 		})
 		$routeProvider.when('/view_restaur', {
 			templateUrl: '../views/view_restaur.html',
@@ -58,6 +57,22 @@
 			controller: 'WaitListCtrl',
 			controllerAs: 'vm',
 			access: {restricted: true}
+		})
+		$routeProvider.when('/dashboard', {
+			templateUrl: '../views/dashboard.html',
+			controller: 'DashboardCtrl'
+		})
+		$routeProvider.when('/tables', {
+			templateUrl: '../views/tables.html',
+			controller: 'DashboardCtrl'
+		})
+		$routeProvider.when('/test831', {
+			templateUrl: '../views/view_menu_test.html',
+			controller: 'DashboardCtrl'
+		})
+		$routeProvider.when('/test91', {
+			templateUrl: '../views_2/menu.html',
+			controller: 'DashboardCtrl'
 		})
 	}
 

@@ -129,6 +129,7 @@
 
 			function updateCoord(id, left, top) {
 				var deferred = $q.defer();
+				console.log(left, top)
 				$http.post('/updateCoord', {id: id, left: left, top: top})
 				.success(function(data) {
 					deferred.resolve(data)

@@ -1,3 +1,154 @@
+/*  Here we are */
+.form_add_menu {
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.category_input {
+    width: 40%;
+}
+
+
+.add_category_name {
+    font-size: 10px;
+}
+
+/* column 2 */
+#menu_preview {
+    float: right;
+    width: 60%;
+    height: 300px;
+    background-color: green
+}
+
+#menu_form {
+    float: left;
+    width: 200px;
+    margin-left: -200px;
+    height: 300px;
+    background-color:red;
+}
+#clear_modal {
+    clear: both;
+}
+
+
+
+#menu_wrapper {
+    padding-left: 0;
+    /* transition code here */
+}
+.yo {
+    z-index: -1;
+}
+
+.myModal .modal-dialog {
+  width: 100%;
+  height: auto;
+  padding: 10%;
+}
+
+.view_menu_test_modal {
+    padding: 30%;
+}
+
+
+#main_content_wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+
+
+#addcat {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+#addmenu {
+    background-color: red;
+    height: 100vh;
+    margin: 0;
+}
+
+
+.view_menu_test_modal {
+    width: 100%;
+    padding: 0;
+
+
+}
+
+#modalgrab {
+    width: 300px;
+    background-color: red;
+}
+
+
+.ab {
+    border: 4px solid;
+    height: 2000px;
+    background: linear-gradient(#E0E8D3, #D3E8E6);
+    margin-bottom: 0;
+    height: 100%;
+    padding-bottom: 200px;
+}
+
+
+.table_containers {
+    margin-top: 100px;
+}
+
+
+.table_containers {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 3% 0 3%;
+}
+
+.menu_div {
+    margin: 20px;
+}
+
+
+
+
+.menu-remove {
+    margin-left: 3%;
+}
+h4  {
+    text-align: center;
+}
+
+
+.menus {
+    margin: 5px;
+}
+
+
+
+.menu_div {
+    margin: 3%;
+    margin: 0 auto;
+}
+
+
+.menu-tables  th:nth-child(1) {
+    width: 10%;
+}
+.menu-tables  th:nth-child(2) {
+    width: 35%;
+}
+.menu-tables  th:nth-child(3) {
+    width: 5%;
+}
+.menu-tables  th:nth-child(4) {
+    width: 30%;
+}
+
+
 .btn.create_layout {
 	display: inline-block;
 	padding: 10px 30px;
@@ -10,6 +161,17 @@
 	color: #ff9999;
 	border-radius: 100px;
 	transition: background-color 0.2s;
+}
+
+.restaur_container {
+    position: relative;
+    top: 1%;
+    left: 4%;
+    width: 800px;
+    height: 500px;
+    margin: auto;
+    margin-top: 3%;
+    border: double;
 }
  .modal_stuff {
      z-index: -1;
@@ -25,24 +187,13 @@
 }
 
 #create_layout_page {
-	background: url(images/background_image.jpg);
+	background: url(images/layout_background.jpg);
 	margin: 0 auto;
 	padding: 0;
-	width: 100%;
+	width: auto;
 	height: auto;
 }
 
-.restaur_container {
-    position: relative;
-    top: 1%;
-    left: 1%;
-    width: 800px;
-    height: 380px
-    margin: 0 auto;
-    margin-top: 3%;
-    border: double 10px;
-    border-radius: 5px;
-}
 
 #modal {  
 	padding: 0;
@@ -381,9 +532,11 @@ input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:fo
 .checkbox, .checkbox:hover, .checkbox:focus  {
 	border:none;
 }
+
 .waitlist_container {
     text-align: center;
 }
+
 .waiting_list_table {
     width: 60%;
     margin: 0 auto;

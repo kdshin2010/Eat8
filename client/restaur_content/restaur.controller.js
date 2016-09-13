@@ -28,7 +28,7 @@
 				i
 				switch(icon_number) 
 				{	
-					case 5:
+					case 2:
 						i = "<div class='kit' id=" + icoId + "><h4>Kitchen</h4><img class = 'kitchen_icon' src='../app/images/kitchen.png'></div>";
 						break
 					case 1:
@@ -303,12 +303,11 @@
 			this.id = id;
 			this.left = left;
 			this.top = top
+
 		};
 
 
-			//Add Icon button adds table icons
-			//need to store these icons with obj properties in tables array
-			
+			//Add Icon button adds table icons			
 			$("#addicon").click(function(e){
 				if (tables.length === 0) {
 					var table_number = 1;

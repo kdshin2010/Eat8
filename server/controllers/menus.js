@@ -25,7 +25,7 @@ menus.previewCategory = function(req, res) {
 	.populate('items')
 	.exec(function(err, results) {
 		if(err) {
-			console.log('error!')
+			console.log(err)
 		} else {
 			res.json(results)
 		}
@@ -45,16 +45,90 @@ menus.removeCategory = function(req, res) {
 }
 
 menus.show = function(req, res) {
+	console.log('here')
+	console.log(req.body)
 	console.log('GETTING CATEGORIES')
-	MenuCategory.find({user: req.body.username}, function(error, data) {
-		if(error) {
-			console.log('Could not retrieve data')
+	MenuCategory.find({user: req.body.username})
+	.populate('items')
+	.exec(function(err, result){
+		if(err) {
+			console.log(err)
 		} else {
-			console.log(data)
-			res.json(data)
+			res.json(result)
 		}
 	})
 }
+
+menus.addItems = function(req, res) {
+	MenuCategory.findOne({_id: req.body.categoryId}, function(err, result){
+		if(err){
+			console.log('error!')
+		} else {
+			MenuItem.insertMany(req.body.items)
+			.then(function(data){
+				console.log('success')
+				console.log(data)
+				var newitems = data.map(function(value){
+					value._category = result._id;
+					console.log(value)
+					return value;
+				})
+				console.log(newitems)
+				console.log(newitems)
+				result.items.push(newitems)
+				result.save(function(err, result2) {
+					if(err) {
+						console.log('error')
+					} else {
+						console.log('success!')
+						console.log(result2)
+						res.json(result2)
+					}
+				})
+			})
+			.catch(function(){
+				console.log('error!')
+			})
+		}
+	})
+}
+
+// menus.addItems = function(req, res) {
+// 	var items = req.body.items
+// 	MenuCategory.findOne({_id: req.body.categoryId}, function(error, result){
+// 		if(error) {
+// 			console.log(error)
+// 		} else {
+// 		}
+// 	}
+// 				items.map(function(value) {
+
+// 				value._category = result._id
+// 				return value
+// 			});
+// 			console.log(newItems);
+// 			result.items.push(newItems)
+// 			console.log('new result above')
+// 			console.log(result)
+// 			// console.log(result)
+// 			result.save(function(err, result) {
+// 				if(err){
+// 					console.log(err)
+// 				} else {
+// 					MenuItem.insertMany(newItems)
+// 					.then(function(data){
+// 						console.log('successfuly!')
+// 						res.json(result)
+// 						console.log(result)
+// 					})
+// 					.catch(function(){
+// 						console.log('error')
+// 					})		
+// 				}
+// 			})
+// 		}
+// 	})
+// }
 
 menus.addItem = function(req, res) {
 	console.log(req.body)
@@ -84,15 +158,24 @@ menus.addItem = function(req, res) {
 menus.getItems = function(req, res) {
 	MenuCategory.find({user: req.body.username})
 	.populate('items')
-	.exec(function(error, results) {
-		if(error) {
-			console.log('error!')
+	.exec(function(err, result){
+		if(err) {
+			console.log(err)
 		} else {
-			console.log('got the')
-			res.json(results)
-			console.log(results)
+			res.json(result)
 		}
 	})
+
+	// .populate('items')
+	// .exec(function(error, results) {
+	// 	if(error) {
+	// 		console.log(error)
+	// 	} else {
+	// 		console.log('got the')
+	// 		res.json(results)
+	// 		console.log(results)
+	// 	}
+	// })
 }
 
 menus.updateItem = function(req, res) {

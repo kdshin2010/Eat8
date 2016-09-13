@@ -11,16 +11,17 @@
 		return {
 			addCategory: addCategory,
 			getCategories: getCategories,
-			addItem: addItem,
 			getMenuItems: getMenuItems,
 			removeCategory: removeCategory,
 			obtainCategories: obtainCategories,
 			updateItem: updateItem,
 			removeItem: removeItem,
-			previewCategory: previewCategory
+			previewCategory: previewCategory,
+			addItems: addItems,
+			addItem: addItem
 		}
 
-		function previewCategory (category) {
+		function previewCategory(category){
 			var deferred = $q.defer()
 			$http.post('/previewCategory', {id: category})
 			.success(function(data) {
@@ -41,7 +42,7 @@
 				deferred.resolve(data)
 			})
 			.error(function(error) {
-				deferred.reject()
+				deferred.reject(error)
 			})
 			return deferred.promise
 		}
@@ -86,8 +87,10 @@
 			return deferred.promise
 		}
 
+
+
 		function addItem(info) {
-			console.log(info.id + 'here is the id')
+			console.log(info)
 			var deferred = $q.defer();
 			$http.post('/addItem', {id: info.id, name: info.name, price: info.price, description: info.description})
 			.success(function(data) {
@@ -98,7 +101,17 @@
 			})
 			return deferred.promise
 		}
-		//update Item
+
+		function addItems(info) {
+			console.log('here as we go')
+			$http.post('/addItems', {categoryId: info.categoryId, items: info.items})
+			.success(function(data) {
+				deferred.resolve(data)
+			})
+			.catch(function() {
+				deferred.reject()
+			})
+		}
 
 		function updateItem(info) {
 			var deferred = $q.defer();

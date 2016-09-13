@@ -1,0 +1,69 @@
+
+
+/* Menu Tables */
+.menu_main {
+	margin-top: 80px;
+}
+.container_buttons {
+	text-align: center;
+}
+
+.menu-tables {
+	text-align: left;
+}
+
+.fa-edit {
+	margin-right: 10px;
+}
+
+.fa-times {
+	border: solid;
+	padding: 3px;
+}
+
+.menu_container {
+	margin-top: 50px;
+}
+
+.menu_header {
+	margin-top: 7%;
+	width: 100%;
+}
+.menu_div {
+    height: 400px;
+}
+
+
+.tables_width {
+	max-width: 100%;
+}
+
+
+.tables-width {
+	max-width: 100%;
+	margin: 0 auto;
+	padding: 0 3% 0 3%;
+}
+
+.menu-tables-container {
+    width: 100%;
+    height: 300px;
+    overflow-y: scroll;
+    white-space: nowrap;
+    margin-right: 10px;
+    padding: 30px;
+}
+
+.menu-tables  th:nth-child(1) {
+    width: 10%;
+}
+.menu-tables  th:nth-child(2) {
+    width: 35%;
+}
+.menu-tables  th:nth-child(3) {
+    width: 5%;
+}
+.menu-tables  th:nth-child(4) {
+    width: 30%;
+}
+

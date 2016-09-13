@@ -12,7 +12,7 @@ login.css
 -->
     <!-- Jquery -->
       <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
-      
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,11 +21,18 @@ login.css
     <link href="app/content/bootstrap.css" rel="stylesheet">
     <link href="app/content/pure.css" rel="stylesheet">
 
+    <!-- download this from the CDN website -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+
+
 <!-- Modal Styling -->
     <link rel="stylesheet" type="text/css" href="app/css/modal.style.css">
     <link rel="stylesheet" type="text/css" href="app/css/main.css">
     <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="app/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="app/css/style2.css">
+    <link rel="stylesheet" type="text/css" href="app/css/style3.css">
 
     <link href="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
 </head>
@@ -33,6 +40,8 @@ login.css
     <ks-navbar></ks-navbar>
     <div ng-view=""></div>
 
+
+<i class="fa fa-pencil-square-5x" aria-hidden="true"></i>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
@@ -45,7 +54,7 @@ login.css
         <script src='app/js/angular.js'></script>
         <script src='app/js/angular.animate.js'></script>
         <script src='app/js/angular.route.js'></script>
-        <script src='app/js/ui-bootstrap.js'></script>
+        <script src='app/js/ui-bootstrap.min.js'></script>
 
         <script src="app/content/bootstrap.min.js"></script>
 
@@ -55,6 +64,10 @@ login.css
 
             <!-- Nav Files -->
         <script src="app/navbar/navbar.directive.js"></script>
+
+            <!-- Dashboard Files -->
+
+        <script src='dashboard_content/dashboard.controller.js'></script>
 
             <!-- Auth Files -->
         <script src="auth/auth.service.js"></script>
@@ -66,6 +79,8 @@ login.css
 
             <!-- Menu Content Files -->
         <script src="menu_content/menu.controller.js"></script>
+        <script src="menu_content/menu.modal.controller.js"></script>
+
         <script src="menu_content/menu.service.js"></script>
 
             <!-- Restaurant Content Files -->
@@ -89,6 +104,12 @@ login.css
             <!-- Order Content Files -->
         <script src="order_content/order.controller.js"></script>
         <script src="order_content/order.service.js"></script>
+
+
+            <!-- Test Files -->
+        <script src="test/test.controller.js"></script>
+        <script src="test/test.modal.controller.js"></script>
+
 
 </body>
 </html>

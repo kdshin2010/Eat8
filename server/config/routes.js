@@ -159,7 +159,12 @@ routes.post('/addItem', function(req, res){
 	menus.addItem(req, res);
 })
 
+routes.post('/addItems', function(req, res){
+	menus.addItems(req, res)
+})
+
 routes.post('/getItems', function(req, res){
+	//category id and array of items
 	menus.getItems(req, res);
 })
 

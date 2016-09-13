@@ -18,7 +18,7 @@
 		$scope.addTable = addTable;
 		$scope.openAdd = openAdd;
 		$scope.show_Layout = show_Layout
-		$scope.addSection = addSection;
+		// $scope.addSection = addSection;
 		$scope.deleteTables = deleteTables
 
 
@@ -29,7 +29,7 @@
 		getTables();
 		getIcons();
 
-		$scope.$on('saySomething', function(origFunction, data) {
+		$scope.$on('addSection', function(origFunction, data) {
 			var selection = data,
 			icon_number,
 			icoId
@@ -42,41 +42,107 @@
 					console.log('error adding info')
 				})				
 			}
+			console.log(selection)
+			//Bathroom, Bar, Entrance, Kitchen 4
+
+			//make sure to give credit to icon sources
 			switch(selection)
 			{
-				case 'Bathroom':
-					icon_number = 2;
+				case 'Bar':
+					icon_number = 1;
 					icoId = 'ico' + icon_number
-					var bathroom_icon = "<div class='bat' id=" + icoId + "><h4>Bathroom</h4><img class='bathroom_icon' src='../app/images/bathroom.jpg'></div>"
-					$(bathroom_icon).appendTo('.restaur_container');
+					var bar_icon = "<div class='bar' id=" + icoId + "><h4>Bar</h4><img class='icons' src='../app/images/bartender.png'></div>"
+					$(bar_icon).appendTo('.restaur_container');
 					RestaurFactory.addContextMenu(icoId);
+					console.log(icoId + 'is the icoId')
 					$("#"+icoId).addClass(icoId);
 					$("."+icoId).draggable(dragRel);
 					addIconInfo(icoId, icon_number)
 					break;
+				case 'Bathroom':
+					icon_number = 2;
+					icoId = 'ico' + icon_number
+					var bathroom_icon = "<div class='bat' id=" + icoId + "><h4>Bathroom</h4><img class='icons' src='../app/images/toilet.png'></div>"
+					$(bathroom_icon).appendTo('.restaur_container');
+					RestaurFactory.addContextMenu(icoId);
+					console.log(icoId + 'is the icoId')
+					$("#"+icoId).addClass(icoId);
+					$("."+icoId).draggable(dragRel);
+					addIconInfo(icoId, icon_number)
+					break;
+				case 'Entrance':
+					icon_number = 3;
+					icoId = 'ico' + icon_number
+					var enter_icon = "<div class='ent' id=" + icoId + "><h4>Entrance</h4><img class='icons' src='../app/images/entrance.png'></div>"
+					$(enter_icon).appendTo('.restaur_container');
+					RestaurFactory.addContextMenu(icoId);
+					$("#"+icoId).addClass(icoId);
+					console.log(icoId + 'is the icoId')
+					$("."+icoId).draggable(dragRel);
+					addIconInfo(icoId, icon_number)
+					break;
 				case 'Kitchen':
-					alert('kitchen');
+					icon_number = 4;
+					icoId = 'ico' + icon_number
+					var kit_icon = "<div class='kit' id=" + icoId + "><h4>Kitchen</h4><img class='icons' src='../app/images/kitchen.png'></div>"
+					$(kit_icon).appendTo('.restaur_container');
+					RestaurFactory.addContextMenu(icoId);
+					$("#"+icoId).addClass(icoId);
+					console.log(icoId + 'is the icoId')
+					$("."+icoId).draggable(dragRel);
+					addIconInfo(icoId, icon_number)
 					break;
 			}
 
 		})
+
+		function layoutTables() {
+			$.each(tables, function(value) {
+				var table_number = tables[value]["table_number"],
+				tempId = tables[value]["tabId"],
+				top = tables[value]["top"],
+				left = tables[value]["left"],
+				e = "<div class=res id=" + tempId + "><ul class='icon_heading'<span>Table "+ table_number + "</span></ul><img class='icon_img'></img</div>";
+				$(e).appendTo('.restaur_container');
+				//possible consolidate to a function
+				$("#"+tempId).addClass(tempId);
+				RestaurFactory.addContextMenu(tempId);
+				$('.'+tempId).draggable(dragRel);
+				$('.'+tempId).css({top: top, left: left, position: 'absolute'});
+			})
+		}
+
 		function layoutIcons() {
 			$.each(icons, function(value) {
+				console.log(icons[value]["top"])
 				var icon_number = icons[value]["icon_number"],
 				icoId = icons[value]["icoId"],
 				top = icons[value]["top"],
 				left = icons[value]["left"],
 				i
 				console.log(icon_number)
+				//Bar 1, Bathroom 2, Entrance 3, Kitchen 4
+				// maybe add hostess area
+
 				switch(icon_number) 
 				{	
-					case 3:
-						i = "<div class='kit' id=" + icoId + "><h4>Kitchen</h4><img class = 'kitchen_icon' src='../app/images/kitchen.png'></div>";
-						break
+					case 1:
+						i = "<div class='bar' id=" + icoId + "><h4>Bar</h4><img class='icons' src='../app/images/bartender.png'></div>";
+						break;
+					
 					case 2:
-						i = "<div class='bat' id=" + icoId + "><h4>Bathroom</h4><img class='bathroom_icon' src='../app/images/bathroom.jpg'></div>";
+						i = "<div class='bat' id=" + icoId + "><h4>Bathroom</h4><img class='icons' src='../app/images/toilet.png'></div>";
+						break;
+					
+					case 3:
+						i = "<div class='ent' id=" + icoId + "><h4>Entrance</h4><img class='icons' src='../app/images/entrance.png'></div>";
+						break;
+					
+					case 4:
+						i = "<div class='kit' id=" + icoId + "><h4>Kitchen</h4><img class='icons' src='../app/images/kitchen.png'></div>";
 						break;
 				}
+
 				
 				$(i).appendTo('.restaur_container');
 				$("#"+icoId).addClass(icoId);
@@ -117,32 +183,59 @@
 			})
 		}
 
-		function addSection() {
-			alert('adding section')
-			console.log('adding section')
-			function addIconInfo(icoId, icon_number) {
-				RestaurFactory.addIconInfo(icoId, icon_number)
-				.then(function(data) {
-					console.log(data)
-				})
-				.catch(function(){
-					console.log('error adding info')
-				})				
+
+		function addTable(e) {
+			var table_number,
+			tempId,
+			Icon;
+			if(tables.length === 0 ) {
+				table_number = 1;
+			} else {
+				//faulty code
+				table_number = (tables[tables.length - 1]["table_number"] + 1)
 			}
-			var bathroom_image = '../app/images/bathroom.jpg'
-			var icon_number;
-			var icoId;
-			//add switch to see which is passed from modal
-			icon_number = 1;
-			icoId = 'ico' + icon_number;
-			var bathroom_icon = "<div class='bat' id=" + icoId + "><h4>Bathroom</h4><img class='bathroom_icon' src='../app/images/bathroom.jpg'></div>"
-			$(bathroom_icon).appendTo('.restaur_container');
-			RestaurFactory.addContextMenu(icoId)
-			$("#"+icoId).addClass(icoId)
-			$("."+icoId).draggable(dragRel);
-			addIconInfo(icoId, icon_number)
-			alert('done')
+			tempId = 'tab'+table_number;
+			Icon = new tableIcon(tempId);
+			e = "<div class=res id=" + tempId + "><ul class='icon_heading'><span>Table " + table_number + "</span></ul><img class='icon_img'></img></div>";
+			$(e).appendTo('.restaur_container')
+			$("#"+tempId).addClass(tempId);
+			RestaurFactory.addIconInfo(tempId, table_number)
+			.then(function(data) {
+				tables.push(data);
+				//bind contextMenu with context menu function
+			})
+			.catch(function() {
+				console.log('error!')
+			})
+			$("."+tempId).draggable(dragRel);
 		}
+
+		// function addSection() {
+		// 	alert('adding section')
+		// 	console.log('adding section')
+		// 	function addIconInfo(icoId, icon_number) {
+		// 		RestaurFactory.addIconInfo(icoId, icon_number)
+		// 		.then(function(data) {
+		// 			console.log(data)
+		// 		})
+		// 		.catch(function(){
+		// 			console.log('error adding info')
+		// 		})				
+		// 	}
+		// 	var bathroom_image = '../app/images/bathroom.jpg'
+		// 	var icon_number;
+		// 	var icoId;
+		// 	//add switch to see which is passed from modal
+		// 	icon_number = 1;
+		// 	icoId = 'ico' + icon_number;
+		// 	var bathroom_icon = "<div class='bat' id=" + icoId + "><h4>Bathroom</h4><img class='bathroom_icon' src='../app/images/bathroom.jpg'></div>"
+		// 	$(bathroom_icon).appendTo('.restaur_container');
+		// 	RestaurFactory.addContextMenu(icoId)
+		// 	$("#"+icoId).addClass(icoId)
+		// 	$("."+icoId).draggable(dragRel);
+		// 	addIconInfo(icoId, icon_number)
+		// 	alert('done')
+		// }
 
 	
 
@@ -188,7 +281,6 @@
 					var thisPos = $this.position(),
 					x = thisPos.left,
 					y = thisPos.top;
-					console.log(selectedId, x, y)
 					updateCoord(selectedId, x, y);
 				},
 				start: function() {
@@ -206,6 +298,7 @@
 				console.log('error getting id')
 			})
 		}
+
 		function deleteTable(id) {
 			RestaurFactory.deleteIcon(id)
 			.then(function(){
@@ -217,6 +310,7 @@
 		}
 
 		function deleteTables() {
+			//remove icons as well
 
 			RestaurFactory.deleteTables()
 			.then(function(){
@@ -233,22 +327,6 @@
 			})
 		}		
 
-		function layoutTables() {
-			$.each(tables, function(value) {
-				var table_number = tables[value]["table_number"],
-				tempId = tables[value]["tabId"],
-				top = tables[value]["top"],
-				left = tables[value]["left"],
-				e = "<div class=res id=" + tempId + "><ul class='icon_heading'<span>Table "+ table_number + "</span></ul><img class='icon_img'></img</div>";
-				$(e).appendTo('.restaur_container');
-
-				//possible consolidate to a function
-				$("#"+tempId).addClass(tempId);
-				RestaurFactory.addContextMenu(tempId);
-				$('.'+tempId).draggable(dragRel);
-				$('.'+tempId).css({top: top, left: left, position: 'absolute'});
-			})
-		}
 
 		function updateTables() {
 			RestaurFactory.getTables()
@@ -282,31 +360,6 @@
 			this.top = top;
 		}
 
-		function addTable(e) {
-			var table_number,
-			tempId,
-			Icon;
-			if(tables.length === 0 ) {
-				table_number = 1;
-			} else {
-				//faulty code
-				table_number = (tables[tables.length - 1]["table_number"] + 1)
-			}
-			tempId = 'tab'+table_number;
-			Icon = new tableIcon(tempId);
-			e = "<div class=res id=" + tempId + "><ul class='icon_heading'><span>Table " + table_number + "</span></ul><img class='icon_img'></img></div>";
-			$(e).appendTo('.restaur_container')
-			$("#"+tempId).addClass(tempId);
-			RestaurFactory.addIconInfo(tempId, table_number)
-			.then(function(data) {
-				tables.push(data);
-				//bind contextMenu with context menu function
-			})
-			.catch(function() {
-				console.log('error!')
-			})
-			$("."+tempId).draggable(dragRel);
-		}
 
 		function deselect(e) {
 			$('.pop').slideFadeToggle(function() {

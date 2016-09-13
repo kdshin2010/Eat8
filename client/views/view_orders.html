@@ -1,6 +1,8 @@
 <div class="view_all_orders_container" ng-controller ='OrdersCtrl' style='display: inline-block'>
-	<div class="input-append" ng-hide='show_all_orders' ng-init='show_all_orders = false'>
-		<h3 style='margin-right: 40px;'>Enter Zip Code</h3>
+	<div class="input-append" ng-hide='show_all_orders' ng-init='show_all_orders = false' style='text-align:center'>
+	<div style = 'text-align: center'>
+		<h3 style='margin-right: 40px; text-align: center'>Enter Zip Code</h3>
+	</div>
 	    <input ng-model='zipcode'>
 	    <button class="btn btn-info" ng-click='getSalesTax()'>Submit</button>
 	</div>
@@ -39,7 +41,7 @@
 				</div>
 			</div>
 		</div>
-		<div>
+<!-- 		<div>
 			<ks-restaur-layout></ks-restaur-layout>
-		</div>
+		</div> -->
 </div>

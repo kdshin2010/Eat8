@@ -10,15 +10,15 @@
 
   	// MenuCtrl.$inject = ['$location', ];
 
-	function MenuCtrlFunction($scope, $location, MenuFactory, AuthService, $anchorScroll) {
+	function MenuCtrlFunction($scope, $location, MenuFactory, AuthService, $anchorScroll, $uibModal) {
 		$scope.addCategory = addCategory
-		$scope.addItem = addItem
 		$scope.removeCategory = removeCategory
 		$scope.showUpdate = showUpdate
 		$scope.updateItem = updateItem
 		$scope.removeItem = removeItem
 		$scope.categories;
-		$scope.items
+		$scope.items;
+		// $scope.addItem = addItem;
 		$scope.username = AuthService.currentUser();
 		$scope.previewCategory = previewCategory;
 		$scope.previewedCategory;
@@ -26,6 +26,10 @@
 		$scope.selectACategory;
 		$scope.testAnchor = testAnchor;
 		$scope.view_menu = view_menu;
+		$scope.menuModal = menuModal;
+		$scope.animationsEnabled = true;
+		$scope.addCategoria = true;
+		$scope.toggleCategory = toggleCategory
 		// $scope.myController = myController
 		// $scope.testJquery = testJquery
 		var updateItemId;
@@ -33,26 +37,43 @@
 		var map = Array.prototype.map;
 		console.log(map);
 
-
-
-
-
 		getCategories();
 		getMenuItems();
+
+		//modal command to push groups into data
+		// $scope.$on('addGroup', function(origFunction, data){
+		// 	$scope.categories.push(data)
+		// })
+
+		//Add Menu Items
+		function menuModal() {
+			var modalInstance = $uibModal.open({
+				animation: $scope.animationsEnabled,
+				templateUrl: '../menu_content/menu.modal.html',
+				controller: 'MenuModalCtrl',
+				scope: $scope,
+				size: 'lg',
+				windowClass: 'myModal'
+			})
+
+		}
+
+		function toggleCategory() {
+			$scope.addCategoria = !$scope.addCategoria
+		}
 
 
 		//CLICK TO VIEW MENU
 		function view_menu() {
 			$location.path('view')
 		}
-
+		
 		//TEST ANCHOR SCROLL
 		function testAnchor(x) {
 			var old = $location.hash();
 			$location.hash('anchor'+x);
 			$anchorScroll();
 			$location.hash(old);
-
 		}
 
 		//When BUILDING MENU SHOWS CATEGORY ON THE RIGHT
@@ -62,12 +83,13 @@
 			.then(function(data){
 				console.log('here!')
 				console.log(data)
+				$scope.selectedCategory = data
+				console.log($scope.selectedCategory)
 				$scope.previewedCategory = data;
 			})
 			.catch(function() {
 				console.log('error!')
 			})
-
 		}
 
 		//ADD CATEGORY
@@ -75,9 +97,20 @@
 			console.log($scope.newCategory)
 			console.log($scope.username)
 			MenuFactory.addCategory($scope.newCategory, $scope.username.username)
-			$scope.newCategory = {}
-			getCategories();
+			.then(function(data) {
+				console.log(data._id);
+				previewCategory(data)
+				alert(data);
+			})
+			.catch(function(error){
+				console.log(error)
+			})
+			$scope.newCategory = {};
+			// getCategories();
+			// previewCategory($scope.newCategory)
 		}
+
+
 
 		//DELETE CATEGORY
 		function removeCategory(x) {
@@ -107,19 +140,19 @@
 		}
 
 		//ADD ITEM
-		function addItem() {
-			console.log('here')
-			MenuFactory.addItem({id: $scope.selectedCategory, name: $scope.newItem.name, price: $scope.newItem.price, description: $scope.newItem.description })
-			.then(function(data) {
-				console.log('this is my data!!')
-				console.log(data);
-				previewCategory($scope.selectedCategory);
-			})
-			.catch(function(){
-				console.log('error!')
-			})
-			$scope.newItem = {};
-		}
+		// function addItem() {
+		// 	console.log('here')
+		// 	MenuFactory.addItem({id: $scope.selectedCategory, name: $scope.newItem.name, price: $scope.newItem.price, description: $scope.newItem.description })
+		// 	.then(function(data) {
+		// 		console.log('this is my data!!')
+		// 		console.log(data);
+		// 		previewCategory($scope.selectedCategory);
+		// 	})
+		// 	.catch(function(){
+		// 		console.log('error!')
+		// 	})
+		// 	$scope.newItem = {};
+		// }
 
 		function getMenuItems() {
 			MenuFactory.getMenuItems($scope.username.username)

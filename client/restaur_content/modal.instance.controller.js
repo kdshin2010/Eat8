@@ -15,8 +15,7 @@
 			.then(function(data) {
 				console.log(data)
 				$uibModalInstance.close();
-				$location.path('/menu')
-
+				$location.path('/menu');
 			})
 			.catch(function(){
 				console.log('error adding tables')
