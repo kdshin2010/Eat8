@@ -17,7 +17,8 @@
 		tab;
 		$scope.addTable = addTable;
 		$scope.openAdd = openAdd;
-		$scope.show_Layout = show_Layout
+		$scope.show_Layout = show_Layout;
+
 		// $scope.addSection = addSection;
 		$scope.deleteTables = deleteTables
 
@@ -398,11 +399,6 @@
 				$('.custom-menu').hide(100)
 			}
 		});
-
-
-
-
-
 	}
 })();
 

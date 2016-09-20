@@ -1,53 +1,59 @@
 (function() {
 	'use strict';
+
 	angular
 	.module('menuApp')
 	.controller('OrdersCtrl', OrdersCtrlFunction)
 
-	function OrdersCtrlFunction($scope, $location, MenuFactory, OrdersFactory) {
-		var vm = this;
+	function OrdersCtrlFunction($scope, $location, MenuFactory, OrdersFactory, AuthService, $uibModal ) {
 
 		/*
 		add select table number variable to record table number
 		get menu items to display on orders page
 		*/
-
-		setTimeout(function() { console.log(tables)}, 12000)
-
 		var selected_table;
 		$scope.items;
+		$scope.testModal = testModal
+		$scope.username = AuthService.currentUser();
 		$scope.addOrderItem = addOrderItem,
 		$scope.selectTable = selectTable;
 		$scope.orderItems
 		$scope.getOrderItems = getOrderItems;
-		$scope.removeOrderItem = removeOrderItem
+		$scope.removeOrderItem = removeOrderItem;
 		$scope.order_tables;
-		$scope.submitted_orders
-		$scope.removeItemFromOrder = removeItemFromOrder
-		$scope.submitOrder = submitOrder,
+		$scope.submitted_orders;
+		$scope.removeItemFromOrder = removeItemFromOrder;
+		$scope.submitOrder = submitOrder;
 		$scope.calculateTotal = calculateTotal;
 		$scope.totalPrice;
 		$scope.show_total = false;
-		$scope.removeSubmittedOrder = removeSubmittedOrder
+		$scope.removeSubmittedOrder = removeSubmittedOrder;
 		$scope.show_price;
 		$scope.show_all_orders;
 		$scope.getSalesTax = getSalesTax;
-		$scope.salestax
+		$scope.salestax;
+		$scope.animationsEnabled = true;
+
+		//CHANGE THIS!!
 		// $scope.getSalesTax = getSalesTax;
-		var totalPrice;
-
-
-		//Get Menu Items
 		getMenuItems();
 		getSubmittedOrders();
-		setTimeout(function() { console.log($scope.salestax)}, 20000); 
-
-		OrdersFactory.getOrderTables(function(data) {
-			$scope.order_tables = data;
-		});
-
-		//for now we will just set the sales tax at 0.0875 because we dont want to make too many api requests
-
+		// setTimeout(function() { console.log($scope.salestax)}, 20000); 
+	
+		function testModal(x) {
+			var modalInstance = $uibModal.open({
+				animation: $scope.animationsEnabled,
+				templateUrl: '../views_2/ordermodal.html',
+				controller: 'OrderModalCtrl',
+				scope: $scope,
+				windowClass: 'orderModal',
+				resolve: {
+					dataFromMenuCtrl: function() {
+						return 'hey'
+					}
+				}
+			})
+		}
 
 		function getSalesTax() {
 			$scope.show_all_orders = true;
@@ -103,7 +109,7 @@
 
 
 		function getMenuItems() {
-			MenuFactory.getMenuItems()
+			MenuFactory.getMenuItems($scope.username.username)
 			.then(function(data) {
 				$scope.items = data;
 				console.log(data)
@@ -147,7 +153,7 @@
 			OrdersFactory.getOrderItems(x) // ok
 			.then(function(data) { //ok
 				$scope.orderItems = data // ok
-				console.log(data)
+				console.log(data);
 				console.log('got Order Items in controller!'); //ok
 			})
 			.catch(function(){
@@ -191,8 +197,7 @@
 			})
 			getSubmittedOrders();
 		}
-
-		
 	}
 
-})()
+
+})();

@@ -19,13 +19,6 @@ authentications.sendWelcomeEmail = function(req, res) {
 	    'Text-part': 'Hey thanks for signing up for ea8',
 	    'Recipients': [{'Email': req.body.username}]
 	}
-// 	Mailjet.post('send')
-// 		.request(emailData).then(function(data) {
-// 			res.json({"message": 'email successfully sent!'});
-// 		})
-// 		.catch(function(){
-// 			console.log('error!')
-// 		})
 }
 
 

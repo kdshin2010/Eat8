@@ -28,10 +28,6 @@
 			console.log($scope.profile_picture)
 		}
 
-
-
-
-
 		$scope.open = open;
 
 		//signal from the waitlist.modal.conroller

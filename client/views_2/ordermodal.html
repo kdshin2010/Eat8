@@ -1,0 +1,78 @@
+	<div ng-hide='test2' ng-init ='test2 = false' style='border: solid'>
+		<button ng-click='changeView()'></button>
+		<h3 style='text-align: center;'>Select Table Number</h3>
+		<p style='text-align: center'>Select a table from the list or double click the table icon to create an order for the table</p>
+
+
+		<div>
+
+		<div class='row' style='width: 100%; max-width: 100%;'>
+				<select class="form-control" style='width: 10%; margin: 0 auto;' ng-model='selected_table' ng-change='selectTable()'>
+				  <option ng-repeat='x in tables' value='{{x.table_number}}' > Table {{x.table_number}}</option>
+				</select>	
+	 	 	</div>
+	 	 	<div style='padding: 1%; margin-right: 10%'>
+	 	 		 <ks-restaur-layout></ks-restaur-layout>
+	 	 	</div>
+ 	 	 </div>
+ 	</div>
+<div class='container order_container' ng-if='test2'>
+	<h2>Add Order to  {{selected_table}}</h2>
+	<button ng-click=changeView()>Change View</button>
+		<div class='col-md-8' style='width: 65%;'>
+			<div class='row'>
+			
+			</div>
+			<div class='col-md-4 order_tables' style='text-align: center; width: 48%; margin: 1% 0 0 0; border: solid 0.01px; border-radius: 10px; margin-right: 1%;' ng-repeat='item in menuitems'>
+				<h3 ng-bind='item.name'></h3>
+				<div class='order-tables-container'>
+					<table class='table' style='text-align: left'>
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Name</th>
+								<th>Price</th>
+								<th>Add</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat = 'a in item.items track by $index'>
+								<td></td>
+								<td width=55%>{{a.name}}</td>
+								<td>{{a.price}}</td>
+								<td><button class='btn btn-primary' ng-click='addOrderItem(a, item)'>Add</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class='col-md-4 view-order' style='width: 30;'>
+			<div class='view_order_table' style='border:solid 0.2px; padding: 2%; border-radius: 10px;'>
+				<h3>Current Order</h3>
+					<table class='table table-hover' style='text-align: left'>
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Name</th>
+								<th>Category</th>
+								<th>Price</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat = 'x in orderItems.items'>
+								<td>-</td>
+								<td>{{x.name}}</td>
+								<td>{{x.category}}</td>
+								<td>{{x.price}}</td>
+								<td><button class='btn btn-danger'>Remove</button></td>
+							</tr>
+						</tbody>
+					</table>	
+							<button>Submit</button>
+		
+			</div>
+		</div>
+	</div>
+</div>

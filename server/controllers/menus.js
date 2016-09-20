@@ -93,6 +93,21 @@ menus.addItems = function(req, res) {
 	})
 }
 
+
+menus.editCategory = function(req, res) {
+	MenuCategory.findById(req.body.id, function(err, result){
+		if(err) return handelError(err);
+		result.name = req.body.name;
+		result.save(function(err, updatedResult) {
+			if(err) return handleError(err);
+			console.log(updatedResult)
+			res.json(updatedResult)
+		})
+	})
+}
+
+
+
 // menus.addItems = function(req, res) {
 // 	var items = req.body.items
 // 	MenuCategory.findOne({_id: req.body.categoryId}, function(error, result){

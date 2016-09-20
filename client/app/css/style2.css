@@ -550,3 +550,17 @@ input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:fo
     padding: 10%;
 }
 
+
+.select_table {
+    text-align: center;
+}
+
+.orderModal .modal-dialog{
+    width: 100%;
+    max-height: 800px;
+    overflow-y: scroll;
+
+}
+
+/* Modal */
+

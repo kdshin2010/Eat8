@@ -60,6 +60,6 @@ app.use(function(err, req, res) {
 });
 
 var debug = require('debug')('passport-mongo');
-app.listen('8620', function(){
-	console.log('8620')
+app.listen('8000', function(){
+	console.log('8000')
 })

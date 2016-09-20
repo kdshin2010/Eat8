@@ -159,6 +159,10 @@ routes.post('/addItem', function(req, res){
 	menus.addItem(req, res);
 })
 
+routes.post('/editCategory', function(req, res){
+	menus.editCategory(req, res)
+})
+
 routes.post('/addItems', function(req, res){
 	menus.addItems(req, res)
 })

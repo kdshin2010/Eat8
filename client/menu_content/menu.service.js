@@ -18,7 +18,20 @@
 			removeItem: removeItem,
 			previewCategory: previewCategory,
 			addItems: addItems,
-			addItem: addItem
+			addItem: addItem,
+			editCategory: editCategory
+		}
+
+		function editCategory(menuitems, updateCategory) {
+			var deferred = $q.defer();
+			$http.post('/editCategory', {id: menuitems._id, name:updateCategory.name, price: updateCategory.price})
+			.success(function(data) {
+				deferred.resolve(data);
+			})
+			.error(function(){
+				deferred.reject();
+			})
+			return deferred.promise;
 		}
 
 		function previewCategory(category){
@@ -42,7 +55,8 @@
 				deferred.resolve(data)
 			})
 			.error(function(error) {
-				deferred.reject(error)
+				console.log(error);
+				deferred.reject();
 			})
 			return deferred.promise
 		}

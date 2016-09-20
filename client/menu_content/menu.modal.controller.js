@@ -4,20 +4,30 @@
 	.module('menuApp')
 	.controller('MenuModalCtrl', MenuModalCtrlFunction)
 
-	function MenuModalCtrlFunction($scope, $location, MenuFactory, AuthService, OrdersFactory, $uibModalInstance, $rootScope) {
+
+	function MenuModalCtrlFunction($scope, $location, MenuFactory, AuthService, OrdersFactory, $uibModalInstance, $rootScope, dataFromMenuCtrl) {
 		$scope.hello = 'abugga';
 		$scope.open = open;
 		$scope.toggleCategory = toggleCategory
 		$scope.addCategory = addCategory
 		$scope.category = $scope.newCategory;
+		$scope.addGroup = addGroup
 		// $scope.addItems = addItems;
 		$scope.addItem = addItem
 		$scope.username = AuthService.currentUser();
 		$scope.selectedCategory;
-		$scope.previewedCategory
+		$scope.previewedCategory;
+		$scope.editCategory = editCategory;
 		$scope.items = [];
+		$scope.updateItem = updateItem;
+		$scope.addItemToTable = addItemToTable
+
 
 		$scope.newCategory = {
+			name: ''
+		}
+
+		$scope.updatedCategory = {
 			name: ''
 		}
 
@@ -27,11 +37,26 @@
 			description: ''
 		}
 
+		//fix add append and update
+
+		function updateItem() {
+			//this is the updateItemId
+			MenuFactory.updateItem({id: dataFromMenuCtrl._id, name: $scope.updateThisItem.name, price: $scope.updateThisItem.price})
+			.then(function(data) {
+				console.log(data)
+				$rootScope.$broadcast('update')
+				$uibModalInstance.dismiss();
+			})
+			.catch(function() {
+				console.log('error updating Item')
+			})
+		}
+
 		function previewCategory(category) {
 			$scope.selectACategory = false;
 			MenuFactory.previewCategory(category)
 			.then(function(data){
-				console.log('here!')
+				console.log('here!');
 				console.log(data)
 				$scope.selectedCategory = data
 				console.log($scope.selectedCategory)
@@ -44,7 +69,26 @@
 
 		}
 
+
+		function addItemToTable() {
+			MenuFactory.addItem({id: dataFromMenuCtrl, name: $scope.newItem.name, price: $scope.newItem.price})
+			.then(function(data){
+				$rootScope.$broadcast('update')
+				$uibModalInstance.dismiss();
+			})
+			.catch(function(){
+				console.log('error')
+			})
+
+		}
+
+
+
+
+
 		function addItem(){
+	
+		
 			MenuFactory.addItem({id: $scope.selectedCategory, name: $scope.newItem.name, price: $scope.newItem.price, description: $scope.newItem.description })
 			.then(function(data) {
 				console.log('this is my data!!')
@@ -55,27 +99,29 @@
 			.catch(function(){
 				console.log('error!')
 			})
-		}	
+		}
+	
 
 		function addGroup() {
 			console.log($scope.previewedCategory)
-			$rootScope.$broadcast('addGroup' data)
-			// $rootscope.$broadcast
+			$rootScope.$broadcast('pushGroup', $scope.previewedCategory)
+			console.log('here')
+			$uibModalInstance.dismiss();
 		}	
 
-		// function addItems() {
-		// 	MenuFactory.addItems({categoryId: $scope.selectedCategory._id, items: $scope.items})
-		// 	.then(function(data){
-		// 		console.log(data);
-		// 		$scope.items.push(data)
-		// 	})
-		// 	.catch(function() {
-		// 		console.log('error')
-		// 	})
-		// }
-		// 	console.log('here')
+		function editCategory() {
+			MenuFactory.editCategory(dataFromMenuCtrl, $scope.updatedCategory)
+			.then(function(data){
+				console.log(data)
+				$rootScope.$broadcast('update');
+				getMenuItems()
+				$uibModalInstance.dismiss();
 
-
+			})
+			.catch(function(){
+				console.log('erorr!');
+			})
+		}
 
 		function addCategory() {
 			console.log($scope.newCategory)
@@ -89,22 +135,13 @@
 				console.log(error)
 			})
 			$scope.newCategory = {};
-			// getCategories();
-			// previewCategory($scope.newCategory)
-			toggleCategory()
+			toggleCategory();
 		}
-
-
 
 		function toggleCategory() {
 			$scope.addCategoria = !$scope.addCategoria
+
 		}
-
-
-		//function to add menu items
-
-		//rootscope to pushGroup
-
 
 	}	
 

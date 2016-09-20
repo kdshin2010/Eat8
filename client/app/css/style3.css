@@ -67,3 +67,32 @@
     width: 30%;
 }
 
+.order_container {
+	margin-top: 50px;
+	padding: 0;
+	width: 100%;
+
+}
+.order-tables-container {
+	white-space: nowrap;
+	overflow-y: scroll;
+	height: 200px;
+}
+
+.addOrderHeading {
+	text-align: center;
+}
+
+.view-order {
+	height: 100vh;
+}
+
+.view_order_table {
+	position: relative;
+	top: 14%;
+}
+.Add_Order {
+	text-align: center;
+	margin-top: 1%;
+}
+

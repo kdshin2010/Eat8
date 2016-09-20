@@ -74,6 +74,12 @@
 			templateUrl: '../views_2/menu.html',
 			controller: 'DashboardCtrl'
 		})
+		$routeProvider.when('/productionOrders', {
+			templateUrl: '../views_2/orders.html',
+			controller: 'OrdersCtrl',
+			access: {restricted: true}
+
+		})
 	}
 
 	function runFunction($rootScope, $location, $route, AuthService) {
