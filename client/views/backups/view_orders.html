@@ -1,12 +1,7 @@
 <div class="view_all_orders_container" ng-controller ='OrdersCtrl' style='display: inline-block'>
-	<div class="input-append" ng-hide='show_all_orders' ng-init='show_all_orders = false' style='text-align:center'>
-	<div style = 'text-align: center'>
-		<h3 style='margin-right: 40px; text-align: center'>Enter Zip Code</h3>
-	</div>
-	    <input ng-model='zipcode'>
 	    <button class="btn btn-info" ng-click='getSalesTax()'>Submit</button>
 	</div>
-	<div class='order_wrapper' style='margin: 0 auto' ng-show='show_all_orders'>	 
+	<div class='order_wrapper' style='margin: 0 auto'>	 
 		<div class='order_table_container' style='position: relative; left:30%' ng-repeat="x in submitted_orders track by $index | orderBy: 'table'">
 			<h3 style='margin-left: 20px'>Table: #{{x.table}}</h3>
 			<table class="table table-bordered" id='view_all_orders_table'>
@@ -31,7 +26,7 @@
 			<div class='order_table_buttons' style='position: relative; left: 15%'>
 				<button class='btn btn-default' >Complete Order</button>
 				<button class='btn btn-info' ng-click='calculateTotal(x)'>Calculate Total</button>
-				<div ng-show='activeItem==x' >
+				<div ng-show='activeItem==table' >
 					<ul>
 						<li>Total: {{totalPrice}}</li>
 						<li>Sales Tax: 8.75%</li>

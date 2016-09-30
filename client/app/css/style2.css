@@ -172,6 +172,8 @@ h4  {
     margin: auto;
     margin-top: 3%;
     border: double;
+    border-radius: 20px;
+    box-shadow: 10px 10px 5px  #888888;
 }
  .modal_stuff {
      z-index: -1;

@@ -6,7 +6,7 @@
 		.controller('OrderModalCtrl', OrderModalCtrlFunction)
 
 
-		function OrderModalCtrlFunction($scope, RestaurFactory, MenuFactory, AuthService, OrdersFactory) {
+		function OrderModalCtrlFunction($scope, $uibModalInstance, RestaurFactory, $rootScope, MenuFactory, AuthService, OrdersFactory) {
 			$scope.hello = 'hello';
 			$scope.username = AuthService.currentUser();
 			$scope.tables;
@@ -14,12 +14,20 @@
 			$scope.selectTable = selectTable;
 			$scope.menuitems;
 			$scope.addOrderItem
-			$scope.addOrderItem = addOrderItem
+			$scope.addOrderItem = addOrderItem;
+			$scope.submit_order = submit_order
 
 			$scope.selected_table;
+			console.log()
 
 			getTables();
 			getMenuItems();
+
+			var map = Array.prototype.map;
+			var each = Array.prototype.forEach
+			console.log(map)
+
+
 
 
 			function selectTable() {
@@ -52,7 +60,6 @@
 			function getOrderItems(selected_table) {
 				OrdersFactory.getOrderItems($scope.selected_table)
 				.then(function(data) {
-					console.log('*******&&&&&&&&****')
 					$scope.orderItems = data;
 					console.log(data)
 				})
@@ -85,6 +92,42 @@
 					console.log('error getting items')
 				})
 			}
+
+			function submit_order(table_number) {
+				var currentItems = $scope.orderItems.items
+				console.log(currentItems)
+				var total = 0;
+				currentItems.forEach(function(value) {
+					total += value.price
+				})
+				total = (total * 1.0825).toFixed(2);
+		
+
+		
+				OrdersFactory.submitOrder($scope.selected_table, total)
+				.then(function(data) {
+					console.log(data)
+					console.log('successfully submitted order');
+					$rootScope.$broadcast('addSubmittedOrder', $scope.menuitems)
+					$uibModalInstance.dismiss();
+				})
+				.catch(function() {
+					console.log('error getting submitted orders!')
+				})
+			}
+
+			//close UIB Modal Instance
+			// //show table Legened on side
+			// function submit_order() {
+			// 	console.log($scope.orderItems)
+			// 	OrdersFactory.submit($scope.selected_table)
+
+			// 	$rootScope.$broadcast('addSubmittedOrder', $scope.orderItems)
+			// 	$uibModalInstance.dismiss();
+
+
+			// }
+
 		}
 
 })()

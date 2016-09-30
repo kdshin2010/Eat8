@@ -2,8 +2,6 @@
 		<button ng-click='changeView()'></button>
 		<h3 style='text-align: center;'>Select Table Number</h3>
 		<p style='text-align: center'>Select a table from the list or double click the table icon to create an order for the table</p>
-
-
 		<div>
 
 		<div class='row' style='width: 100%; max-width: 100%;'>
@@ -21,7 +19,6 @@
 	<button ng-click=changeView()>Change View</button>
 		<div class='col-md-8' style='width: 65%;'>
 			<div class='row'>
-			
 			</div>
 			<div class='col-md-4 order_tables' style='text-align: center; width: 48%; margin: 1% 0 0 0; border: solid 0.01px; border-radius: 10px; margin-right: 1%;' ng-repeat='item in menuitems'>
 				<h3 ng-bind='item.name'></h3>
@@ -49,7 +46,8 @@
 		</div>
 		<div class='col-md-4 view-order' style='width: 30;'>
 			<div class='view_order_table' style='border:solid 0.2px; padding: 2%; border-radius: 10px;'>
-				<h3>Current Order</h3>
+				<h3 style='text-align: center'>Current Order</h3>
+				{{orderItems}}
 					<table class='table table-hover' style='text-align: left'>
 						<thead>
 							<tr>
@@ -70,8 +68,7 @@
 							</tr>
 						</tbody>
 					</table>	
-							<button>Submit</button>
-		
+					<button class='btn btn-primary' style='margin-left: 50%;' ng-click='submit_order()'>Submit</button>
 			</div>
 		</div>
 	</div>

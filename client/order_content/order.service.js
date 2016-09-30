@@ -29,6 +29,16 @@
 			})
 		}
 
+		function submit(OrderTable) {
+			$http.post('/submitOrder', {table: table})
+			.success(function(data) {
+				deferred.resolve(data)
+			})
+			.error(function(){
+				deferred.reject()
+			})
+		}
+
 		function getSalesTax(info){
 			var deferred = $q.defer()
 			$http.post('/getSalesTax', {zipcode: info.zipcode})
@@ -61,9 +71,10 @@
 
 		//Updating order Items
 
-		function submitOrder(id) {
+		function submitOrder(table, total) {
+			console.log(table)
 			var deferred = $q.defer();
-			$http.post('/submitOrder', {id: id})
+			$http.post('/submitOrder', {table: table, total:total})
 			.success(function(data) {
 				deferred.resolve(data)
 			})

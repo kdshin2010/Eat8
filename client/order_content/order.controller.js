@@ -33,13 +33,31 @@
 		$scope.getSalesTax = getSalesTax;
 		$scope.salestax;
 		$scope.animationsEnabled = true;
+		$scope.submitted_orders;
+		$scope.calculate = calculate
 
 		//CHANGE THIS!!
 		// $scope.getSalesTax = getSalesTax;
 		getMenuItems();
 		getSubmittedOrders();
 		// setTimeout(function() { console.log($scope.salestax)}, 20000); 
+
+		function calculate(table) {
+			$scope.activeItem = x;
+			var total = 0;
+			for (var i=0; i<table.items.length; i++) {
+				console.log(table.items[i].price)
+				total += table.items[i].price
+			}
+			alert(total);
+		}
 	
+
+
+		$scope.$on('addSubmittedOrder', function(oringalFunction, data) {
+			getSubmittedOrders();
+		})
+
 		function testModal(x) {
 			var modalInstance = $uibModal.open({
 				animation: $scope.animationsEnabled,
@@ -75,7 +93,7 @@
 			for (var i=0; i<x.items.length; i++) {
 				totalPrice += x.items[i].price
 			}
-			$scope.totalPrice = totalPrice
+			$scope.orderTotal = totalPrice
 		}
 
 

@@ -10,7 +10,6 @@ var express = require('express'),
   authentications = require('../Controllers/authentications.js')
   menus = require('../controllers/menus.js'),
   orders = require('../controllers/orders.js'),
-  tables = require('../controllers/tables.js'),
   icons = require('../controllers/icons.js'),
   waitlists = require('../controllers/waitlists.js'),
 
@@ -18,10 +17,7 @@ var express = require('express'),
   User = require('../models/User.js');
 
 
-
-
-
-  // comments = require('../controllers/comments.js'),
+// comments = require('../controllers/comments.js'),
 routes.post('/getSalesTax', function(req, res) {
 	console.log('at the rotues')
 	orders.getRates(req,res)
@@ -30,11 +26,10 @@ routes.post('/getSalesTax', function(req, res) {
 
 //Standard Tables
 routes.post('/standardTable', function(req, res) {
-	tables.standardTables(req, res)
+	orders.standardTables(req, res)
 })
 
 //Waitlist
-
 routes.post('/addGroup', function(req, res) {
 	waitlists.addGroup(req, res)
 });
@@ -96,7 +91,7 @@ routes.post('/removeCategory', function(req, res) {
 
 routes.post('/deleteIcon', function(req, res) {
 	if(req.body.id[0] === 't') {
-		tables.delete(req, res)
+		orders.deleteTable(req, res)
 	} else {
 		icons.delete(req, res)
 	}
@@ -107,7 +102,7 @@ routes.post('/deleteImage',function (req, res) {
 })
 
 routes.post('/deleteTables', function(req, res) {
-	tables.deleteAll(req, res)
+	orderTables.deleteAll(req, res)
 })
 
 
@@ -118,7 +113,7 @@ routes.post('/deleteTables', function(req, res) {
 // })
 
 routes.get('/getTables', function(req, res) {
-	tables.show(req, res);
+	orders.showTables(req, res);
 })
 
 
@@ -126,7 +121,7 @@ routes.get('/getTables', function(req, res) {
 routes.post('/updateCoord', function(req, res) {
 	console.log(req.body)
 	if (req.body.id.substring(0,3) === 'tab') {
-		tables.updateCoord(req, res)
+		orders.updateCoord(req, res)
 	} else {
 		icons.updateCoord(req, res)
 	}
@@ -136,10 +131,15 @@ routes.post('/addIcon', function(req, res) {
 	console.log(req.body.id[0])
 	// if t add table if i add icon
 	if(req.body.id[0] === 't') {
-		tables.create(req, res)
+		orders.createTable(req, res)
 	} else {
 		icons.create(req, res)
 	}
+})
+
+routes.post('/submitOrder', function(req, res) {
+	orders.submitOrder(req, res)
+
 })
 
 routes.get('/getIcons', function(req, res) {

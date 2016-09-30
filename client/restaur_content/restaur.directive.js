@@ -18,11 +18,7 @@
 		$scope.addTable = addTable;
 		$scope.openAdd = openAdd;
 		$scope.show_Layout = show_Layout;
-
-		// $scope.addSection = addSection;
 		$scope.deleteTables = deleteTables
-
-
 		$scope.items = ['item1', 'item2', 'item3'];
 		$scope.animationsEnabled = true;
 		$scope.open = open;
