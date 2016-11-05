@@ -5,7 +5,7 @@
 	.module('menuApp')
 	.controller('OrdersCtrl', OrdersCtrlFunction)
 
-	function OrdersCtrlFunction($scope, $location, MenuFactory, OrdersFactory, AuthService, $uibModal ) {
+	function OrdersCtrlFunction($scope, $location, MenuFactory, OrdersFactory, AuthService, $uibModal, $rootScope, RestaurFactory ) {
 
 		/*
 		add select table number variable to record table number
@@ -35,6 +35,8 @@
 		$scope.animationsEnabled = true;
 		$scope.submitted_orders;
 		$scope.calculate = calculate
+		$scope.didPay = didPay;
+		$scope.paidOrders = [];
 
 		//CHANGE THIS!!
 		// $scope.getSalesTax = getSalesTax;
@@ -51,17 +53,51 @@
 			}
 			alert(total);
 		}
+
+	// only on the front end not yet on the back end	
+	//fix on backend
+		function didPay(order_id) {
+			var idx = $scope.paidOrders.indexOf(order_id);
+			OrdersFactory.didPay(order_id)
+			.then(function(data){
+				console.log(data.paid)
+				if (data.paid === true && !(idx>-1)) {
+					$scope.paidOrders.push(order_id)
+					RestaurFactory.layoutSingle(data)
+					// $rootScope.$emit('changeTable', data)
+				} else {
+					RestaurFactory.layoutSingle(data)
+
+				}
+			})
+			.catch(function(){
+				console.log('could not update to paid')
+			})
+			// index of -1 returns -1 if not found
+			if (idx > -1) { // means toggling on to off
+				$scope.paidOrders.splice(idx, 1);
+
+			} 
+
+			//make an API call to DB to update
+		}
+
+
 	
-
-
-		$scope.$on('addSubmittedOrder', function(oringalFunction, data) {
+	
+		$rootScope.$on('addSubmittedOrder', function(oringalFunction, data) {
+			console.log('calling')
+			console.log(data);
+			$scope.$emit('hello', data.tabId)
+			$scope.submitted_orders.push(data);
+			console.log('should update order');
 			getSubmittedOrders();
 		})
 
 		function testModal(x) {
 			var modalInstance = $uibModal.open({
 				animation: $scope.animationsEnabled,
-				templateUrl: '../views_2/ordermodal.html',
+				templateUrl: '../modal/modal_views/ordermodal.html',
 				controller: 'OrderModalCtrl',
 				scope: $scope,
 				windowClass: 'orderModal',
@@ -104,8 +140,14 @@
 				console.log('these are the submitted orders ')
 				console.log(data)
 				$scope.submitted_orders = data;
-				console.log($scope.submitted_orders)
-				console.log($scope.submitted_orders.length);
+				// checksto see if order is paid then marks it as paid
+				for (var i=0; i<data.length; i++) {
+					if(data[i].paid === true) {
+						$scope.paidOrders.push(data[i]._id)
+					}
+				}
+				console.log('thbis is the submitted orders' + data)
+
 			})
 			.catch(function() {
 				console.log('error!')
@@ -130,7 +172,7 @@
 			MenuFactory.getMenuItems($scope.username.username)
 			.then(function(data) {
 				$scope.items = data;
-				console.log(data)
+				console.log(data);
 				console.log('we are in the controller getMenuItems')
 			})
 			.catch(function(){
@@ -153,7 +195,6 @@
 			})
 		}
 
-		
 		function addOrderItem(x, menu) {
 			console.log(menu.name)
 			OrdersFactory.addOrderItem({table: selected_table, category: menu.name, name: x.name, price: x.price})
@@ -188,6 +229,7 @@
 			.catch(function() {
 				console.log('could not remove order item!!')
 			})
+
 			getOrderItems(selected_table);
 
 		}

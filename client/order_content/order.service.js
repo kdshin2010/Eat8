@@ -17,9 +17,21 @@
 			submitOrder: submitOrder,
 			getSubmittedOrders: getSubmittedOrders,
 			removeSubmittedOrder: removeSubmittedOrder,
-			getSalesTax: getSalesTax
+			getSalesTax: getSalesTax,
+			didPay: didPay
 		}
 
+		function didPay(id) {
+			var deferred = $q.defer();
+			$http.post('/markAsPaid', {tableId: id})
+			.success(function(data) {
+				deferred.resolve(data)
+			})
+			.error(function(){
+				deferred.reject()
+			})
+			return deferred.promise
+		}
 
 		//Testing Delete after
 		function getOrderTables(callback) {
@@ -73,9 +85,11 @@
 
 		function submitOrder(table, total) {
 			console.log(table)
+			console.log(total)
 			var deferred = $q.defer();
 			$http.post('/submitOrder', {table: table, total:total})
 			.success(function(data) {
+				console.log(data)
 				deferred.resolve(data)
 			})
 			.error(function() {

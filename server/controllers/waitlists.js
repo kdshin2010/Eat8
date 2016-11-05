@@ -8,13 +8,14 @@ var mongoose = require('mongoose'),
 
 
 	waitlists.notify = function(req, res) {
+		console.log(req.body)
 		twilioClient.messages.create({
 			body: "Hello! You're Table for " + req.body.size + " is ready. Please come to the host area",
 			to: req.body.number,
 			from: twilioConfig.sendingNumber
 		}, function(err ,data) {
 			if(err) {
-				console.log('error')
+				console.log(err)
 			} else {
 				console.log(data)
 				res.json(data)

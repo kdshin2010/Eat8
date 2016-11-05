@@ -52,6 +52,10 @@ routes.post('/notify', function(req, res) {
 	waitlists.notify(req, res)
 })
 
+routes.post('/markAsPaid', function(req, res){
+	console.log('here')
+	orders.markAsPaid(req,res)
+})
 
 
 

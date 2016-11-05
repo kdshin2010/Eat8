@@ -3,7 +3,7 @@
 		.module('menuApp')
 		.controller('ModalInstanceCtrl', ModalInstanceCtrlFunction)
 
-	function ModalInstanceCtrlFunction($scope, $uibModalInstance, $uibModal, items, RestaurFactory, $location) {
+	function ModalInstanceCtrlFunction($scope, $uibModalInstance, $uibModal, RestaurFactory, $location) {
 		$scope.cancel = cancel;
 		$scope.ok = ok;
 		var num_tables = [];
@@ -33,7 +33,7 @@
 			RestaurFactory.sayHello();
 			$scope.animations = false;
 			$uibModalInstance.close();
-			$location.path('/menu')
+			$location.path('/menu');
 		}
 
 		function cancel() {

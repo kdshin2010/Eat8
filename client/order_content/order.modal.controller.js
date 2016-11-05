@@ -18,22 +18,23 @@
 			$scope.submit_order = submit_order
 
 			$scope.selected_table;
-			console.log()
 
 			getTables();
 			getMenuItems();
 
 			var map = Array.prototype.map;
 			var each = Array.prototype.forEach
-			console.log(map)
-
-
+			console.log(map);
 
 
 			function selectTable() {
-				getOrderItems($scope.selected_table)
-				changeView()
-
+				console.log($scope.selected_table)
+				if ($scope.selected_table.status === "ordered" || $scope.selected_table.status === "paid") {
+					alert('Aleady Submitted Order for Table')
+				} else {
+					getOrderItems($scope.selected_Table)
+					changeView()
+				}
 			}
 				
 		
@@ -44,9 +45,7 @@
 			function addOrderItem(x, menu) {
 				console.log(x);
 				console.log(menu)
-				console.log($scope.selected_table)
-				console.log('here!')
-				OrdersFactory.addOrderItem({table: $scope.selected_table, category: menu.name, name: x.name, price: x.price})
+				OrdersFactory.addOrderItem({table: $scope.selected_table.table_number, category: menu.name, name: x.name, price: x.price})
 				.then(function() {
 					console.log('success adding orderItem')
 				})
@@ -58,7 +57,7 @@
 
 			
 			function getOrderItems(selected_table) {
-				OrdersFactory.getOrderItems($scope.selected_table)
+				OrdersFactory.getOrderItems($scope.selected_table.table_number)
 				.then(function(data) {
 					$scope.orderItems = data;
 					console.log(data)
@@ -95,20 +94,16 @@
 
 			function submit_order(table_number) {
 				var currentItems = $scope.orderItems.items
-				console.log(currentItems)
+				console.log(currentItems);
 				var total = 0;
 				currentItems.forEach(function(value) {
 					total += value.price
 				})
 				total = (total * 1.0825).toFixed(2);
-		
-
-		
-				OrdersFactory.submitOrder($scope.selected_table, total)
+				OrdersFactory.submitOrder($scope.selected_table.table_number, total)
 				.then(function(data) {
+					$rootScope.$emit('addSubmittedOrder', data)
 					console.log(data)
-					console.log('successfully submitted order');
-					$rootScope.$broadcast('addSubmittedOrder', $scope.menuitems)
 					$uibModalInstance.dismiss();
 				})
 				.catch(function() {

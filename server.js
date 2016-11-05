@@ -41,7 +41,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(twilioNotifications.notifyOnError);
 
 
-//configure passport
 
 //error handlers
 app.use(routes)

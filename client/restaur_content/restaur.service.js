@@ -7,7 +7,45 @@
 		//Inject modules here
 
 		function RestaurFactoryFunction($http, $q) {
-			var factory = {}
+			var factory = {},
+			tables,
+			dragRel = {
+				drag: function() {
+						var $this = $(this),
+						thisPos = $this.position(),
+						parentPos = $this.parent().position(),
+						x = thisPos.left,
+						y = thisPos.top;
+						$('#posX').text(x);
+						$("#posY").text(y);
+					},
+					stop: function() {
+						//variable declarations $(this), selectedId, classAttr
+						var $this = $(this),
+						selectedId,
+						classAttr = $this.attr('class'),
+						//last digit to identify the id of the class attribute
+						lastdigit = $this.attr('class').substring(8,9);
+						//check if the last digit is empty to store single vs double digits
+						if(lastdigit === " ") {
+							selectedId = classAttr.substring(4,8);
+						} else {
+							selectedId = classAttr.substring(4,9)
+						}
+
+						var thisPos = $this.position(),
+						x = thisPos.left,
+						y = thisPos.top;
+						updateCoord(selectedId, x, y);
+						console.log($this);
+					},
+					start: function() {
+						var $this = $(this),
+						selectedId = $this.attr('class').substring(4,9);
+						var $this = $(this);
+					}
+
+			}
 
 
 			return {
@@ -19,14 +57,27 @@
 				getIcons: getIcons,
 				addContextMenu: addContextMenu,
 				sayHello: sayHello,
-				standardTables: standardTables
+				standardTables: standardTables,
+				testLayout: testLayout,
+				dragRel: dragRel,
+				layoutTables2: layoutTables2,
+				layoutSingle: layoutSingle,
+				layoutTables: layoutTables //ivoke here so we can update tables throughout controllers
 			}
+
+
+
+
+
 
 			//return values ot be passed to controllers here
 
 
 			//in the future consolidate this function to add tabId or ico id for now use two separate functions :);
 			//change to add Marker
+
+
+
 
 			function standardTables(num) {
 				console.log(num)
@@ -45,6 +96,7 @@
 			function sayHello() {
 				console.log('hello!')
 			}
+
 
 	
 			function addContextMenu(id) {
@@ -87,6 +139,7 @@
 			}
 
 			function deleteIcon(id) {
+				console.log(id)
 				var deferred = $q.defer();
 				$http.post('/deleteIcon', {id:id})
 				.success(function() {
@@ -113,19 +166,78 @@
 				return deferred.promise
 			}
 
+
+			function layoutSingle(table) {
+				$('.'+table.tabId).remove();
+				$('#'+table.tabId).remove();
+				// $('.'+table.tabId).removeAttr('id')
+  				var table_number = table.table_number,
+				tempId = table.tabId,
+				top = table.top,
+				left = table.left,
+				// e = '<h3>Hello</h3>'
+				f = "<div class=res class=" + tempId + "><span>watsup</span><br> Table "+ table_number + "></ul>/div>",
+				e = "<div class=res id=" + tempId + "><ul class='icon_heading'<span>Table "+ table_number + "</span></ul><img class='icon_img " + table.status + "'></img></div>";
+				console.log(e)
+				$(e).appendTo('.restaur_container')
+				// $("#"+tempId).addClass(tempId);
+				addContextMenu(tempId);
+				$('#'+tempId).draggable(dragRel);
+				$('#'+tempId).css({top: top, left: left, position: 'absolute'});
+			}
+
+			function layoutTables() {
+				$.each(tables, function(value) {
+					console.log(tables[value])
+					var table_number = tables[value]["table_number"],
+					tempId = tables[value]["tabId"],
+					top = tables[value]["top"],
+					left = tables[value]["left"],
+					e = "<div class=res id=" + tempId + "><ul class='icon_heading'<span>Table "+ table_number + "</span></ul><img class='icon_img " + tables[value].status + "'></img></div>";
+					$(e).appendTo('.restaur_container');
+					$("#"+tempId).addClass(tempId);
+					// $('#'+tempId).addClass(tables[value].status)
+					addContextMenu(tempId);
+					$('.'+tempId).draggable(dragRel);
+					$('.'+tempId).css({top: top, left: left, position: 'absolute'});
+				})
+			}
+
+			function layoutTables2() {
+				$.each(tables, function(value) {
+					console.log(tables[value])
+					var table_number = tables[value]["table_number"],
+					tempId = tables[value]["tabId"],
+					top = tables[value]["top"],
+					left = tables[value]["left"],
+					e = "<div class=res id=" + tempId + "><ul class='icon_heading'<span'>Table "+ table_number + "</span></ul><img class='icon_img " + tables[value].status + "'></img></div>";
+					$(e).appendTo('.restaur_container2');
+					$("#"+tempId).addClass(tempId);
+					// $('#'+tempId).addClass(tables[value].status)
+					addContextMenu(tempId);
+					$('.'+tempId).draggable(dragRel);
+					$('.'+tempId).css({top: top, left: left, position: 'absolute'});
+				})
+			}		
+	
+
 			//delete one table
 
 			function getTables() {
 				var deferred = $q.defer();
 				$http.get('/getTables')
 				.success(function(data) {
-					deferred.resolve(data)
+					console.log('calling getTables9)')
+					console.log(data)
+					deferred.resolve(data);
+					tables = data;
 				})
 				.error(function(error){
 					deferred.reject();
 				})
 				return deferred.promise
 			}
+
 
 			function updateCoord(id, left, top) {
 				var deferred = $q.defer();
@@ -139,6 +251,13 @@
 				})
 				return deferred.promise;
 			}
+
+			function testLayout() {
+				console.log('calling')
+				$('<h3>Hello</h3>').appendTo('.restaur_container')
+			}
+
+
 			//function values go here
 
 		}

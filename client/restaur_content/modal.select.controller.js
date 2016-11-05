@@ -8,6 +8,7 @@
 		function addSection() {
 			console.log($scope.section)
 			var selection = $scope.section;
+			//change to emit
 			$rootScope.$broadcast('addSection', selection);
 			$uibModalInstance.dismiss()
 		

@@ -12,6 +12,8 @@
 		getGroups();
 		$scope.removeGroup = removeGroup;
 
+		//Seat Individual on the table on the waitlist
+
 		$scope.notify = notify;
 		vm.groups;
 
@@ -62,10 +64,12 @@
 
 
 		function open() {
+			console.log('opening')
 			var modalInstance = $uibModal.open({
 				animation: $scope.animationsEnabled,
 				templateUrl: '../views/waitlist_modal.html',
 				controller: 'WaitListModalCtrl'
+			
 			})
 		}
 
@@ -83,7 +87,7 @@
 		}
 
 		function notify(number, size, group) {
-			var formatted_number = "+1" + number;
+			var formatted_number = "+1" + number;open
 			console.log(group);
 			//make sure you notify only once
 			for (var i=0; i<$scope.selection.length; i++) {

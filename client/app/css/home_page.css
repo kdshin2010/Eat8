@@ -48,7 +48,6 @@ p {
 a {
     color: #f85c37;
     word-wrap: break-word;
-
     -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
     -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
     -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
@@ -391,9 +390,6 @@ Menu Page
     text-align: center;
     padding-left: 0px;
 }
-
-
-
 
 .pricing-option ul li {
     border-bottom: solid 1px #e1e1e1;

@@ -12,9 +12,6 @@
 			notify: notify
 		}
 
-
-
-
 		function removeGroup(group_id) {
 			var deferred = $q.defer();
 			$http.post('/removeGroup', {id: group_id})

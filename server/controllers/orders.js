@@ -10,6 +10,28 @@ var mongoose = require('mongoose'),
 
 //add the first table
 //lets just create a table with the tabId
+orders.markAsPaid = function(req, res) {
+	OrderTable.findOne({_id: req.body.tableId}, function(err, result){
+		if(err) {
+			console.log(err)
+		} else {
+			result.paid = !result.paid;
+			if (result.paid === true ) {
+				result.status = 'paid'
+			} else {
+				result.status = 'ordered'
+			}
+			result.save(function(err, result) {
+				if(err) {
+					console.log('err')
+				} else {
+					console.log(result)
+					res.json(result)
+				}
+			})
+		}
+	})
+}
 
 orders.createTable = function(req, res) {
 	var ordertable = new OrderTable({tabId: req.body.id, table_number: req.body.id_number, left:0, top: 0})
@@ -152,20 +174,25 @@ orders.getOrderItems = function(req, res) {
 
 
 orders.submitOrder = function(req, res) {
+	console.log('checkpount here')
+	console.log(req.body)
 	OrderTable.findOne({table_number: req.body.table}, function(err, result) {
-		if(err) return handleError(err);
-		console.log(result)
-		result.submitted = true;
-		result.total = req.body.total
-		result.save(function(err, updatedResult) {
-			if(err) return handleError(err);
-			console.log(updatedResult)
-			res.json(updatedResult)
-		})
+		if(err) {
+			console.log(err)
+		} else {
+			result.submitted = true;
+			result.status = 'ordered';
+			result.total = req.body.total;
+			result.save(function(err, updatedResult) {
+				if(err) {
+					console.log(err)
+				} else {
+					res.json(updatedResult)
+				}
+			})
+		}
 	})
 }
-
-
 
 
 //Testing delete after

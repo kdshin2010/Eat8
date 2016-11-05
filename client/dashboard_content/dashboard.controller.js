@@ -8,6 +8,7 @@
 		$scope.hello = 'hello';
 		$scope.layouts = layouts
 		$scope.orders = orders
+		$scope.waitlist = waitlist
 
 
 		function layouts() {
@@ -15,7 +16,11 @@
 		}
 
 		function orders() {
-			$location.path('/orders')
+			$location.path('/productionOrders')
+		}
+
+		function waitlist() {
+			$location.path('/waitlist')
 		}
 	}
 

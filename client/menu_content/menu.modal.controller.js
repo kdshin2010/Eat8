@@ -18,7 +18,6 @@
 		$scope.selectedCategory;
 		$scope.previewedCategory;
 		$scope.editCategory = editCategory;
-		$scope.items = [];
 		$scope.updateItem = updateItem;
 		$scope.addItemToTable = addItemToTable
 

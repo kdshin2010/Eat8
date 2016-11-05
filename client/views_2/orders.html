@@ -1,6 +1,8 @@
 <div class='container order_container'>
 	<h1 class='Add_Order'>Add Order <img  ng-click='testModal()' style= ' margin-left: 10px; width: 3%; cursor: pointer;' src="app/images/add.png"></h1>
+	<button ng-click='didPay()'>Toggle</button>
 	<div class='col-md-5'>
+		<h1 style='text-align: center;'>Current Orders</h1>
 		<div ng-repeat = 'table in submitted_orders' class='voc'>
 			<div class='view_order_tables' >
 				<h2>Table {{table.table_number}} <i style='margin-left: 1%; cursor: pointer;' class="fa fa-pencil-square-o fa-edit fa-1x" aria-hidden="true"> </i><i class="fa fa-trash-o fa-1x" aria-hidden="true"></i></h2>
@@ -45,12 +47,14 @@
 					</tr>
 				</thead>
 				<tbody>
+				{{paidOrders}}
 					<tr ng-repeat = 'table in submitted_orders'>
 						<td>{{table.table_number}}</td>
 						<td></td>
-						<td><input type='checkbox'></td>
-						<td>{{table.total}}</td>
-						<td><button class='btn btn-danger'>Cancel</button > <button class='btn btn-success' style='margin-left: 1%'> Paid </button>  <button class='btn btn-primary'>Complete</button></td>
+						<!-- Needs to make a backend call -->
+						<td><input type='checkbox' ng-checked='paidOrders.indexOf(table._id) > -1'></td>
+						<td>${{table.total}}</td>
+						<td><button class='btn btn-danger'>Cancel</button > <button class='btn btn-success' style='margin-left: 1%' ng-click='didPay(table._id)'> Paid </button>  <button class='btn btn-primary'>Complete</button></td>
 					</tr>
 				</tbody>
 			</table>

@@ -8,6 +8,7 @@ var OrderTableSchema = new mongoose.Schema({
 	tabId: String,
 	left: Number,
 	top: Number,
+	status: { type: String, default: 'ready' }, // ready // seated // ordered // paid
 	items:[{ type: Schema.Types.ObjectId, ref: 'OrderItem'}],
 	submitted: {type: Boolean, default: false},
 	paid: {type: Boolean, default: false},

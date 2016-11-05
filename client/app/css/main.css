@@ -379,7 +379,6 @@ list-style-type: none;
     border: solid;
 }
 
-
 .Layout_Heading {
     font-family: 'Lobster', cursive;  
 }
@@ -389,8 +388,31 @@ list-style-type: none;
     height: 300px;
 }
 
-.icon_img {
-    content: url("https://cdn1.iconfinder.com/data/icons/kitchen-4/500/Dine_dining_eat_eating_fork_knife_meal_meals_place-512.png");
+.icon_img{
+    margin: 0;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+}
+
+.ready {
+    content: url('../images/status_tables/ready_To_seat.png');
+
+}
+.seated {
+    content: url('../images/status_tables/seated.png');
+}
+.ordered {
+    content: url('../images/status_tables/ordered.png');
+}
+.paid {
+    content: url('../images/status_tables/paid.png');
+}
+
+
+
+.pending {
+    content: url('../images/status_tables/ligh_color.png');
     margin: 0;
     padding: 0;
     width: 50px;
@@ -398,14 +420,14 @@ list-style-type: none;
 }
 
 
-#tab0 {
+/*#tab0 {
     content: url("https://cdn1.iconfinder.com/data/icons/kitchen-4/500/Dine_dining_eat_eating_fork_knife_meal_meals_place-512.png");
     width: 50px;
     height: 50px;
     padding: 0;
     margin: 0;
 }
-
+*/
 /*
 end of jquery css
 */
