@@ -9,11 +9,12 @@ var express = require('express'),
   users = require('../Controllers/users.js')
   authentications = require('../Controllers/authentications.js')
   menus = require('../controllers/menus.js'),
-  orders = require('../controllers/orders.js'),
   icons = require('../controllers/icons.js'),
   waitlists = require('../controllers/waitlists.js'),
+  orders = require('../controllers/orders.js');
 
-  routes = express.Router(),
+
+  var routes = express.Router(),
   User = require('../models/User.js');
 
 

@@ -6,6 +6,12 @@
 
 
 	function MenuModalCtrlFunction($scope, $location, MenuFactory, AuthService, OrdersFactory, $uibModalInstance, $rootScope, dataFromMenuCtrl) {
+		var vm = this;
+		vm.categeryIsEntered = false;
+		vm.menuCategory = ''
+
+
+
 		$scope.hello = 'abugga';
 		$scope.open = open;
 		$scope.toggleCategory = toggleCategory
@@ -37,6 +43,15 @@
 		}
 
 		//fix add append and update
+
+
+		vm.addCategory = function() {
+			vm.categoryIsEntered = true;
+		}
+
+
+
+		
 
 		function updateItem() {
 			//this is the updateItemId

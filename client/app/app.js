@@ -3,7 +3,7 @@
 	angular
 	.module('menuApp', 
 		['ngRoute',
-		'ngAnimate',
+	
 		'ui.bootstrap'
 		//other modules
 		])
@@ -13,7 +13,7 @@
 //configFunction injection
 	function ConfigFunction($routeProvider) {
 		$routeProvider.when('/', {
-			templateUrl: '../views/home.html',
+			templateUrl: '../views/dashboard.html',
 			access: {restricted: false}
 		})
 		$routeProvider.when('/menu', {

@@ -43,8 +43,6 @@
 			}
 
 			function addOrderItem(x, menu) {
-				console.log(x);
-				console.log(menu)
 				OrdersFactory.addOrderItem({table: $scope.selected_table.table_number, category: menu.name, name: x.name, price: x.price})
 				.then(function() {
 					console.log('success adding orderItem')
@@ -94,7 +92,6 @@
 
 			function submit_order(table_number) {
 				var currentItems = $scope.orderItems.items
-				console.log(currentItems);
 				var total = 0;
 				currentItems.forEach(function(value) {
 					total += value.price

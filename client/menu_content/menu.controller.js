@@ -6,11 +6,17 @@
 	.run(['$anchorScroll', function($anchorScroll){
 		$anchorScroll.yOffset = 50; // scroll by extra 50px
 	}])
-	.controller('MenuCtrl', MenuCtrlFunction);
+	.controller('MenuCtrl', MenuCtrl);
 
   	// MenuCtrl.$inject = ['$location', ];
 
-	function MenuCtrlFunction($scope, $location, MenuFactory, AuthService, $anchorScroll, $uibModal, $rootScope) {
+	function MenuCtrl($scope, $location, MenuFactory, AuthService, $anchorScroll, $uibModal, $rootScope) {
+		var vm = this;
+
+		vm.openMenuModal;
+
+
+
 		$scope.addCategory = addCategory;
 		$scope.removeCategory = removeCategory
 		$scope.showUpdate = showUpdate
@@ -26,7 +32,7 @@
 		$scope.selectACategory;
 		$scope.testAnchor = testAnchor;
 		$scope.view_menu = view_menu;
-		$scope.menuModal = menuModal;
+		// $scope.menuModal = menuModal;
 		$scope.animationsEnabled = true;
 		$scope.addCategoria = true;
 		$scope.editModal = editModal;
@@ -53,7 +59,7 @@
 		})
 
 		$scope.$on('update', function() {
-			alert('up[dateing!')
+			alert('updating!')
 			//fix this and make sure it updates single index
 			//data contains original category and updated category name
 			getMenuItems();
@@ -62,11 +68,28 @@
 		//make this into one function
 
 		//Add Menu Items
-		function menuModal(x) {
+		// function menuModal(x) {
+		// 	var modalInstance = $uibModal.open({
+		// 		animation: $scope.animationsEnabled,
+		// 		templateUrl: '../menu_content/menu.modal.html',
+		// 		controller: 'MenuModalCtrl',
+		// 		scope: $scope,
+		// 		size: 'lg',
+		// 		windowClass: 'myModal',
+		// 		resolve: {
+		// 			dataFromMenuCtrl: function() {
+		// 				return null
+		// 			}
+		// 		}
+		// 	})
+		// }
+
+		vm.openMenuModal = function(x) {
 			var modalInstance = $uibModal.open({
 				animation: $scope.animationsEnabled,
-				templateUrl: '../menu_content/menu.modal.html',
+				templateUrl: '../modal/modal_views/menu_modal.html',
 				controller: 'MenuModalCtrl',
+				controllerAs: 'mmc',
 				scope: $scope,
 				size: 'lg',
 				windowClass: 'myModal',
@@ -76,6 +99,7 @@
 					}
 				}
 			})
+
 		}
 
 		function addItem(menu) {

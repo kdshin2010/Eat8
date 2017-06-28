@@ -20,19 +20,6 @@
 			password: ""
 		}
 
-		// function sendWelcomeEmail () {
-
-		// 	AuthService.sendWelcomeEmail({name: $scope.user.username})
-		// 	.then(function(data){
-		// 		console.log(data);
-		// 		console.log('successfully sent email')
-		// 	})
-		// 	.catch(function() {
-		// 		console.log('erro senidng emial in the controller')
-		// 	})
-		// }
-
-
 // <! --- YO HERE's the LOGIN INFO --->
 		function register() {
 			$scope.error = false;
@@ -41,8 +28,7 @@
 			//success
 			.then(function(data) {
 				console.log(AuthService.currentUser())
-				$location.path('/menu');
-				console.log(data)
+				$location.path('/');
 				$scope.diabled = false;
 			})
 			.catch(function() {
@@ -58,7 +44,7 @@
 			AuthService.login($scope.user)
 			//success
 			.then(function(data) {
-				$location.path('/menu');
+				$location.path('/');
 				console.log(data)
 				$scope.diabled = false;
 				$scope.user = {}
@@ -73,10 +59,7 @@
 
 		function logout() {
 			AuthService.logout()
-			console.log('logged out user!')
 			$location.path('/login')
-	
 		}
-
 	}
-})()
+})();

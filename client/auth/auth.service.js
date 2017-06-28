@@ -4,7 +4,6 @@
 	.module('menuApp')
 	.factory('AuthService', AuthServiceFunction)
 
-	//Inject here
 
 	function AuthServiceFunction($http, $q, $window) {
 		var factory = {};
@@ -22,20 +21,6 @@
 			isLoggedIn: isLoggedIn,
 			getUsername: getUsername
 		}
-		// function sendWelcomeEmail(info) {
-		// 	var deferred = $q.defer()
-		// 	$http.post('/sendWelcomeEmail', info)
-		// 	.success(function(data) {
-		// 		console.log('resolving data to ctrl');
-		// 		deferred.resolve(data)
-		// 	})
-		// 	.error(function(){
-		// 		console.log('error!')
-		// 	})
-		// 	return deferred.promise;
-
-		// }
-
 
 		function saveToken(token) {
 			$window.localStorage['mean-token'] = token;
@@ -61,12 +46,13 @@
 			var deferred = $q.defer();
 			$http.post('/login', info)
 			.success(function(data) {
-				deferred.resolve(saveToken(data.token))
+				deferred.resolve(saveToken(data.token));
 			})
 			.error(function(){
-				console.log('error!')
+				console.log('error!');
 			})
-			return deferred.promise		}
+			return deferred.promise		
+		}
 
 
 		function saveToken(token) {
@@ -76,22 +62,22 @@
 
 
 		function logout() {
-			$window.localStorage.removeItem('mean-token')
+			$window.localStorage.removeItem('mean-token');
 		}
 
-		    function getUsername() {
-		      if(isLoggedIn()){
-		        var token = getToken();
-		        var payload = token.split('.')[1];
-		        payload = $window.atob(payload);
-		        payload = JSON.parse(payload);
-		        console.log(payload.username)
+	    function getUsername() {
+	      if(isLoggedIn()){
+	        var token = getToken();
+	        var payload = token.split('.')[1];
+	        payload = $window.atob(payload);
+	        payload = JSON.parse(payload);
+	        console.log(payload.username)
 
-		        return {
-		          username : payload.username
-		        };
-		      }
-		    };
+	        return {
+	          username : payload.username
+	        };
+	      }
+	    };
 
 		function getUserName() {
 			if(isLoggedIn()){

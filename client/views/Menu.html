@@ -1,7 +1,12 @@
-<div class='menu_container'>
+<div class='menu_container' ng-controller = 'MenuCtrl as mc'>
     <!-- Add a Div that shows Category -->
-    <div class='row menu_header'>
-     <span style='font-size: 28px;'><strong>Add Menu Items</strong></span><img ng-click='menuModal()' style= ' margin-left: 10px; width: 3%; cursor: pointer;' src="app/images/add.png"></span>
+    <div class='row menu_header' ng-hide='true'>
+     <span style='font-size: 28px;'><strong>Add Menu Items!</strong></span><img ng-click='mc.openMenuModal()' style= ' margin-left: 10px; width: 3%; cursor: pointer;' src="app/images/add.png"></span>
+    </div>
+    <div class="row menu_empty">
+        <h2>
+            Let's Start Building Your Menu!<span ng-click="mc.openMenuModal()"><i class="fa fa-cutlery menu_empty_icon" aria-hidden="true"></i> </span>
+        </h2>
     </div>
     <div class='tables-container menu_div_container'>
         <div class='row tables_width'>

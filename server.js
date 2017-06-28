@@ -2,6 +2,8 @@
 var express = require('express'),
 	logger = require('morgan'),
 	cookieParser = require('cookie-parser'),
+	favicon = require('serve-favicon');
+
 	bodyParser = require('body-parser'),
 	expressSession = require('express-session'),
 	hash = require('bcrypt-nodejs'),
@@ -17,7 +19,7 @@ require('./server/config/passport.js');
 var twilioNotifications = require('./server/middleware/twilioNotifications.js')
 
 
-var routes = require('./server/config/routes.js')
+var routes = require('./server/config/routes.js');
 
 //invoke express, require mongoose.js, require routes
 var app = express();
@@ -59,6 +61,6 @@ app.use(function(err, req, res) {
 });
 
 var debug = require('debug')('passport-mongo');
-app.listen('8000', function(){
-	console.log('8000')
+app.listen('8100', function(){
+	console.log('8100')
 })
