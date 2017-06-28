@@ -19,7 +19,7 @@
 			AuthService.login($scope.user.username, $scope.user.password)
 			//success
 			.then(function(data) {
-				$location.path('/menu');
+				$location.path('/dashboard');
 				$scope.diabled = false;
 				$scope.user = {}
 			})

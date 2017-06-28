@@ -10,7 +10,6 @@
 		$scope.test = 'hello'
 		$scope.login = login;
 		$scope.logout = logout;
-		$scope.hello = 'kdshin2010'
 		$scope.register = register
 		$scope.username = AuthService.currentUser()
 		$scope.isLoggedIn = AuthService.isLoggedIn();
@@ -27,7 +26,6 @@
 			AuthService.register($scope.user)
 			//success
 			.then(function(data) {
-				console.log(AuthService.currentUser())
 				$location.path('/');
 				$scope.diabled = false;
 			})
@@ -44,7 +42,7 @@
 			AuthService.login($scope.user)
 			//success
 			.then(function(data) {
-				$location.path('/');
+				$location.path('/dashboard');
 				console.log(data)
 				$scope.diabled = false;
 				$scope.user = {}
