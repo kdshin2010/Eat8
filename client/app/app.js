@@ -13,7 +13,7 @@
 //configFunction injection
 	function ConfigFunction($routeProvider) {
 		$routeProvider.when('/', {
-			templateUrl: '../views/dashboard.html',
+			templateUrl: '../views/home.html',
 			access: {restricted: false}
 		})
 		$routeProvider.when('/menu', {
@@ -60,7 +60,8 @@
 		})
 		$routeProvider.when('/dashboard', {
 			templateUrl: '../views/dashboard.html',
-			controller: 'DashboardCtrl'
+			controller: 'DashboardCtrl',
+			access: {restricted: true}
 		})
 		$routeProvider.when('/tables', {
 			templateUrl: '../views/tables.html',
