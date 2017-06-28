@@ -12,15 +12,19 @@
 
 
 		function layouts() {
-			$location.path('/view_restaur')
+			$location.path('/view_restaur');
 		}
 
 		function orders() {
-			$location.path('/productionOrders')
+			$location.path('/productionOrders');
 		}
 
 		function waitlist() {
-			$location.path('/waitlist')
+			$location.path('/waitlist');
+		}
+
+		function menu() {
+			$location.path('/menu');
 		}
 	}
 
