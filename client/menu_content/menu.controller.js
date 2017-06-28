@@ -65,26 +65,8 @@
 			getMenuItems();
 		})
 
-		//make this into one function
-
-		//Add Menu Items
-		// function menuModal(x) {
-		// 	var modalInstance = $uibModal.open({
-		// 		animation: $scope.animationsEnabled,
-		// 		templateUrl: '../menu_content/menu.modal.html',
-		// 		controller: 'MenuModalCtrl',
-		// 		scope: $scope,
-		// 		size: 'lg',
-		// 		windowClass: 'myModal',
-		// 		resolve: {
-		// 			dataFromMenuCtrl: function() {
-		// 				return null
-		// 			}
-		// 		}
-		// 	})
-		// }
-
 		vm.openMenuModal = function(x) {
+			alert('opening');
 			var modalInstance = $uibModal.open({
 				animation: $scope.animationsEnabled,
 				templateUrl: '../modal/modal_views/menu_modal.html',
@@ -103,9 +85,6 @@
 		}
 
 		function addItem(menu) {
-			console.log('BELOW IS THE MENU')
-			console.log(menu);
-			alert('pening')
 			var modalInstance = $uibModal.open({
 				animation: $scope.animationsEnabled,
 				templateUrl: '../views/new.item.modal.html',
@@ -139,7 +118,6 @@
 		}
 
 		function editItem(item) {
-			console.log(item)
 			var modalInstance = $uibModal.open({
 				animation: $scope.animationsEnabled,
 				templateUrl: '../views/edit.modal.html',
@@ -233,9 +211,7 @@
 		function getMenuItems() {
 			MenuFactory.getMenuItems($scope.username.username)
 			.then(function(data) {
-				console.log(data)
 				$scope.items = data;
-				console.log(data);
 			})
 			.catch(function(){
 				console.log('error')

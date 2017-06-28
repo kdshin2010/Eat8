@@ -8,18 +8,55 @@
 	function MenuModalCtrlFunction($scope, $location, MenuFactory, AuthService, OrdersFactory, $uibModalInstance, $rootScope, dataFromMenuCtrl) {
 		var vm = this;
 		vm.categeryIsEntered = false;
-		vm.menuCategory = ''
+		vm.menuCategory = '';
+		vm.item = {}
+		vm.currentMenuItems = [];
+
+
+		vm.enterCategory = function() {
+			vm.isCategoryEntered = true;
+		}
+
+
+		//fix add append and update
+		vm.addCategory = function() {
+			vm.categoryIsEntered = true;
+		}
+
+
+		vm.addItem = function() {
+			vm.currentMenuItems.push(vm.item);
+			vm.item = {};
+			console.log(vm.currentMenuItems.length);
+		}
+
+
+		vm.removeItem = function(item) {
+			var indx = vm.currentMenuItems.indexOf(item);
+			vm.currentMenuItems.splice(indx, 1);
+		}
 
 
 
-		$scope.hello = 'abugga';
+
+
+
+
+
+
+
+
+
+
+
+
+
 		$scope.open = open;
 		$scope.toggleCategory = toggleCategory
 		$scope.addCategory = addCategory
 		$scope.category = $scope.newCategory;
 		$scope.addGroup = addGroup
 		// $scope.addItems = addItems;
-		$scope.addItem = addItem
 		$scope.username = AuthService.currentUser();
 		$scope.selectedCategory;
 		$scope.previewedCategory;
@@ -42,16 +79,7 @@
 			description: ''
 		}
 
-		//fix add append and update
 
-
-		vm.addCategory = function() {
-			vm.categoryIsEntered = true;
-		}
-
-
-
-		
 
 		function updateItem() {
 			//this is the updateItemId
@@ -70,19 +98,13 @@
 			$scope.selectACategory = false;
 			MenuFactory.previewCategory(category)
 			.then(function(data){
-				console.log('here!');
-				console.log(data)
 				$scope.selectedCategory = data
-				console.log($scope.selectedCategory)
 				$scope.previewedCategory = data;
-				console.log('this is ')
 			})
 			.catch(function() {
 				console.log('error!')
 			})
-
 		}
-
 
 		function addItemToTable() {
 			MenuFactory.addItem({id: dataFromMenuCtrl, name: $scope.newItem.name, price: $scope.newItem.price})
@@ -93,27 +115,22 @@
 			.catch(function(){
 				console.log('error')
 			})
-
 		}
 
 
 
-
-
-		function addItem(){
-	
-		
-			MenuFactory.addItem({id: $scope.selectedCategory, name: $scope.newItem.name, price: $scope.newItem.price, description: $scope.newItem.description })
-			.then(function(data) {
-				console.log('this is my data!!')
-				console.log(data);
-				previewCategory($scope.selectedCategory);
-				$scope.newItem = {}
-			})
-			.catch(function(){
-				console.log('error!')
-			})
-		}
+		// function addItem(){
+		// 	MenuFactory.addItem({id: $scope.selectedCategory, name: $scope.newItem.name, price: $scope.newItem.price, description: $scope.newItem.description })
+		// 	.then(function(data) {
+		// 		console.log('this is my data!!')
+		// 		console.log(data);
+		// 		previewCategory($scope.selectedCategory);
+		// 		$scope.newItem = {}
+		// 	})
+		// 	.catch(function(){
+		// 		console.log('error!')
+		// 	})
+		// }
 	
 
 		function addGroup() {
@@ -154,9 +171,7 @@
 
 		function toggleCategory() {
 			$scope.addCategoria = !$scope.addCategoria
-
 		}
-
 	}	
 
 })()

@@ -5,10 +5,12 @@
 	.controller('DashboardCtrl', DashBoardCtrlFunction)
 
 	function DashBoardCtrlFunction($scope, $location, MenuFactory, OrdersFactory) {
-		$scope.hello = 'hello';
-		$scope.layouts = layouts
-		$scope.orders = orders
-		$scope.waitlist = waitlist
+		var vm = this;
+
+		vm.layouts = layouts;
+		vm.orders = orders;
+		vm.waitList = waitList;
+		vm.menu = menu;
 
 
 		function layouts() {
@@ -19,7 +21,7 @@
 			$location.path('/productionOrders');
 		}
 
-		function waitlist() {
+		function waitList() {
 			$location.path('/waitlist');
 		}
 

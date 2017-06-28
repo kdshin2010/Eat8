@@ -61,6 +61,7 @@
 		$routeProvider.when('/dashboard', {
 			templateUrl: '../views/dashboard.html',
 			controller: 'DashboardCtrl',
+			controllerAs: 'dc',
 			access: {restricted: true}
 		})
 		$routeProvider.when('/tables', {

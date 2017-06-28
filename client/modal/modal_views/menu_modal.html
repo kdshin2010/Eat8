@@ -1,33 +1,29 @@
 <div class='menu_modal_wrapper'>
-	<div class="menu_modal_add_category" ng-show='!mmc.categoryIsEntered'>
+	<div class="menu_modal_add_category" ng-show='!mmc.isCategoryEntered'>
 		<h2>Enter Item Category</h2>
-		<form class='pure-form' ng-submit="mmc.addCategory()" >
+		<form class='pure-form' ng-submit="mmc.enterCategory()" >
 		    <input class="pure-input-2-3 menu_category_input" type="text" placeholder="Enter the Category of the Menu" ng-model='mmc.menuCategory'>
 		    <button class="pure-button">Add Category</button>
 		</form>
 	</div>
-	<div class="pure-g menu_modal_enter_item" ng-show='mmc.categoryIsEntered'>
+	<div class="pure-g menu_modal_enter_item" ng-show='mmc.isCategoryEntered'>
 		<div class='pure-u-1-2' style='text-align: left;'>
 			<div class='menu_modal_item_input'>
 				<h3>Item Name</h3>
-				<input class="pure-input-2-3 menu_item_input" type="text" placeholder="Item Name">
+				<input class="pure-input-2-3 menu_item_input" type="text" placeholder="Item Name" ng-model='mmc.item.name'>
 			</div>
 			<div class='menu_modal_item_input'>
 				<h3>Item Price</h3>
-				<input class="pure-input-2-3 menu_item_input" type="text" placeholder="Item Price">
+				<input class="pure-input-2-3 menu_item_input" type="text" placeholder="Item Price" ng-model="mmc.item.price">
 			</div>
 			<div class='menu_modal_item_input'>
 				<h3>Item Description</h3>
-				<textarea class="pure-input-2-3 menu_description_input" type="text" placeholder="Enter the description of the item"></textarea>
+				<textarea class="pure-input-2-3 menu_description_input" type="text" placeholder="Enter the description of the item" ng-model="mmc.item.description"></textarea>
 			</div>
 			<div class='menu_modal_item_input button_container'>
-		    <button class="pure-button button_group add">Add Category</button>
-		    <button class="pure-button button_group cancel">Add Category</button>
-
-
-				
+			    <button class="pure-button button_group add">Cancel</button>
+			    <button class="pure-button button_group cancel" ng-click='mmc.addItem()'>Add</button>
 			</div>
-
 		</div>
 		<div class='pure-u-1-2 menu_modal_item_preview'>
 			<h3><strong>{{mmc.menuCategory}}</strong></h3>
@@ -38,46 +34,16 @@
 			            <th>Name</th>
 			            <th>Price</th>
 			            <th>Description</th>
+			            <th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td><span>1</span></td>
-						<td>Shrimp</td>
-						<td>$3.99</td>
-						<td width="300px">Thrst </td>
-					</tr>
-					<tr>
-						<td><span>1</span></td>
-						<td>Shrimp</td>
-						<td>$3.99</td>
-						<td>This is the first i</td>
-					</tr>
-					<tr>
-						<td><span>1</span></td>
-						<td>Shrimp</td>
-						<td>$3.99</td>
-						<td>This is the first i</td>
-					</tr>					<tr>
-						<td><span>1</span></td>
-						<td>Shrimp</td>
-						<td>$3.99</td>
-						<td>This is the first i</td>
-					</tr>					<tr>
-						<td><span>1</span></td>
-						<td>Shrimp</td>
-						<td>$3.99</td>
-						<td>This is the first i</td>
-					</tr>					<tr>
-						<td><span>1</span></td>
-						<td>Shrimp</td>
-						<td>$3.99</td>
-						<td>This is the first i</td>
-					</tr>					<tr>
-						<td><span>1</span></td>
-						<td>Shrimp</td>
-						<td>$3.99</td>
-						<td>This is the first i</td>
+					<tr ng-repeat="item in mmc.currentMenuItems">
+						<td><span>{{item.number}}</span></td>
+						<td>{{item.name}}</td>
+						<td>{{item.price}}</td>
+						<td width="300px">{{item.description}} </td>
+						<td><button ng-click="mmc.removeItem(item)">Remove</button></td>
 					</tr>
 				</tbody>
 			</table>
